@@ -1,0 +1,61 @@
+{
+    "name": "Shippo",
+    "description": "Shippo is a multi-carrier shipping API and Dashboard for Ecommerce, Platforms, and Marketplaces. Automate shipping via USPS, UPS, FedEx, DHL & many others.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28281-goshippo-com.jpg",
+    "tags": [
+        "aggregation",
+        "have api",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/shippo\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Shippo",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28281-goshippo-com.jpg",
+            "humanURL": "https:\/\/goshippo.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/shippo-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/shippo"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/goshippo.com\/docs\/intro\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/goshippo.com\/docs\/reference"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/goshippo"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/goshippo"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/goshippo.com\/docs\/webhooks\/"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/goshippo.com"
+        }
+    ]
+}
