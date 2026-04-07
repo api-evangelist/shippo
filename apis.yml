@@ -7,8 +7,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-03-01'
 modified: '2026-03-16'
 url: >-
@@ -21,8 +20,7 @@ apis:
       Shippos robust shipping API architecture helps you drive efficiency at scale.
       We have you covered from pre-purchase to returns.
     humanURL: ' https://goshippo.com/products/api'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://goshippo.com/products/api'
