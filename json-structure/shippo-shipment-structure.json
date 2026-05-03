@@ -1,0 +1,64 @@
+{
+  "title": "Shippo Shipment Structure",
+  "description": "Structural documentation for the Shippo Shipment object",
+  "type": "object",
+  "fields": {
+    "object_id": { "type": "string", "description": "Unique identifier", "example": "b20eb8f5f9ab421db6962fb80cc06bb4" },
+    "status": { "type": "enum", "values": ["WAITING", "QUEUED", "SUCCESS", "ERROR"], "description": "Shipment status" },
+    "address_from": { "type": "Address", "description": "Origin address" },
+    "address_to": { "type": "Address", "description": "Destination address" },
+    "address_return": { "type": "Address", "description": "Return address (defaults to address_from)" },
+    "parcels": { "type": "array[Parcel]", "description": "Physical parcels in the shipment" },
+    "rates": { "type": "array[Rate]", "description": "Available shipping rates (populated after creation)" },
+    "extra": { "type": "object", "description": "Additional options: insurance, COD, signature" },
+    "metadata": { "type": "string", "description": "User-defined metadata (max 100 chars)", "example": "Order 12345" },
+    "object_created": { "type": "datetime", "description": "ISO 8601 creation timestamp" },
+    "object_updated": { "type": "datetime", "description": "ISO 8601 last update timestamp" }
+  },
+  "nested": {
+    "Address": {
+      "object_id": "string - Shippo address ID",
+      "is_complete": "boolean - Whether address passes validation",
+      "name": "string - Recipient name",
+      "company": "string - Company name",
+      "street1": "string - Street address line 1",
+      "street2": "string - Street address line 2",
+      "city": "string - City",
+      "state": "string - State/province code",
+      "zip": "string - Postal/ZIP code",
+      "country": "string - ISO 2-letter country code",
+      "phone": "string - Phone number",
+      "email": "string - Email address",
+      "is_residential": "boolean - Residential vs commercial"
+    },
+    "Parcel": {
+      "object_id": "string - Shippo parcel ID",
+      "length": "string - Length dimension",
+      "width": "string - Width dimension",
+      "height": "string - Height dimension",
+      "distance_unit": "enum[cm, in, ft, mm, m, yd] - Unit of length measurement",
+      "weight": "string - Weight value",
+      "mass_unit": "enum[g, oz, lb, kg] - Unit of weight measurement",
+      "template": "string - Predefined parcel template (e.g., USPS_FlatRateBox)"
+    },
+    "Rate": {
+      "object_id": "string - Rate ID",
+      "amount": "string - Shipping cost",
+      "currency": "string - ISO currency code",
+      "amount_local": "string - Cost in local currency",
+      "currency_local": "string - Local currency code",
+      "provider": "string - Carrier name (USPS, UPS, FedEx, etc.)",
+      "servicelevel": "object - Service level details {name, token, terms}",
+      "days": "integer - Estimated transit days",
+      "arrives_by": "string - Estimated delivery time",
+      "trackable": "boolean - Whether tracking is included",
+      "attributes": "array[string] - Service attributes (e.g., BESTVALUE)"
+    }
+  },
+  "lifecycle": {
+    "create": "POST /shipments with address_from, address_to, parcels",
+    "get_rates": "GET /shipments/{id}/rates after shipment creation",
+    "purchase_label": "POST /transactions with selected rate ID",
+    "track": "GET /tracks/{carrier}/{tracking_number}"
+  }
+}

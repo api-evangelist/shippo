@@ -1,0 +1,445 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shippo API"
+  description: "Multi-carrier shipping API for address validation, rate shopping, label generation, and package tracking across 80+ carriers"
+  tags:
+    - Shipping
+    - Ecommerce
+    - Labels
+    - Tracking
+    - Logistics
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SHIPPO_API_TOKEN: SHIPPO_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: shippo
+      baseUri: https://api.goshippo.com
+      description: "Shippo multi-carrier shipping API"
+      authentication:
+        type: bearer
+        token: "{{SHIPPO_API_TOKEN}}"
+      resources:
+        - name: addresses
+          path: /addresses
+          description: "Manage and validate shipping addresses"
+          operations:
+            - name: list-addresses
+              method: GET
+              description: "List all address objects"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: results
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Results per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-address
+              method: POST
+              description: "Create a new shipping address"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  street1: "{{tools.street1}}"
+                  city: "{{tools.city}}"
+                  state: "{{tools.state}}"
+                  zip: "{{tools.zip}}"
+                  country: "{{tools.country}}"
+            - name: validate-address
+              method: GET
+              description: "Validate an existing address"
+              inputParameters:
+                - name: AddressId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Address object ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: shipments
+          path: /shipments
+          description: "Create and manage shipments"
+          operations:
+            - name: list-shipments
+              method: GET
+              description: "List all shipments"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: results
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Results per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-shipment
+              method: POST
+              description: "Create a shipment to retrieve carrier rates"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  address_from: "{{tools.address_from}}"
+                  address_to: "{{tools.address_to}}"
+                  parcels: "{{tools.parcels}}"
+
+        - name: rates
+          path: /shipments/{ShipmentId}/rates
+          description: "Retrieve shipping rates for a shipment"
+          operations:
+            - name: get-shipment-rates
+              method: GET
+              description: "Get all carrier rates for a shipment"
+              inputParameters:
+                - name: ShipmentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Shipment object ID"
+                - name: currency_code
+                  in: query
+                  type: string
+                  required: false
+                  description: "Currency code for rate amounts"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: transactions
+          path: /transactions
+          description: "Purchase shipping labels"
+          operations:
+            - name: list-transactions
+              method: GET
+              description: "List all purchased labels"
+              inputParameters:
+                - name: tracking_status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by tracking status"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: purchase-label
+              method: POST
+              description: "Purchase a shipping label from a selected rate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  rate: "{{tools.rate_id}}"
+                  label_file_type: "{{tools.label_file_type}}"
+
+        - name: tracking
+          path: /tracks/{Carrier}/{TrackingNumber}
+          description: "Track shipments across carriers"
+          operations:
+            - name: get-tracking-status
+              method: GET
+              description: "Get real-time tracking status for a shipment"
+              inputParameters:
+                - name: Carrier
+                  in: path
+                  type: string
+                  required: true
+                  description: "Carrier code (e.g., usps, fedex, ups)"
+                - name: TrackingNumber
+                  in: path
+                  type: string
+                  required: true
+                  description: "Shipment tracking number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: refunds
+          path: /refunds
+          description: "Request label refunds"
+          operations:
+            - name: create-refund
+              method: POST
+              description: "Request a refund for a purchased label"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  transaction: "{{tools.transaction_id}}"
+
+        - name: carrier-accounts
+          path: /carrier_accounts
+          description: "Manage carrier account integrations"
+          operations:
+            - name: list-carrier-accounts
+              method: GET
+              description: "List all connected carrier accounts"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: webhooks
+          path: /webhooks
+          description: "Manage webhook subscriptions"
+          operations:
+            - name: list-webhooks
+              method: GET
+              description: "List all webhook subscriptions"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-webhook
+              method: POST
+              description: "Create a new webhook subscription"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  url: "{{tools.webhook_url}}"
+                  event: "{{tools.event_type}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: shippo-rest
+      resources:
+        - path: /v1/addresses
+          name: addresses
+          description: "Manage shipping addresses"
+          operations:
+            - method: GET
+              name: list-addresses
+              description: "List addresses"
+              call: "shippo.list-addresses"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-address
+              description: "Create a new address"
+              call: "shippo.create-address"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/addresses/{id}/validate
+          name: address-validation
+          description: "Validate an address"
+          operations:
+            - method: GET
+              name: validate-address
+              description: "Validate address"
+              call: "shippo.validate-address"
+              with:
+                AddressId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/shipments
+          name: shipments
+          description: "Create and manage shipments"
+          operations:
+            - method: GET
+              name: list-shipments
+              description: "List shipments"
+              call: "shippo.list-shipments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-shipment
+              description: "Create shipment"
+              call: "shippo.create-shipment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/shipments/{id}/rates
+          name: shipment-rates
+          description: "Get rates for a shipment"
+          operations:
+            - method: GET
+              name: get-rates
+              description: "Get shipment rates"
+              call: "shippo.get-shipment-rates"
+              with:
+                ShipmentId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/transactions
+          name: transactions
+          description: "Purchase shipping labels"
+          operations:
+            - method: GET
+              name: list-transactions
+              description: "List transactions"
+              call: "shippo.list-transactions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: purchase-label
+              description: "Purchase label"
+              call: "shippo.purchase-label"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/tracking/{carrier}/{tracking-number}
+          name: tracking
+          description: "Track shipments"
+          operations:
+            - method: GET
+              name: get-tracking-status
+              description: "Get tracking status"
+              call: "shippo.get-tracking-status"
+              with:
+                Carrier: "rest.carrier"
+                TrackingNumber: "rest.tracking-number"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: shippo-mcp
+      transport: http
+      tools:
+        - name: list-shipments
+          description: "List all Shippo shipments"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shippo.list-shipments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-shipment
+          description: "Create a new shipment to retrieve carrier rates"
+          hints:
+            readOnly: false
+          call: "shippo.create-shipment"
+          with:
+            address_from: "tools.address_from"
+            address_to: "tools.address_to"
+            parcels: "tools.parcels"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-shipment-rates
+          description: "Get available carrier rates for a shipment"
+          hints:
+            readOnly: true
+          call: "shippo.get-shipment-rates"
+          with:
+            ShipmentId: "tools.shipment_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: purchase-label
+          description: "Purchase a shipping label from a selected rate"
+          hints:
+            readOnly: false
+          call: "shippo.purchase-label"
+          with:
+            rate_id: "tools.rate_id"
+            label_file_type: "tools.label_file_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-tracking-status
+          description: "Get real-time tracking status for a shipment"
+          hints:
+            readOnly: true
+          call: "shippo.get-tracking-status"
+          with:
+            Carrier: "tools.carrier"
+            TrackingNumber: "tools.tracking_number"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: validate-address
+          description: "Validate a shipping address"
+          hints:
+            readOnly: true
+          call: "shippo.validate-address"
+          with:
+            AddressId: "tools.address_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-refund
+          description: "Request a refund for a purchased label"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "shippo.create-refund"
+          with:
+            transaction_id: "tools.transaction_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-carrier-accounts
+          description: "List connected carrier accounts"
+          hints:
+            readOnly: true
+          call: "shippo.list-carrier-accounts"
+          outputParameters:
+            - type: object
+              mapping: "$."

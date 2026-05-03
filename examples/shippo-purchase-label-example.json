@@ -1,0 +1,31 @@
+{
+  "example": "Purchase Shipping Label",
+  "description": "Purchase a shipping label by creating a transaction from a selected rate",
+  "request": {
+    "method": "POST",
+    "url": "https://api.goshippo.com/transactions",
+    "headers": {
+      "Authorization": "ShippoToken shippo_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "rate": "e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9",
+      "label_file_type": "PDF",
+      "async": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "object_id": "t1r2a3c4k5i6n7g8n9u0m1b2e3r4x5y6",
+      "status": "SUCCESS",
+      "tracking_number": "9400111899223434769485",
+      "tracking_url_provider": "https://tools.usps.com/go/TrackConfirmAction?tLabels=9400111899223434769485",
+      "tracking_status": "UNKNOWN",
+      "label_url": "https://shippo-delivery-east.s3.amazonaws.com/t1r2a3c4k5i6n7g8n9u0m1b2e3r4x5y6.pdf",
+      "rate": "e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9",
+      "object_created": "2026-05-02T10:35:00Z",
+      "object_updated": "2026-05-02T10:35:01Z"
+    }
+  }
+}

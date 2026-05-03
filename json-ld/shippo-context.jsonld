@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "shippo": "https://api.goshippo.com/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Shipment": "shippo:Shipment",
+    "Transaction": "shippo:Transaction",
+    "Rate": "shippo:Rate",
+    "Parcel": "shippo:Parcel",
+    "TrackingStatus": "shippo:TrackingStatus",
+    "CarrierAccount": "shippo:CarrierAccount",
+    "Refund": "shippo:Refund",
+    "Webhook": "shippo:Webhook",
+
+    "object_id": "schema:identifier",
+    "status": "schema:status",
+    "metadata": "schema:description",
+    "object_created": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "object_updated": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+
+    "address_from": { "@id": "schema:sender", "@type": "schema:PostalAddress" },
+    "address_to": { "@id": "schema:recipient", "@type": "schema:PostalAddress" },
+    "address_return": { "@id": "shippo:returnAddress", "@type": "schema:PostalAddress" },
+    "parcels": { "@id": "shippo:parcels", "@container": "@list" },
+    "rates": { "@id": "shippo:rates", "@container": "@list" },
+
+    "name": "schema:name",
+    "company": "schema:legalName",
+    "street1": "schema:streetAddress",
+    "street2": "shippo:streetAddress2",
+    "city": "schema:addressLocality",
+    "state": "schema:addressRegion",
+    "zip": "schema:postalCode",
+    "country": "schema:addressCountry",
+    "phone": "schema:telephone",
+    "email": "schema:email",
+    "is_residential": "shippo:isResidential",
+    "is_complete": "shippo:isComplete",
+
+    "length": { "@id": "schema:depth", "@type": "xsd:string" },
+    "width": { "@id": "schema:width", "@type": "xsd:string" },
+    "height": { "@id": "schema:height", "@type": "xsd:string" },
+    "distance_unit": "schema:unitCode",
+    "weight": "schema:weight",
+    "mass_unit": "schema:unitCode",
+    "template": "schema:additionalType",
+
+    "amount": { "@id": "schema:price", "@type": "xsd:string" },
+    "currency": "schema:priceCurrency",
+    "amount_local": "shippo:amountLocal",
+    "currency_local": "shippo:currencyLocal",
+    "provider": "schema:provider",
+    "servicelevel": "shippo:serviceLevel",
+    "days": { "@id": "schema:transitTime", "@type": "xsd:integer" },
+    "arrives_by": "shippo:arrivesBy",
+    "trackable": "shippo:isTrackable",
+
+    "tracking_number": "schema:trackingNumber",
+    "tracking_url_provider": { "@id": "schema:trackingUrl", "@type": "@id" },
+    "tracking_status": "shippo:trackingStatus",
+    "label_url": { "@id": "schema:url", "@type": "@id" },
+
+    "carrier": "schema:provider",
+    "tracking_number": "schema:trackingNumber",
+    "eta": { "@id": "schema:expectedArrivalUntil", "@type": "xsd:dateTime" },
+    "tracking_history": "schema:itemListElement",
+
+    "rate": { "@id": "shippo:rate", "@type": "shippo:Rate" },
+    "label_file_type": "schema:encodingFormat",
+
+    "transaction": { "@id": "shippo:transaction", "@type": "shippo:Transaction" },
+
+    "active": "schema:actionStatus",
+    "event": "schema:eventType",
+    "url": { "@id": "schema:url", "@type": "@id" }
+  }
+}

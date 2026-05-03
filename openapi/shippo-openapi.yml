@@ -1,0 +1,1264 @@
+openapi: 3.1.0
+info:
+  title: Shippo API
+  description: >-
+    Shippo is a multi-carrier shipping API that enables developers to add
+    complete shipping functionality to their applications. The API supports
+    address validation, carrier rate comparison across USPS, UPS, FedEx,
+    DHL, and 80+ other carriers, label generation, package tracking, returns
+    management, and webhook notifications.
+  version: '2018-02-08'
+  contact:
+    name: Shippo
+    url: https://docs.goshippo.com/
+    email: support@goshippo.com
+  license:
+    name: Shippo API Terms
+    url: https://goshippo.com/terms-of-use/
+  x-date: '2026-05-02'
+servers:
+  - url: https://api.goshippo.com
+    description: Shippo API
+security:
+  - ShippoToken: []
+tags:
+  - name: Addresses
+    description: Validate and manage shipping addresses
+  - name: Carrier Accounts
+    description: Manage carrier account integrations
+  - name: Parcels
+    description: Define parcel dimensions and weight
+  - name: Rates
+    description: Retrieve shipping rates from carriers
+  - name: Shipments
+    description: Create and manage shipments
+  - name: Tracking
+    description: Track shipments across carriers
+  - name: Transactions
+    description: Purchase shipping labels
+  - name: Refunds
+    description: Request label refunds
+  - name: Returns
+    description: Manage return shipments
+  - name: Webhooks
+    description: Manage webhook subscriptions
+paths:
+  /addresses:
+    get:
+      operationId: listAddresses
+      summary: List Addresses
+      description: Returns a list of all address objects.
+      tags:
+        - Addresses
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: results
+          in: query
+          description: Number of results per page (max 100)
+          schema:
+            type: integer
+            default: 5
+      responses:
+        '200':
+          description: A list of addresses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressPaginatedList'
+    post:
+      operationId: createAddress
+      summary: Create Address
+      description: Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders.
+      tags:
+        - Addresses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateRequest'
+      responses:
+        '201':
+          description: Address created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /addresses/{AddressId}:
+    get:
+      operationId: getAddress
+      summary: Get Address
+      description: Returns an existing address using an object ID.
+      tags:
+        - Addresses
+      parameters:
+        - name: AddressId
+          in: path
+          required: true
+          description: Object ID of the address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Address object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /addresses/{AddressId}/validate:
+    get:
+      operationId: validateAddress
+      summary: Validate Address
+      description: Validates an existing address and returns validation results.
+      tags:
+        - Addresses
+      parameters:
+        - name: AddressId
+          in: path
+          required: true
+          description: Object ID of the address to validate
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Address validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /parcels:
+    get:
+      operationId: listParcels
+      summary: List Parcels
+      description: Returns a list of all parcel objects.
+      tags:
+        - Parcels
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+        - name: results
+          in: query
+          description: Number of results per page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of parcels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParcelPaginatedList'
+    post:
+      operationId: createParcel
+      summary: Create Parcel
+      description: Creates a new parcel object. Parcel objects are used to define the physical properties of a shipment.
+      tags:
+        - Parcels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParcelCreateRequest'
+      responses:
+        '201':
+          description: Parcel created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Parcel'
+  /parcels/{ParcelId}:
+    get:
+      operationId: getParcel
+      summary: Get Parcel
+      description: Returns an existing parcel using an object ID.
+      tags:
+        - Parcels
+      parameters:
+        - name: ParcelId
+          in: path
+          required: true
+          description: Object ID of the parcel
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Parcel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Parcel'
+  /shipments:
+    get:
+      operationId: listShipments
+      summary: List Shipments
+      description: Returns a list of all shipment objects.
+      tags:
+        - Shipments
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: results
+          in: query
+          schema:
+            type: integer
+        - name: object_created_gt
+          in: query
+          description: Filter by creation date (greater than)
+          schema:
+            type: string
+            format: date-time
+        - name: object_created_lt
+          in: query
+          description: Filter by creation date (less than)
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: A list of shipments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentPaginatedList'
+    post:
+      operationId: createShipment
+      summary: Create Shipment
+      description: >-
+        Creates a new shipment object. Shipments are the basic body of the Shippo
+        API. They include shipment details and rates, and can be used to purchase
+        labels.
+      tags:
+        - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentCreateRequest'
+      responses:
+        '201':
+          description: Shipment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+  /shipments/{ShipmentId}:
+    get:
+      operationId: getShipment
+      summary: Get Shipment
+      description: Returns an existing shipment using an object ID.
+      tags:
+        - Shipments
+      parameters:
+        - name: ShipmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Shipment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+  /shipments/{ShipmentId}/rates:
+    get:
+      operationId: getShipmentRates
+      summary: Get Shipment Rates
+      description: Returns a list of rates for a given shipment.
+      tags:
+        - Rates
+        - Shipments
+      parameters:
+        - name: ShipmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency_code
+          in: query
+          description: Currency code for rate amounts (ISO 4217)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of rates for the shipment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatePaginatedList'
+  /rates/{RateId}:
+    get:
+      operationId: getRate
+      summary: Get Rate
+      description: Returns an existing rate using an object ID.
+      tags:
+        - Rates
+      parameters:
+        - name: RateId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rate object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rate'
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List Transactions
+      description: Returns a list of all transaction objects (purchased labels).
+      tags:
+        - Transactions
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: results
+          in: query
+          schema:
+            type: integer
+        - name: tracking_status
+          in: query
+          description: Filter by tracking status
+          schema:
+            type: string
+            enum: [UNKNOWN, PRE_TRANSIT, TRANSIT, DELIVERED, RETURNED, FAILURE]
+        - name: object_created_gt
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: object_created_lt
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionPaginatedList'
+    post:
+      operationId: createTransaction
+      summary: Create Transaction (Purchase Label)
+      description: >-
+        Creates a transaction object and purchases the shipping label using a
+        Rate object that was previously retrieved. This is how you buy a
+        shipping label from Shippo.
+      tags:
+        - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionCreateRequest'
+      responses:
+        '201':
+          description: Transaction created and label purchased
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /transactions/{TransactionId}:
+    get:
+      operationId: getTransaction
+      summary: Get Transaction
+      description: Returns an existing transaction object using an object ID.
+      tags:
+        - Transactions
+      parameters:
+        - name: TransactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /tracks/{Carrier}/{TrackingNumber}:
+    get:
+      operationId: getTrackingStatus
+      summary: Get Tracking Status
+      description: >-
+        Returns the real-time tracking status for a shipment using the carrier
+        code and tracking number. Returns normalized tracking data across all
+        supported carriers.
+      tags:
+        - Tracking
+      parameters:
+        - name: Carrier
+          in: path
+          required: true
+          description: Carrier code (e.g. usps, fedex, ups, dhl_express)
+          schema:
+            type: string
+        - name: TrackingNumber
+          in: path
+          required: true
+          description: Tracking number for the shipment
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tracking status for the shipment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingStatus'
+  /tracks:
+    post:
+      operationId: registerTrackingWebhook
+      summary: Register Tracking Webhook
+      description: Registers a tracking webhook for a shipment to receive real-time tracking updates.
+      tags:
+        - Tracking
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackingWebhookRequest'
+      responses:
+        '201':
+          description: Tracking webhook registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingStatus'
+  /refunds:
+    get:
+      operationId: listRefunds
+      summary: List Refunds
+      description: Returns a list of all refund objects.
+      tags:
+        - Refunds
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: results
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of refunds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundPaginatedList'
+    post:
+      operationId: createRefund
+      summary: Create Refund
+      description: Creates a refund request for a purchased label.
+      tags:
+        - Refunds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundCreateRequest'
+      responses:
+        '201':
+          description: Refund request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+  /refunds/{RefundId}:
+    get:
+      operationId: getRefund
+      summary: Get Refund
+      description: Returns an existing refund using an object ID.
+      tags:
+        - Refunds
+      parameters:
+        - name: RefundId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Refund object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+  /carrier_accounts:
+    get:
+      operationId: listCarrierAccounts
+      summary: List Carrier Accounts
+      description: Returns a list of all carrier account objects.
+      tags:
+        - Carrier Accounts
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: results
+          in: query
+          schema:
+            type: integer
+        - name: carrier
+          in: query
+          description: Filter by carrier name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of carrier accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierAccountPaginatedList'
+    post:
+      operationId: createCarrierAccount
+      summary: Create Carrier Account
+      description: Creates a new carrier account object.
+      tags:
+        - Carrier Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierAccountCreateRequest'
+      responses:
+        '201':
+          description: Carrier account created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierAccount'
+  /carrier_accounts/{CarrierAccountId}:
+    get:
+      operationId: getCarrierAccount
+      summary: Get Carrier Account
+      description: Returns an existing carrier account using an object ID.
+      tags:
+        - Carrier Accounts
+      parameters:
+        - name: CarrierAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Carrier account object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierAccount'
+    put:
+      operationId: updateCarrierAccount
+      summary: Update Carrier Account
+      description: Updates an existing carrier account object.
+      tags:
+        - Carrier Accounts
+      parameters:
+        - name: CarrierAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierAccountCreateRequest'
+      responses:
+        '200':
+          description: Carrier account updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierAccount'
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Returns a list of all webhook subscriptions.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: A list of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: Create Webhook
+      description: Creates a new webhook subscription for Shippo events.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateRequest'
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{WebhookId}:
+    get:
+      operationId: getWebhook
+      summary: Get Webhook
+      description: Returns an existing webhook using an object ID.
+      tags:
+        - Webhooks
+      parameters:
+        - name: WebhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Webhook object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    put:
+      operationId: updateWebhook
+      summary: Update Webhook
+      description: Updates an existing webhook subscription.
+      tags:
+        - Webhooks
+      parameters:
+        - name: WebhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateRequest'
+      responses:
+        '200':
+          description: Webhook updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Deletes an existing webhook subscription.
+      tags:
+        - Webhooks
+      parameters:
+        - name: WebhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook deleted
+components:
+  securitySchemes:
+    ShippoToken:
+      type: http
+      scheme: bearer
+      description: Shippo API token (prefix with "ShippoToken ")
+  schemas:
+    Address:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the address
+        is_complete:
+          type: boolean
+          description: Whether the address is complete and valid
+        name:
+          type: string
+          description: Full name of the recipient
+        company:
+          type: string
+          description: Company name
+        street1:
+          type: string
+          description: First line of the street address
+        street2:
+          type: string
+          description: Second line of the street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        zip:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: ISO 2-letter country code
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        is_residential:
+          type: boolean
+          description: Whether the address is residential
+        validation_results:
+          type: object
+          description: Address validation results
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    AddressCreateRequest:
+      type: object
+      required:
+        - name
+        - street1
+        - city
+        - state
+        - zip
+        - country
+      properties:
+        name:
+          type: string
+        company:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        is_residential:
+          type: boolean
+        validate:
+          type: boolean
+          description: Whether to validate the address
+    AddressPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Parcel:
+      type: object
+      properties:
+        object_id:
+          type: string
+        length:
+          type: string
+          description: Length of the parcel
+        width:
+          type: string
+          description: Width of the parcel
+        height:
+          type: string
+          description: Height of the parcel
+        distance_unit:
+          type: string
+          enum: [cm, in, ft, mm, m, yd]
+        weight:
+          type: string
+          description: Weight of the parcel
+        mass_unit:
+          type: string
+          enum: [g, oz, lb, kg]
+        template:
+          type: string
+          description: Predefined parcel template
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    ParcelCreateRequest:
+      type: object
+      required:
+        - length
+        - width
+        - height
+        - distance_unit
+        - weight
+        - mass_unit
+      properties:
+        length:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        distance_unit:
+          type: string
+          enum: [cm, in, ft, mm, m, yd]
+        weight:
+          type: string
+        mass_unit:
+          type: string
+          enum: [g, oz, lb, kg]
+        template:
+          type: string
+    ParcelPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parcel'
+    Shipment:
+      type: object
+      properties:
+        object_id:
+          type: string
+        status:
+          type: string
+          enum: [WAITING, QUEUED, SUCCESS, ERROR]
+        address_from:
+          $ref: '#/components/schemas/Address'
+        address_to:
+          $ref: '#/components/schemas/Address'
+        address_return:
+          $ref: '#/components/schemas/Address'
+        parcels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parcel'
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+        extra:
+          type: object
+          description: Additional shipment options (insurance, signature, etc.)
+        metadata:
+          type: string
+          description: User-defined metadata
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    ShipmentCreateRequest:
+      type: object
+      required:
+        - address_from
+        - address_to
+        - parcels
+      properties:
+        address_from:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/AddressCreateRequest'
+        address_to:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/AddressCreateRequest'
+        address_return:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/AddressCreateRequest'
+        parcels:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - $ref: '#/components/schemas/ParcelCreateRequest'
+        extra:
+          type: object
+        metadata:
+          type: string
+        async:
+          type: boolean
+          description: Whether to create shipment asynchronously
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+    Rate:
+      type: object
+      properties:
+        object_id:
+          type: string
+        object_created:
+          type: string
+          format: date-time
+        amount:
+          type: string
+          description: Total cost of the rate
+        currency:
+          type: string
+          description: Currency of the rate amount
+        amount_local:
+          type: string
+          description: Amount in the local currency
+        currency_local:
+          type: string
+        provider:
+          type: string
+          description: Carrier providing the rate (e.g., USPS, UPS)
+        provider_image_75:
+          type: string
+          description: URL to carrier logo (75px)
+        servicelevel:
+          type: object
+          properties:
+            name:
+              type: string
+            token:
+              type: string
+            terms:
+              type: string
+        days:
+          type: integer
+          description: Estimated transit days
+        arrives_by:
+          type: string
+          description: Estimated delivery time
+        duration_terms:
+          type: string
+          description: Service level terms description
+        trackable:
+          type: boolean
+        attributes:
+          type: array
+          items:
+            type: string
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+    Transaction:
+      type: object
+      properties:
+        object_id:
+          type: string
+        status:
+          type: string
+          enum: [WAITING, QUEUED, SUCCESS, ERROR, REFUNDED, REFUNDPENDING, REFUNDREJECTED]
+        tracking_number:
+          type: string
+          description: Carrier-issued tracking number
+        tracking_url_provider:
+          type: string
+          description: URL to track the shipment on the carrier's website
+        tracking_status:
+          type: string
+          enum: [UNKNOWN, PRE_TRANSIT, TRANSIT, DELIVERED, RETURNED, FAILURE]
+        label_url:
+          type: string
+          description: URL to the shipping label PDF or PNG
+        commercial_invoice_url:
+          type: string
+          description: URL to the commercial invoice (for international shipments)
+        rate:
+          type: string
+          description: Rate object ID used for this transaction
+        metadata:
+          type: string
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    TransactionCreateRequest:
+      type: object
+      required:
+        - rate
+        - label_file_type
+      properties:
+        rate:
+          type: string
+          description: Object ID of the rate to purchase
+        label_file_type:
+          type: string
+          enum: [PNG, PNG_2.3x7.5, PDF, PDF_2.3x7.5, PDF_4x6, PDF_4x8, PDF_Letter, ZPLII]
+        metadata:
+          type: string
+        async:
+          type: boolean
+    TransactionPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+    TrackingStatus:
+      type: object
+      properties:
+        carrier:
+          type: string
+        tracking_number:
+          type: string
+        address_from:
+          $ref: '#/components/schemas/Address'
+        address_to:
+          $ref: '#/components/schemas/Address'
+        transaction:
+          type: string
+        original_eta:
+          type: string
+          format: date-time
+        eta:
+          type: string
+          format: date-time
+        servicelevel:
+          type: object
+          properties:
+            token:
+              type: string
+            name:
+              type: string
+        tracking_status:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [UNKNOWN, PRE_TRANSIT, TRANSIT, DELIVERED, RETURNED, FAILURE]
+            status_details:
+              type: string
+            status_date:
+              type: string
+              format: date-time
+            location:
+              type: object
+        tracking_history:
+          type: array
+          items:
+            type: object
+    TrackingWebhookRequest:
+      type: object
+      required:
+        - carrier
+        - tracking_number
+      properties:
+        carrier:
+          type: string
+        tracking_number:
+          type: string
+        metadata:
+          type: string
+    Refund:
+      type: object
+      properties:
+        object_id:
+          type: string
+        status:
+          type: string
+          enum: [QUEUED, PENDING, SUCCESS, ERROR]
+        transaction:
+          type: string
+          description: Transaction object ID being refunded
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    RefundCreateRequest:
+      type: object
+      required:
+        - transaction
+      properties:
+        transaction:
+          type: string
+          description: Transaction object ID to refund
+        async:
+          type: boolean
+    RefundPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+    CarrierAccount:
+      type: object
+      properties:
+        object_id:
+          type: string
+        carrier:
+          type: string
+          description: Carrier name (e.g., usps, fedex, ups)
+        account_id:
+          type: string
+          description: Carrier account number
+        active:
+          type: boolean
+          description: Whether the carrier account is active
+        test:
+          type: boolean
+          description: Whether this is a test account
+        parameters:
+          type: object
+          description: Carrier-specific account parameters
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    CarrierAccountCreateRequest:
+      type: object
+      required:
+        - carrier
+        - account_id
+      properties:
+        carrier:
+          type: string
+        account_id:
+          type: string
+        parameters:
+          type: object
+        active:
+          type: boolean
+    CarrierAccountPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierAccount'
+    Webhook:
+      type: object
+      properties:
+        object_id:
+          type: string
+        url:
+          type: string
+          description: URL that receives webhook events
+        event:
+          type: string
+          enum: [transaction_created, transaction_updated, batch_created, batch_purchased, track_updated]
+        active:
+          type: boolean
+        is_test:
+          type: boolean
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    WebhookCreateRequest:
+      type: object
+      required:
+        - url
+        - event
+      properties:
+        url:
+          type: string
+        event:
+          type: string
+          enum: [transaction_created, transaction_updated, batch_created, batch_purchased, track_updated]
+        active:
+          type: boolean

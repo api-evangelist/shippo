@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shippo/blob/main/json-schema/shippo-shipment-schema.json",
+  "title": "Shippo Shipment",
+  "description": "A Shippo shipment object representing a shipping request with addresses and parcels",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string",
+      "description": "Unique identifier for the shipment"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["WAITING", "QUEUED", "SUCCESS", "ERROR"],
+      "description": "Current status of the shipment"
+    },
+    "address_from": {
+      "$ref": "#/$defs/Address"
+    },
+    "address_to": {
+      "$ref": "#/$defs/Address"
+    },
+    "address_return": {
+      "$ref": "#/$defs/Address"
+    },
+    "parcels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Parcel"
+      },
+      "minItems": 1,
+      "description": "List of parcels in the shipment"
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Rate"
+      },
+      "description": "Available shipping rates for this shipment"
+    },
+    "extra": {
+      "type": "object",
+      "description": "Additional shipment options (insurance, signature confirmation, etc.)"
+    },
+    "metadata": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "User-defined metadata for the shipment"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the shipment was created"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the shipment was last updated"
+    }
+  },
+  "required": ["object_id", "status", "address_from", "address_to", "parcels"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "title": "Shippo Address",
+      "description": "A postal address object used for shipping",
+      "properties": {
+        "object_id": {
+          "type": "string"
+        },
+        "is_complete": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "street1": {
+          "type": "string"
+        },
+        "street2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "is_residential": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "street1", "city", "state", "zip", "country"]
+    },
+    "Parcel": {
+      "type": "object",
+      "title": "Shippo Parcel",
+      "description": "Physical dimensions and weight of a package",
+      "properties": {
+        "object_id": {
+          "type": "string"
+        },
+        "length": {
+          "type": "string",
+          "description": "Length of the parcel"
+        },
+        "width": {
+          "type": "string",
+          "description": "Width of the parcel"
+        },
+        "height": {
+          "type": "string",
+          "description": "Height of the parcel"
+        },
+        "distance_unit": {
+          "type": "string",
+          "enum": ["cm", "in", "ft", "mm", "m", "yd"]
+        },
+        "weight": {
+          "type": "string",
+          "description": "Weight of the parcel"
+        },
+        "mass_unit": {
+          "type": "string",
+          "enum": ["g", "oz", "lb", "kg"]
+        },
+        "template": {
+          "type": "string",
+          "description": "Predefined parcel template identifier"
+        }
+      },
+      "required": ["length", "width", "height", "distance_unit", "weight", "mass_unit"]
+    },
+    "Rate": {
+      "type": "object",
+      "title": "Shippo Rate",
+      "description": "A shipping rate from a carrier for a shipment",
+      "properties": {
+        "object_id": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "servicelevel": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "token": { "type": "string" }
+          }
+        },
+        "days": {
+          "type": "integer"
+        },
+        "trackable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

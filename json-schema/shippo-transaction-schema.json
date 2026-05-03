@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shippo/blob/main/json-schema/shippo-transaction-schema.json",
+  "title": "Shippo Transaction",
+  "description": "A Shippo transaction representing a purchased shipping label",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string",
+      "description": "Unique identifier for the transaction"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["WAITING", "QUEUED", "SUCCESS", "ERROR", "REFUNDED", "REFUNDPENDING", "REFUNDREJECTED"],
+      "description": "Current status of the transaction"
+    },
+    "tracking_number": {
+      "type": "string",
+      "description": "Carrier-issued tracking number for the shipment"
+    },
+    "tracking_url_provider": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to track the shipment on the carrier's website"
+    },
+    "tracking_status": {
+      "type": "string",
+      "enum": ["UNKNOWN", "PRE_TRANSIT", "TRANSIT", "DELIVERED", "RETURNED", "FAILURE"],
+      "description": "Current tracking status of the shipment"
+    },
+    "label_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the shipping label PDF or PNG"
+    },
+    "commercial_invoice_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the commercial invoice for international shipments"
+    },
+    "rate": {
+      "type": "string",
+      "description": "Object ID of the Rate used for this transaction"
+    },
+    "metadata": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "User-defined metadata for the transaction"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["object_id", "status", "rate"]
+}

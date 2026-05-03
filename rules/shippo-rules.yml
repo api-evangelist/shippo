@@ -1,0 +1,123 @@
+extends: spectral:oas
+rules:
+  # Shippo API Naming Conventions
+  shippo-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  shippo-path-kebab-case:
+    description: Path segments must use kebab-case or curly-brace parameters
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}_-]+)+$"
+
+  shippo-object-id-suffix:
+    description: Resource identifiers in paths should use Id suffix (e.g., AddressId, ParcelId)
+    severity: info
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^.*$"
+
+  shippo-must-have-summary:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: defined
+
+  shippo-must-have-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  shippo-must-have-operation-id:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  shippo-response-200-must-have-schema:
+    description: 200 responses must have a content schema
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[200]"
+    then:
+      field: content
+      function: defined
+
+  shippo-post-must-have-request-body:
+    description: POST operations should have a request body
+    severity: warn
+    given: "$.paths[*].post"
+    then:
+      field: requestBody
+      function: defined
+
+  shippo-security-defined:
+    description: All operations should have security defined at root or operation level
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: [security]
+
+  shippo-bearer-token-auth:
+    description: Shippo uses bearer token authentication (ShippoToken prefix)
+    severity: info
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shippo-paginated-response-fields:
+    description: Paginated list responses should include count, next, previous, and results fields
+    severity: info
+    given: "$.components.schemas[*PaginatedList]"
+    then:
+      field: properties
+      function: defined
+
+  shippo-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".*/$"
+
+  shippo-parameters-have-description:
+    description: All parameters should have a description
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: defined
+
+  shippo-components-schemas-exist:
+    description: OpenAPI spec should define component schemas
+    severity: warn
+    given: "$.components"
+    then:
+      field: schemas
+      function: defined

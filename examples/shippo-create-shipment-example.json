@@ -1,0 +1,113 @@
+{
+  "example": "Create Shipment",
+  "description": "Create a shipment from San Francisco to New York to retrieve available shipping rates",
+  "request": {
+    "method": "POST",
+    "url": "https://api.goshippo.com/shipments",
+    "headers": {
+      "Authorization": "ShippoToken shippo_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "address_from": {
+        "name": "Jane Smith",
+        "company": "Acme Corp",
+        "street1": "215 Clayton St",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94117",
+        "country": "US",
+        "phone": "+14155551234",
+        "email": "jane@example.com"
+      },
+      "address_to": {
+        "name": "John Doe",
+        "street1": "350 5th Ave",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10118",
+        "country": "US",
+        "phone": "+12125559876",
+        "email": "john@example.com"
+      },
+      "parcels": [
+        {
+          "length": "10",
+          "width": "8",
+          "height": "4",
+          "distance_unit": "in",
+          "weight": "2",
+          "mass_unit": "lb"
+        }
+      ],
+      "async": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "object_id": "b20eb8f5f9ab421db6962fb80cc06bb4",
+      "status": "SUCCESS",
+      "address_from": {
+        "object_id": "a74d5c5b1a9d4f21b1c2cc1cd45a0890",
+        "is_complete": true,
+        "name": "Jane Smith",
+        "company": "Acme Corp",
+        "street1": "215 Clayton St",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94117",
+        "country": "US"
+      },
+      "address_to": {
+        "object_id": "c12d4e6f7g8h9i0j1k2l3m4n5o6p7q8",
+        "is_complete": true,
+        "name": "John Doe",
+        "street1": "350 5th Ave",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10118",
+        "country": "US"
+      },
+      "parcels": [
+        {
+          "object_id": "d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8",
+          "length": "10",
+          "width": "8",
+          "height": "4",
+          "distance_unit": "in",
+          "weight": "2",
+          "mass_unit": "lb"
+        }
+      ],
+      "rates": [
+        {
+          "object_id": "e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9",
+          "provider": "USPS",
+          "servicelevel": {
+            "name": "Priority Mail",
+            "token": "usps_priority"
+          },
+          "amount": "8.50",
+          "currency": "USD",
+          "days": 2,
+          "trackable": true
+        },
+        {
+          "object_id": "f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0",
+          "provider": "UPS",
+          "servicelevel": {
+            "name": "UPS Ground",
+            "token": "ups_ground"
+          },
+          "amount": "12.75",
+          "currency": "USD",
+          "days": 5,
+          "trackable": true
+        }
+      ],
+      "object_created": "2026-05-02T10:30:00Z",
+      "object_updated": "2026-05-02T10:30:02Z"
+    }
+  }
+}

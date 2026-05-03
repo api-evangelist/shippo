@@ -1,0 +1,144 @@
+title: Shippo API Vocabulary
+description: Operational and domain vocabulary for the Shippo multi-carrier shipping API
+provider: Shippo
+version: '2026-05-02'
+source: https://docs.goshippo.com/
+
+terms:
+  - term: Shipment
+    definition: >-
+      The core Shippo object that represents a shipping request. Contains origin and
+      destination addresses, parcel details, and generates available carrier rates.
+      Must be created before purchasing a label.
+    type: resource
+    related: [Address, Parcel, Rate, Transaction]
+
+  - term: Transaction
+    definition: >-
+      Represents a purchased shipping label. Created by selecting a Rate from a Shipment.
+      Contains the tracking number, label URL, and transaction status.
+    type: resource
+    related: [Rate, Shipment, Tracking]
+
+  - term: Rate
+    definition: >-
+      A shipping rate from a specific carrier and service level for a Shipment. Includes
+      the cost, transit time, and service details. Rates expire and must be used promptly.
+    type: resource
+    related: [Shipment, Transaction, Carrier]
+
+  - term: Address
+    definition: >-
+      A postal address object used as origin or destination for shipments. Can be
+      validated against carrier databases to ensure deliverability.
+    type: resource
+    related: [Shipment, AddressValidation]
+
+  - term: Parcel
+    definition: >-
+      Physical package dimensions and weight for a shipment. Used to calculate shipping
+      rates. Can use predefined templates for standard carrier packaging.
+    type: resource
+    related: [Shipment, Rate]
+
+  - term: Carrier Account
+    definition: >-
+      A third-party carrier account connected to Shippo (e.g., your own UPS or FedEx
+      account). Allows using negotiated rates with your carrier accounts.
+    type: resource
+    related: [Rate, Carrier]
+
+  - term: Refund
+    definition: >-
+      A request to void and refund a purchased shipping label. Must be submitted
+      before the carrier processes the label.
+    type: resource
+    related: [Transaction]
+
+  - term: Tracking Status
+    definition: >-
+      Normalized tracking information for a shipment. Supports tracking across all
+      Shippo-supported carriers with a unified status model.
+    type: resource
+    related: [Transaction]
+
+  - term: Webhook
+    definition: >-
+      An event notification subscription. Shippo sends POST requests to the configured
+      URL when events occur (label purchased, tracking updated, etc.).
+    type: resource
+    related: [Transaction, TrackingStatus]
+
+  - term: Label File Type
+    definition: >-
+      The format for the shipping label PDF or image. Supported formats include
+      PDF (standard and zpl sizes), PNG, and ZPLII for thermal printers.
+    type: enum
+    values: [PDF, PDF_2.3x7.5, PDF_4x6, PDF_4x8, PDF_Letter, PNG, PNG_2.3x7.5, ZPLII]
+
+  - term: Mass Unit
+    definition: Unit of weight measurement for parcel weight.
+    type: enum
+    values: [g, oz, lb, kg]
+
+  - term: Distance Unit
+    definition: Unit of length measurement for parcel dimensions.
+    type: enum
+    values: [cm, in, ft, mm, m, yd]
+
+  - term: Tracking Status Values
+    definition: Normalized tracking status codes used across all carriers.
+    type: enum
+    values:
+      UNKNOWN: No tracking information available yet
+      PRE_TRANSIT: Label created but not yet picked up
+      TRANSIT: Package is in transit
+      DELIVERED: Package has been delivered
+      RETURNED: Package is being returned to sender
+      FAILURE: Delivery attempt failed or package lost
+
+  - term: ShippoToken
+    definition: >-
+      API authentication token. Must be included in the Authorization header with
+      the prefix "ShippoToken " (with space). Live tokens start with "shippo_live_",
+      test tokens with "shippo_test_".
+    type: concept
+    related: [Authentication]
+
+  - term: Live Mode vs Test Mode
+    definition: >-
+      Shippo supports separate live and test environments. Test mode allows purchasing
+      labels without incurring real charges. Controlled by the API token used.
+    type: concept
+
+  - term: Async
+    definition: >-
+      When set to true on shipment or transaction creation, Shippo processes the
+      request asynchronously and returns a response immediately. The object status
+      will be QUEUED until processing completes.
+    type: concept
+
+capabilities:
+  - name: Multi-Carrier Rate Shopping
+    description: Compare rates across 80+ carriers in a single API call
+    apis: [Shipment, Rate]
+
+  - name: Label Generation
+    description: Purchase and download shipping labels in multiple formats
+    apis: [Transaction]
+
+  - name: Address Validation
+    description: Validate addresses against USPS and other carrier databases
+    apis: [Address]
+
+  - name: Package Tracking
+    description: Track shipments with normalized status across all carriers
+    apis: [Tracking]
+
+  - name: Returns Management
+    description: Create return labels and manage return shipments
+    apis: [Shipment, Transaction]
+
+  - name: Webhook Notifications
+    description: Receive real-time event notifications for label and tracking events
+    apis: [Webhook]
