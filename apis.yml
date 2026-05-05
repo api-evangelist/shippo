@@ -41,13 +41,11 @@ apis:
         type: NaftikoCapabilities
       - url: vocabulary/shippo-vocabulary.yml
         type: Vocabulary
-    description: >-
-      Shippo is a multi-carrier shipping API that enables developers to add
-      complete shipping functionality to their applications. The API supports
-      address validation, carrier rate comparison across USPS, UPS, FedEx,
-      DHL, and 80+ other carriers, label generation, package tracking,
-      returns management, and webhook notifications. Shippo's API drives
-      efficiency at scale from pre-purchase to returns.
+    description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping
+      functionality to their applications. The API supports address validation, carrier rate comparison
+      across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns
+      management, and webhook notifications. Shippo's API drives efficiency at scale from pre-purchase
+      to returns.
 name: Shippo
 tags:
   - Ecommerce
@@ -60,14 +58,12 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2026-05-02'
+modified: '2026-05-04'
 position: Consumer
-description: >-
-  Shippo provides a robust shipping API architecture that helps developers
-  drive efficiency at scale. The Shippo API covers the complete shipping
-  lifecycle from pre-purchase rate shopping across 80+ carriers to label
-  generation, package tracking, and returns management. SDKs are available
-  for Python, JavaScript, PHP, Java, Ruby, and Node.js.
+description: Shippo provides a robust shipping API architecture that helps developers drive efficiency
+  at scale. The Shippo API covers the complete shipping lifecycle from pre-purchase rate shopping across
+  80+ carriers to label generation, package tracking, and returns management. SDKs are available for Python,
+  JavaScript, PHP, Java, Ruby, and Node.js.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -89,3 +85,24 @@ common:
     type: Developer Portal
   - url: https://goshippo.com
     type: Website
+  - type: Features
+    data:
+      - 'API Starter: 30 free labels/mo + 7¢/label'
+      - 'API Premier: custom volume discounts, 24/7 monitoring optional'
+      - 40+ shipping carriers (USPS, FedEx, UPS, DHL, Royal Mail, Canada Post, etc.)
+      - 'Address validation (US: included; non-US: $0.09 Starter, $0.06 Premier)'
+      - Tracking webhooks
+      - Returns labels
+      - Insurance
+      - Rating across carriers
+      - REST API at api.goshippo.com
+      - Default 250 req/min/token
+      - Bearer token auth
+      - Webhooks for shipment, transaction, batch events
+      - Carrier accounts management API
+      - Customs documents API
+      - Batch label creation
+      - API calls not associated with labels billed at API Starter rates
+    sources:
+      - https://goshippo.com/pricing/api
+    updated: '2026-05-04'

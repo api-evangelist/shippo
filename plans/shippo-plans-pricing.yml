@@ -1,0 +1,89 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Shippo
+providerId: shippo
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Shipping
+  - Logistics
+description: 'Shippo API tiers: Starter (free + 7¢/label) / Premier (custom volume).'
+sources:
+  - https://goshippo.com/pricing/api
+plans:
+  - id: shippo-api-starter
+    name: API Starter
+    type: freemium
+    description: 30 free labels/month; 7¢/label after.
+    entries:
+      - label: Free labels
+        name: free_labels
+        type: quota
+        metric: label
+        limit: 30
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Per label after free
+        name: label_extra
+        type: metered
+        metric: label
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.07'
+        userMultiplied: false
+      - label: Address validation (non-US)
+        name: av_nonus
+        type: metered
+        metric: validation
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.09'
+        userMultiplied: false
+    elements:
+      - name: 30 free labels/mo
+      - name: Unlimited labels at 7¢
+      - name: 40+ shipping carriers
+      - name: Domestic + international validation
+      - name: Tracking, returns, rating, insurance
+      - name: Email support
+  - id: shippo-api-premier
+    name: API Premier
+    type: enterprise
+    description: Custom volume discounts.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+      - label: Address validation (non-US)
+        name: av_nonus
+        type: metered
+        metric: validation
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.06'
+        userMultiplied: false
+    elements:
+      - name: Shippo Intelligence
+      - name: Volume discounts
+      - name: Dedicated account manager
+      - name: Solutions engineering
+      - name: Priority email support
+      - name: Optional 24/7 monitoring
