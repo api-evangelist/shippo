@@ -64,6 +64,18 @@ description: Shippo provides a robust shipping API architecture that helps devel
   at scale. The Shippo API covers the complete shipping lifecycle from pre-purchase rate shopping across
   80+ carriers to label generation, package tracking, and returns management. SDKs are available for Python,
   JavaScript, PHP, Java, Ruby, and Node.js.
+integrations:
+  - name: Shopify
+  - name: Square
+  - name: WooCommerce
+  - name: Wix
+  - name: BigCommerce
+  - name: Magento 2
+  - name: Squarespace
+  - name: Walmart
+  - name: eBay
+  - name: Etsy
+  - name: Amazon
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -106,3 +118,5 @@ common:
     sources:
       - https://goshippo.com/pricing/api
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://goshippo.com/integrations
