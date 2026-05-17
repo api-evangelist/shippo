@@ -54,7 +54,7 @@ tags:
   - Returns
   - Shipping
   - Tracking
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
@@ -84,15 +84,15 @@ common:
   - url: https://docs.goshippo.com/
     type: Documentation
   - url: https://docs.goshippo.com/shippoapi/public-api
-    type: API Reference
+    type: APIReference
   - url: https://docs.goshippo.com/docs/guides_general/clientlibraries
     type: SDKs
   - url: https://support.goshippo.com/hc/en-us/articles/4404415886491-Shippo-API-Quick-Start-Guide
-    type: Getting Started
+    type: GettingStarted
   - url: https://goshippo.com/pricing/api
     type: Pricing
   - url: https://github.com/goshippo
-    type: GitHub Organization
+    type: GitHubOrganization
   - url: https://goshippo.com/products/api
     type: Developer Portal
   - url: https://goshippo.com
