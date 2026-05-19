@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shippo API — Parcels
+  description: 'Shippo API — Parcels. 3 operations. Lead operation: List Parcels. Self-contained Naftiko capability covering
+    one Shippo business surface.'
+  tags:
+  - Shippo
+  - Parcels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPPO_API_KEY: SHIPPO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shippo-parcels
+    baseUri: https://api.goshippo.com
+    description: Shippo API — Parcels business capability. Self-contained, no shared references.
+    resources:
+    - name: parcels
+      path: /parcels
+      operations:
+      - name: listparcels
+        method: GET
+        description: List Parcels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: results
+          in: query
+          type: integer
+          description: Number of results per page
+      - name: createparcel
+        method: POST
+        description: Create Parcel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: parcels-ParcelId
+      path: /parcels/{ParcelId}
+      operations:
+      - name: getparcel
+        method: GET
+        description: Get Parcel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ParcelId
+          in: path
+          type: string
+          description: Object ID of the parcel
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHIPPO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shippo-parcels-rest
+    port: 8080
+    description: REST adapter for Shippo API — Parcels. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/parcels
+      name: parcels
+      description: REST surface for parcels.
+      operations:
+      - method: GET
+        name: listparcels
+        description: List Parcels
+        call: shippo-parcels.listparcels
+        with:
+          page: rest.page
+          results: rest.results
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createparcel
+        description: Create Parcel
+        call: shippo-parcels.createparcel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/parcels/{parcelid}
+      name: parcels-parcelid
+      description: REST surface for parcels-ParcelId.
+      operations:
+      - method: GET
+        name: getparcel
+        description: Get Parcel
+        call: shippo-parcels.getparcel
+        with:
+          ParcelId: rest.ParcelId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shippo-parcels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shippo API — Parcels. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-parcels
+      description: List Parcels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-parcels.listparcels
+      with:
+        page: tools.page
+        results: tools.results
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-parcel
+      description: Create Parcel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-parcels.createparcel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-parcel
+      description: Get Parcel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-parcels.getparcel
+      with:
+        ParcelId: tools.ParcelId
+      outputParameters:
+      - type: object
+        mapping: $.

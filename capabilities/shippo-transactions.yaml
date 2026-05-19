@@ -1,0 +1,175 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shippo API — Transactions
+  description: 'Shippo API — Transactions. 3 operations. Lead operation: List Transactions. Self-contained Naftiko capability
+    covering one Shippo business surface.'
+  tags:
+  - Shippo
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPPO_API_KEY: SHIPPO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shippo-transactions
+    baseUri: https://api.goshippo.com
+    description: Shippo API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: listtransactions
+        method: GET
+        description: List Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: results
+          in: query
+          type: integer
+        - name: tracking_status
+          in: query
+          type: string
+          description: Filter by tracking status
+        - name: object_created_gt
+          in: query
+          type: string
+        - name: object_created_lt
+          in: query
+          type: string
+      - name: createtransaction
+        method: POST
+        description: Create Transaction (Purchase Label)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: transactions-TransactionId
+      path: /transactions/{TransactionId}
+      operations:
+      - name: gettransaction
+        method: GET
+        description: Get Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: TransactionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHIPPO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shippo-transactions-rest
+    port: 8080
+    description: REST adapter for Shippo API — Transactions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for transactions.
+      operations:
+      - method: GET
+        name: listtransactions
+        description: List Transactions
+        call: shippo-transactions.listtransactions
+        with:
+          page: rest.page
+          results: rest.results
+          tracking_status: rest.tracking_status
+          object_created_gt: rest.object_created_gt
+          object_created_lt: rest.object_created_lt
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtransaction
+        description: Create Transaction (Purchase Label)
+        call: shippo-transactions.createtransaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/{transactionid}
+      name: transactions-transactionid
+      description: REST surface for transactions-TransactionId.
+      operations:
+      - method: GET
+        name: gettransaction
+        description: Get Transaction
+        call: shippo-transactions.gettransaction
+        with:
+          TransactionId: rest.TransactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shippo-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shippo API — Transactions. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-transactions
+      description: List Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-transactions.listtransactions
+      with:
+        page: tools.page
+        results: tools.results
+        tracking_status: tools.tracking_status
+        object_created_gt: tools.object_created_gt
+        object_created_lt: tools.object_created_lt
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-transaction-purchase-label
+      description: Create Transaction (Purchase Label)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-transactions.createtransaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-transaction
+      description: Get Transaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-transactions.gettransaction
+      with:
+        TransactionId: tools.TransactionId
+      outputParameters:
+      - type: object
+        mapping: $.

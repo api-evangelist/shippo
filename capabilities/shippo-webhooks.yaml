@@ -1,0 +1,263 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shippo API — Webhooks
+  description: 'Shippo API — Webhooks. 6 operations. Lead operation: Register Tracking Webhook. Self-contained Naftiko capability
+    covering one Shippo business surface.'
+  tags:
+  - Shippo
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPPO_API_KEY: SHIPPO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shippo-webhooks
+    baseUri: https://api.goshippo.com
+    description: Shippo API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: tracks
+      path: /tracks
+      operations:
+      - name: registertrackingwebhook
+        method: POST
+        description: Register Tracking Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: List Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwebhook
+        method: POST
+        description: Create Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-WebhookId
+      path: /webhooks/{WebhookId}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Get Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: WebhookId
+          in: path
+          type: string
+          required: true
+      - name: updatewebhook
+        method: PUT
+        description: Update Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: WebhookId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Delete Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: WebhookId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHIPPO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shippo-webhooks-rest
+    port: 8080
+    description: REST adapter for Shippo API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tracks
+      name: tracks
+      description: REST surface for tracks.
+      operations:
+      - method: POST
+        name: registertrackingwebhook
+        description: Register Tracking Webhook
+        call: shippo-webhooks.registertrackingwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: List Webhooks
+        call: shippo-webhooks.listwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Create Webhook
+        call: shippo-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhookid}
+      name: webhooks-webhookid
+      description: REST surface for webhooks-WebhookId.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Get Webhook
+        call: shippo-webhooks.getwebhook
+        with:
+          WebhookId: rest.WebhookId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewebhook
+        description: Update Webhook
+        call: shippo-webhooks.updatewebhook
+        with:
+          WebhookId: rest.WebhookId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Delete Webhook
+        call: shippo-webhooks.deletewebhook
+        with:
+          WebhookId: rest.WebhookId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shippo-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shippo API — Webhooks. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: register-tracking-webhook
+      description: Register Tracking Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-webhooks.registertrackingwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-webhooks
+      description: List Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-webhooks.listwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-webhook
+      description: Create Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook
+      description: Get Webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-webhooks.getwebhook
+      with:
+        WebhookId: tools.WebhookId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-webhook
+      description: Update Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shippo-webhooks.updatewebhook
+      with:
+        WebhookId: tools.WebhookId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-webhook
+      description: Delete Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shippo-webhooks.deletewebhook
+      with:
+        WebhookId: tools.WebhookId
+      outputParameters:
+      - type: object
+        mapping: $.

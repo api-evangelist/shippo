@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shippo API — Carrier Accounts
+  description: 'Shippo API — Carrier Accounts. 4 operations. Lead operation: List Carrier Accounts. Self-contained Naftiko
+    capability covering one Shippo business surface.'
+  tags:
+  - Shippo
+  - Carrier Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPPO_API_KEY: SHIPPO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shippo-carrier-accounts
+    baseUri: https://api.goshippo.com
+    description: Shippo API — Carrier Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: carrier_accounts
+      path: /carrier_accounts
+      operations:
+      - name: listcarrieraccounts
+        method: GET
+        description: List Carrier Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: results
+          in: query
+          type: integer
+        - name: carrier
+          in: query
+          type: string
+          description: Filter by carrier name
+      - name: createcarrieraccount
+        method: POST
+        description: Create Carrier Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: carrier_accounts-CarrierAccountId
+      path: /carrier_accounts/{CarrierAccountId}
+      operations:
+      - name: getcarrieraccount
+        method: GET
+        description: Get Carrier Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: CarrierAccountId
+          in: path
+          type: string
+          required: true
+      - name: updatecarrieraccount
+        method: PUT
+        description: Update Carrier Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: CarrierAccountId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHIPPO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shippo-carrier-accounts-rest
+    port: 8080
+    description: REST adapter for Shippo API — Carrier Accounts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/carrier-accounts
+      name: carrier-accounts
+      description: REST surface for carrier_accounts.
+      operations:
+      - method: GET
+        name: listcarrieraccounts
+        description: List Carrier Accounts
+        call: shippo-carrier-accounts.listcarrieraccounts
+        with:
+          page: rest.page
+          results: rest.results
+          carrier: rest.carrier
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcarrieraccount
+        description: Create Carrier Account
+        call: shippo-carrier-accounts.createcarrieraccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/carrier-accounts/{carrieraccountid}
+      name: carrier-accounts-carrieraccountid
+      description: REST surface for carrier_accounts-CarrierAccountId.
+      operations:
+      - method: GET
+        name: getcarrieraccount
+        description: Get Carrier Account
+        call: shippo-carrier-accounts.getcarrieraccount
+        with:
+          CarrierAccountId: rest.CarrierAccountId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecarrieraccount
+        description: Update Carrier Account
+        call: shippo-carrier-accounts.updatecarrieraccount
+        with:
+          CarrierAccountId: rest.CarrierAccountId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shippo-carrier-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shippo API — Carrier Accounts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-carrier-accounts
+      description: List Carrier Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-carrier-accounts.listcarrieraccounts
+      with:
+        page: tools.page
+        results: tools.results
+        carrier: tools.carrier
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-carrier-account
+      description: Create Carrier Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-carrier-accounts.createcarrieraccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-carrier-account
+      description: Get Carrier Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-carrier-accounts.getcarrieraccount
+      with:
+        CarrierAccountId: tools.CarrierAccountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-carrier-account
+      description: Update Carrier Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shippo-carrier-accounts.updatecarrieraccount
+      with:
+        CarrierAccountId: tools.CarrierAccountId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

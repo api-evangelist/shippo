@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shippo API — Addresses
+  description: 'Shippo API — Addresses. 4 operations. Lead operation: List Addresses. Self-contained Naftiko capability covering
+    one Shippo business surface.'
+  tags:
+  - Shippo
+  - Addresses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPPO_API_KEY: SHIPPO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shippo-addresses
+    baseUri: https://api.goshippo.com
+    description: Shippo API — Addresses business capability. Self-contained, no shared references.
+    resources:
+    - name: addresses
+      path: /addresses
+      operations:
+      - name: listaddresses
+        method: GET
+        description: List Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: results
+          in: query
+          type: integer
+          description: Number of results per page (max 100)
+      - name: createaddress
+        method: POST
+        description: Create Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: addresses-AddressId
+      path: /addresses/{AddressId}
+      operations:
+      - name: getaddress
+        method: GET
+        description: Get Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: AddressId
+          in: path
+          type: string
+          description: Object ID of the address
+          required: true
+    - name: addresses-AddressId-validate
+      path: /addresses/{AddressId}/validate
+      operations:
+      - name: validateaddress
+        method: GET
+        description: Validate Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: AddressId
+          in: path
+          type: string
+          description: Object ID of the address to validate
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SHIPPO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shippo-addresses-rest
+    port: 8080
+    description: REST adapter for Shippo API — Addresses. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/addresses
+      name: addresses
+      description: REST surface for addresses.
+      operations:
+      - method: GET
+        name: listaddresses
+        description: List Addresses
+        call: shippo-addresses.listaddresses
+        with:
+          page: rest.page
+          results: rest.results
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaddress
+        description: Create Address
+        call: shippo-addresses.createaddress
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/addresses/{addressid}
+      name: addresses-addressid
+      description: REST surface for addresses-AddressId.
+      operations:
+      - method: GET
+        name: getaddress
+        description: Get Address
+        call: shippo-addresses.getaddress
+        with:
+          AddressId: rest.AddressId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/addresses/{addressid}/validate
+      name: addresses-addressid-validate
+      description: REST surface for addresses-AddressId-validate.
+      operations:
+      - method: GET
+        name: validateaddress
+        description: Validate Address
+        call: shippo-addresses.validateaddress
+        with:
+          AddressId: rest.AddressId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shippo-addresses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shippo API — Addresses. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-addresses
+      description: List Addresses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-addresses.listaddresses
+      with:
+        page: tools.page
+        results: tools.results
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-address
+      description: Create Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shippo-addresses.createaddress
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-address
+      description: Get Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-addresses.getaddress
+      with:
+        AddressId: tools.AddressId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-address
+      description: Validate Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shippo-addresses.validateaddress
+      with:
+        AddressId: tools.AddressId
+      outputParameters:
+      - type: object
+        mapping: $.
