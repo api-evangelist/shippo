@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookCreateRequest",
+  "title": "WebhookCreateRequest",
+  "type": "object",
+  "required": [
+    "url",
+    "event"
+  ],
+  "properties": {
+    "url": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "transaction_created",
+        "transaction_updated",
+        "batch_created",
+        "batch_purchased",
+        "track_updated"
+      ]
+    },
+    "active": {
+      "type": "boolean"
+    }
+  }
+}

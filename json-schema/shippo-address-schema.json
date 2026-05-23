@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Address",
+  "title": "Address",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string",
+      "description": "Unique identifier for the address"
+    },
+    "is_complete": {
+      "type": "boolean",
+      "description": "Whether the address is complete and valid"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the recipient"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "street1": {
+      "type": "string",
+      "description": "First line of the street address"
+    },
+    "street2": {
+      "type": "string",
+      "description": "Second line of the street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State or province"
+    },
+    "zip": {
+      "type": "string",
+      "description": "Postal code"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 2-letter country code"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "is_residential": {
+      "type": "boolean",
+      "description": "Whether the address is residential"
+    },
+    "validation_results": {
+      "type": "object",
+      "description": "Address validation results"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

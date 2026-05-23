@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Parcel",
+  "title": "Parcel",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string"
+    },
+    "length": {
+      "type": "string",
+      "description": "Length of the parcel"
+    },
+    "width": {
+      "type": "string",
+      "description": "Width of the parcel"
+    },
+    "height": {
+      "type": "string",
+      "description": "Height of the parcel"
+    },
+    "distance_unit": {
+      "type": "string",
+      "enum": [
+        "cm",
+        "in",
+        "ft",
+        "mm",
+        "m",
+        "yd"
+      ]
+    },
+    "weight": {
+      "type": "string",
+      "description": "Weight of the parcel"
+    },
+    "mass_unit": {
+      "type": "string",
+      "enum": [
+        "g",
+        "oz",
+        "lb",
+        "kg"
+      ]
+    },
+    "template": {
+      "type": "string",
+      "description": "Predefined parcel template"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

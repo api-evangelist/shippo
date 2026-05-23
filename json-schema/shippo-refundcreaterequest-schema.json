@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RefundCreateRequest",
+  "title": "RefundCreateRequest",
+  "type": "object",
+  "required": [
+    "transaction"
+  ],
+  "properties": {
+    "transaction": {
+      "type": "string",
+      "description": "Transaction object ID to refund"
+    },
+    "async": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CarrierAccount",
+  "title": "CarrierAccount",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Carrier name (e.g., usps, fedex, ups)"
+    },
+    "account_id": {
+      "type": "string",
+      "description": "Carrier account number"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the carrier account is active"
+    },
+    "test": {
+      "type": "boolean",
+      "description": "Whether this is a test account"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Carrier-specific account parameters"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

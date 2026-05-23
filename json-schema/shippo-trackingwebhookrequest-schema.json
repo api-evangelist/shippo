@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingWebhookRequest",
+  "title": "TrackingWebhookRequest",
+  "type": "object",
+  "required": [
+    "carrier",
+    "tracking_number"
+  ],
+  "properties": {
+    "carrier": {
+      "type": "string"
+    },
+    "tracking_number": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "string"
+    }
+  }
+}

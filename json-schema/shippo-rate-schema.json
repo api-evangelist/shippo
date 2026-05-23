@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rate",
+  "title": "Rate",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "amount": {
+      "type": "string",
+      "description": "Total cost of the rate"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency of the rate amount"
+    },
+    "amount_local": {
+      "type": "string",
+      "description": "Amount in the local currency"
+    },
+    "currency_local": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Carrier providing the rate (e.g., USPS, UPS)"
+    },
+    "provider_image_75": {
+      "type": "string",
+      "description": "URL to carrier logo (75px)"
+    },
+    "servicelevel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "string"
+        }
+      }
+    },
+    "days": {
+      "type": "integer",
+      "description": "Estimated transit days"
+    },
+    "arrives_by": {
+      "type": "string",
+      "description": "Estimated delivery time"
+    },
+    "duration_terms": {
+      "type": "string",
+      "description": "Service level terms description"
+    },
+    "trackable": {
+      "type": "boolean"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

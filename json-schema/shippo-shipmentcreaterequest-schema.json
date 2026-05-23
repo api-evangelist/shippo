@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ShipmentCreateRequest",
+  "title": "ShipmentCreateRequest",
+  "type": "object",
+  "required": [
+    "address_from",
+    "address_to",
+    "parcels"
+  ],
+  "properties": {
+    "address_from": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/components/schemas/AddressCreateRequest"
+        }
+      ]
+    },
+    "address_to": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/components/schemas/AddressCreateRequest"
+        }
+      ]
+    },
+    "address_return": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/components/schemas/AddressCreateRequest"
+        }
+      ]
+    },
+    "parcels": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/ParcelCreateRequest"
+          }
+        ]
+      }
+    },
+    "extra": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "string"
+    },
+    "async": {
+      "type": "boolean",
+      "description": "Whether to create shipment asynchronously"
+    }
+  }
+}

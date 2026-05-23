@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddressPaginatedList",
+  "title": "AddressPaginatedList",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    }
+  }
+}

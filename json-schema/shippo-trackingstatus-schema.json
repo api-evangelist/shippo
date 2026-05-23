@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingStatus",
+  "title": "TrackingStatus",
+  "type": "object",
+  "properties": {
+    "carrier": {
+      "type": "string"
+    },
+    "tracking_number": {
+      "type": "string"
+    },
+    "address_from": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "address_to": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "transaction": {
+      "type": "string"
+    },
+    "original_eta": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "eta": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "servicelevel": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "tracking_status": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNKNOWN",
+            "PRE_TRANSIT",
+            "TRANSIT",
+            "DELIVERED",
+            "RETURNED",
+            "FAILURE"
+          ]
+        },
+        "status_details": {
+          "type": "string"
+        },
+        "status_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "location": {
+          "type": "object"
+        }
+      }
+    },
+    "tracking_history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

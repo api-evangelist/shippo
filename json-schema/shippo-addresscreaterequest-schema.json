@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddressCreateRequest",
+  "title": "AddressCreateRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "street1",
+    "city",
+    "state",
+    "zip",
+    "country"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "street1": {
+      "type": "string"
+    },
+    "street2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "is_residential": {
+      "type": "boolean"
+    },
+    "validate": {
+      "type": "boolean",
+      "description": "Whether to validate the address"
+    }
+  }
+}

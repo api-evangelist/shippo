@@ -1,0 +1,451 @@
+{
+  "provider": "Shippo",
+  "providerId": "shippo",
+  "kind": "json-structure",
+  "description": "Structural overview of the Shippo API surface; extracted from openapi/.",
+  "schemaCount": 24,
+  "operationCount": 29,
+  "schemas": [
+    {
+      "name": "Address",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "AddressCreateRequest",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "name",
+        "street1",
+        "city",
+        "state",
+        "zip",
+        "country"
+      ]
+    },
+    {
+      "name": "AddressPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Parcel",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ParcelCreateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "length",
+        "width",
+        "height",
+        "distance_unit",
+        "weight",
+        "mass_unit"
+      ]
+    },
+    {
+      "name": "ParcelPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Shipment",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "ShipmentCreateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "address_from",
+        "address_to",
+        "parcels"
+      ]
+    },
+    {
+      "name": "ShipmentPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Rate",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "RatePaginatedList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Transaction",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "TransactionCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "rate",
+        "label_file_type"
+      ]
+    },
+    {
+      "name": "TransactionPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "TrackingStatus",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "TrackingWebhookRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "carrier",
+        "tracking_number"
+      ]
+    },
+    {
+      "name": "Refund",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RefundCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "transaction"
+      ]
+    },
+    {
+      "name": "RefundPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CarrierAccount",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "CarrierAccountCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "carrier",
+        "account_id"
+      ]
+    },
+    {
+      "name": "CarrierAccountPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Webhook",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "WebhookCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url",
+        "event"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/addresses",
+      "operationId": "listAddresses",
+      "summary": "List Addresses",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/addresses",
+      "operationId": "createAddress",
+      "summary": "Create Address",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/addresses/{AddressId}",
+      "operationId": "getAddress",
+      "summary": "Get Address",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/addresses/{AddressId}/validate",
+      "operationId": "validateAddress",
+      "summary": "Validate Address",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/parcels",
+      "operationId": "listParcels",
+      "summary": "List Parcels",
+      "tags": [
+        "Parcels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/parcels",
+      "operationId": "createParcel",
+      "summary": "Create Parcel",
+      "tags": [
+        "Parcels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/parcels/{ParcelId}",
+      "operationId": "getParcel",
+      "summary": "Get Parcel",
+      "tags": [
+        "Parcels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/shipments",
+      "operationId": "listShipments",
+      "summary": "List Shipments",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/shipments",
+      "operationId": "createShipment",
+      "summary": "Create Shipment",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/shipments/{ShipmentId}",
+      "operationId": "getShipment",
+      "summary": "Get Shipment",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/shipments/{ShipmentId}/rates",
+      "operationId": "getShipmentRates",
+      "summary": "Get Shipment Rates",
+      "tags": [
+        "Rates",
+        "Shipments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/rates/{RateId}",
+      "operationId": "getRate",
+      "summary": "Get Rate",
+      "tags": [
+        "Rates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions",
+      "operationId": "listTransactions",
+      "summary": "List Transactions",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/transactions",
+      "operationId": "createTransaction",
+      "summary": "Create Transaction (Purchase Label)",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/{TransactionId}",
+      "operationId": "getTransaction",
+      "summary": "Get Transaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tracks/{Carrier}/{TrackingNumber}",
+      "operationId": "getTrackingStatus",
+      "summary": "Get Tracking Status",
+      "tags": [
+        "Tracking"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/tracks",
+      "operationId": "registerTrackingWebhook",
+      "summary": "Register Tracking Webhook",
+      "tags": [
+        "Tracking",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/refunds",
+      "operationId": "listRefunds",
+      "summary": "List Refunds",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/refunds",
+      "operationId": "createRefund",
+      "summary": "Create Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/refunds/{RefundId}",
+      "operationId": "getRefund",
+      "summary": "Get Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/carrier_accounts",
+      "operationId": "listCarrierAccounts",
+      "summary": "List Carrier Accounts",
+      "tags": [
+        "Carrier Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/carrier_accounts",
+      "operationId": "createCarrierAccount",
+      "summary": "Create Carrier Account",
+      "tags": [
+        "Carrier Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/carrier_accounts/{CarrierAccountId}",
+      "operationId": "getCarrierAccount",
+      "summary": "Get Carrier Account",
+      "tags": [
+        "Carrier Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/carrier_accounts/{CarrierAccountId}",
+      "operationId": "updateCarrierAccount",
+      "summary": "Update Carrier Account",
+      "tags": [
+        "Carrier Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks",
+      "operationId": "listWebhooks",
+      "summary": "List Webhooks",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks",
+      "operationId": "createWebhook",
+      "summary": "Create Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{WebhookId}",
+      "operationId": "getWebhook",
+      "summary": "Get Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/webhooks/{WebhookId}",
+      "operationId": "updateWebhook",
+      "summary": "Update Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{WebhookId}",
+      "operationId": "deleteWebhook",
+      "summary": "Delete Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    }
+  ]
+}

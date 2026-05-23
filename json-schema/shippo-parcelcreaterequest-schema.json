@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParcelCreateRequest",
+  "title": "ParcelCreateRequest",
+  "type": "object",
+  "required": [
+    "length",
+    "width",
+    "height",
+    "distance_unit",
+    "weight",
+    "mass_unit"
+  ],
+  "properties": {
+    "length": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "distance_unit": {
+      "type": "string",
+      "enum": [
+        "cm",
+        "in",
+        "ft",
+        "mm",
+        "m",
+        "yd"
+      ]
+    },
+    "weight": {
+      "type": "string"
+    },
+    "mass_unit": {
+      "type": "string",
+      "enum": [
+        "g",
+        "oz",
+        "lb",
+        "kg"
+      ]
+    },
+    "template": {
+      "type": "string"
+    }
+  }
+}

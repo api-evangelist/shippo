@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Refund",
+  "title": "Refund",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "PENDING",
+        "SUCCESS",
+        "ERROR"
+      ]
+    },
+    "transaction": {
+      "type": "string",
+      "description": "Transaction object ID being refunded"
+    },
+    "object_created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "object_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
