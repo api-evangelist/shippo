@@ -141,3 +141,5 @@ common:
 - name: Agent Skills
   url: https://github.com/goshippo/shippo-clawhub-skill
   type: AgentSkill
+- type: LLMsTxt
+  url: https://docs.goshippo.com/llms.txt
