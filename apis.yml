@@ -15,6 +15,8 @@ apis:
     type: Documentation
   - url: openapi/shippo-openapi.yml
     type: OpenAPI
+  - url: asyncapi/shippo-webhooks-asyncapi.yaml
+    type: AsyncAPI
   - url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
     type: OpenAPI
   - url: https://github.com/goshippo/shippo-python-sdk
@@ -75,7 +77,7 @@ kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2026-05-19'
+modified: '2026-05-30'
 position: Consumer
 description: Shippo provides a robust shipping API architecture that helps developers drive efficiency at scale. The Shippo
   API covers the complete shipping lifecycle from pre-purchase rate shopping across 80+ carriers to label generation, package

@@ -1,0 +1,420 @@
+asyncapi: 2.6.0
+info:
+  title: Shippo Webhooks
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of the Shippo Webhooks surface.
+
+    Shippo delivers webhook events over HTTPS as POST requests to a subscriber-registered URL.
+    Each delivery carries a JSON body with an envelope of the form `{ "event": "<event_type>", "test": <bool>, "data": { ... } }`,
+    where `data` carries an event-specific payload (Transaction, Tracking, or Batch object).
+
+    Sources:
+    - https://docs.goshippo.com/docs/tracking/webhooks
+    - https://docs.goshippo.com/shippoapi/public-api
+    - json-schema/shippo-webhook-schema.json (event enum)
+
+    Notes from the Shippo docs:
+    - Endpoints must return a 2XX HTTP status code within three seconds.
+    - Failed deliveries are retried up to two additional times for 408, 429, or 5XX responses;
+      other 4XX responses are not retried.
+    - Webhook URLs must be less than 200 characters long.
+    - All webhook deliveries include a `Shippo-API-Version` HTTP header.
+    - The Shippo Webhooks API is currently in beta.
+  contact:
+    name: API Evangelist
+    url: https://apievangelist.com
+  license:
+    name: Documentation-derived
+    url: https://docs.goshippo.com/docs/tracking/webhooks
+  tags:
+    - name: shippo
+    - name: webhooks
+    - name: shipping
+    - name: tracking
+    - name: transactions
+    - name: batches
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{webhook_url}'
+    protocol: https
+    description: |
+      HTTPS endpoint registered by the subscriber via POST /webhooks (or POST /tracks for
+      tracking-only webhooks). Shippo issues HTTP POST requests against this URL when
+      events occur. The URL must be less than 200 characters.
+    variables:
+      webhook_url:
+        default: https://example.com/shippo/webhooks
+        description: Subscriber-controlled HTTPS endpoint registered with Shippo.
+
+channels:
+  transaction_created:
+    description: |
+      Fired when a Transaction (a purchased shipping label or label-purchase attempt) is created.
+      The `data` field carries a Transaction object.
+    subscribe:
+      summary: Receive `transaction_created` events from Shippo.
+      operationId: onTransactionCreated
+      bindings:
+        http:
+          type: request
+          method: POST
+      message:
+        $ref: '#/components/messages/TransactionCreated'
+
+  transaction_updated:
+    description: |
+      Fired when a Transaction is updated (for example, when its status transitions from
+      QUEUED to SUCCESS or ERROR). The `data` field carries the updated Transaction object.
+    subscribe:
+      summary: Receive `transaction_updated` events from Shippo.
+      operationId: onTransactionUpdated
+      bindings:
+        http:
+          type: request
+          method: POST
+      message:
+        $ref: '#/components/messages/TransactionUpdated'
+
+  batch_created:
+    description: |
+      Fired when a Batch object has been created asynchronously and is ready for batch shipment work.
+      The `data` field carries a Batch object.
+    subscribe:
+      summary: Receive `batch_created` events from Shippo.
+      operationId: onBatchCreated
+      bindings:
+        http:
+          type: request
+          method: POST
+      message:
+        $ref: '#/components/messages/BatchCreated'
+
+  batch_purchased:
+    description: |
+      Fired when Batch Shipments have been purchased asynchronously. The `data` field carries
+      a Batch object representing the purchased batch.
+    subscribe:
+      summary: Receive `batch_purchased` events from Shippo.
+      operationId: onBatchPurchased
+      bindings:
+        http:
+          type: request
+          method: POST
+      message:
+        $ref: '#/components/messages/BatchPurchased'
+
+  track_updated:
+    description: |
+      Fired when the tracking status of a registered tracked package changes. The `data` field
+      carries a TrackingStatus object including the current `tracking_status` block and the
+      `tracking_history` array.
+    subscribe:
+      summary: Receive `track_updated` events from Shippo.
+      operationId: onTrackUpdated
+      bindings:
+        http:
+          type: request
+          method: POST
+      message:
+        $ref: '#/components/messages/TrackUpdated'
+
+components:
+  messages:
+    TransactionCreated:
+      name: TransactionCreatedEvent
+      title: Shippo `transaction_created` webhook
+      summary: Sent when a Shippo Transaction object is created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              event:
+                type: string
+                const: transaction_created
+              data:
+                $ref: '#/components/schemas/Transaction'
+
+    TransactionUpdated:
+      name: TransactionUpdatedEvent
+      title: Shippo `transaction_updated` webhook
+      summary: Sent when a Shippo Transaction object is updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              event:
+                type: string
+                const: transaction_updated
+              data:
+                $ref: '#/components/schemas/Transaction'
+
+    BatchCreated:
+      name: BatchCreatedEvent
+      title: Shippo `batch_created` webhook
+      summary: Sent when a Shippo Batch object is created asynchronously.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              event:
+                type: string
+                const: batch_created
+              data:
+                $ref: '#/components/schemas/Batch'
+
+    BatchPurchased:
+      name: BatchPurchasedEvent
+      title: Shippo `batch_purchased` webhook
+      summary: Sent when batch shipments have been purchased asynchronously.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              event:
+                type: string
+                const: batch_purchased
+              data:
+                $ref: '#/components/schemas/Batch'
+
+    TrackUpdated:
+      name: TrackUpdatedEvent
+      title: Shippo `track_updated` webhook
+      summary: Sent when the tracking status of a registered tracked package changes.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              event:
+                type: string
+                const: track_updated
+              data:
+                $ref: '#/components/schemas/TrackingStatus'
+
+  schemas:
+    WebhookEnvelope:
+      type: object
+      description: |
+        Top-level envelope shared by all Shippo webhook deliveries.
+      required:
+        - event
+        - data
+      properties:
+        event:
+          type: string
+          description: The event type that triggered this webhook delivery.
+          enum:
+            - transaction_created
+            - transaction_updated
+            - batch_created
+            - batch_purchased
+            - track_updated
+        test:
+          type: boolean
+          description: |
+            `true` when the delivery is a test event (for example, a webhook fired by a test-mode
+            transaction or via the "Send Test" action in the Shippo dashboard).
+        data:
+          type: object
+          description: Event-specific payload. See per-event message definitions for shape.
+
+    WebhookHeaders:
+      type: object
+      description: HTTP headers included on every webhook delivery.
+      properties:
+        Shippo-API-Version:
+          type: string
+          description: |
+            Shippo API version this webhook was generated against. Included on all webhook
+            deliveries per the Shippo Webhooks documentation.
+          example: '2018-02-08'
+        Content-Type:
+          type: string
+          const: application/json
+
+    Transaction:
+      type: object
+      description: |
+        Shippo Transaction object as delivered in `transaction_created` and `transaction_updated`
+        events. Fields mirror the Transaction model in the Shippo public API.
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the transaction.
+        status:
+          type: string
+          enum:
+            - WAITING
+            - QUEUED
+            - SUCCESS
+            - ERROR
+            - REFUNDED
+            - REFUNDPENDING
+            - REFUNDREJECTED
+          description: Current status of the transaction.
+        tracking_number:
+          type: string
+          description: Carrier-issued tracking number for the shipment.
+        tracking_url_provider:
+          type: string
+          format: uri
+          description: URL to track the shipment on the carrier's website.
+        tracking_status:
+          type: string
+          enum:
+            - UNKNOWN
+            - PRE_TRANSIT
+            - TRANSIT
+            - DELIVERED
+            - RETURNED
+            - FAILURE
+          description: Current tracking status of the shipment.
+        label_url:
+          type: string
+          format: uri
+          description: URL to download the shipping label PDF or PNG.
+        commercial_invoice_url:
+          type: string
+          format: uri
+          description: URL to download the commercial invoice for international shipments.
+        rate:
+          type: string
+          description: Object ID of the Rate used for this transaction.
+        metadata:
+          type: string
+          maxLength: 100
+          description: User-defined metadata for the transaction.
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+      required:
+        - object_id
+        - status
+        - rate
+
+    Batch:
+      type: object
+      description: |
+        Shippo Batch object as delivered in `batch_created` and `batch_purchased` events.
+        Only the high-level Batch envelope is modeled here; consult the Shippo Batch API
+        reference for the complete batch_shipments shape.
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the Batch.
+        status:
+          type: string
+          description: |
+            Current Batch state (for example, VALIDATING, VALID, INVALID, PURCHASING, PURCHASED).
+        object_owner:
+          type: string
+          description: Account owner email for the Batch.
+        default_carrier_account:
+          type: string
+          description: Object ID of the default carrier account used for the Batch.
+        default_servicelevel_token:
+          type: string
+          description: Service-level token applied by default to shipments in the Batch.
+        label_filetype:
+          type: string
+          description: Label file format requested for the Batch.
+        metadata:
+          type: string
+          description: User-defined metadata for the Batch.
+        batch_shipments:
+          type: object
+          description: |
+            Paginated list of BatchShipment objects associated with the Batch. Shape is
+            defined in the Shippo Batch API; not expanded here.
+        object_results:
+          type: object
+          description: Aggregated counts (purchase_succeeded, purchase_failed, etc.).
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+
+    TrackingStatus:
+      type: object
+      description: |
+        Shippo TrackingStatus object as delivered in `track_updated` events.
+      properties:
+        carrier:
+          type: string
+        tracking_number:
+          type: string
+        address_from:
+          type: object
+          description: Origin address. See Shippo Address model.
+        address_to:
+          type: object
+          description: Destination address. See Shippo Address model.
+        transaction:
+          type: string
+          description: Object ID of the associated Transaction, when available.
+        original_eta:
+          type: string
+          format: date-time
+        eta:
+          type: string
+          format: date-time
+        servicelevel:
+          type: object
+          properties:
+            token:
+              type: string
+            name:
+              type: string
+        tracking_status:
+          type: object
+          description: Current tracking status snapshot.
+          properties:
+            status:
+              type: string
+              enum:
+                - UNKNOWN
+                - PRE_TRANSIT
+                - TRANSIT
+                - DELIVERED
+                - RETURNED
+                - FAILURE
+            status_details:
+              type: string
+            status_date:
+              type: string
+              format: date-time
+            location:
+              type: object
+        tracking_history:
+          type: array
+          description: Ordered list of historical tracking events.
+          items:
+            type: object
