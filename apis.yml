@@ -39,32 +39,15 @@ apis:
     type: JSONLD
   - url: rules/shippo-rules.yml
     type: SpectralRules
-  - url: capabilities/shipping-fulfillment.yaml
-    type: NaftikoCapabilities
   - url: vocabulary/shippo-vocabulary.yml
     type: Vocabulary
-  - type: NaftikoCapability
-    url: capabilities/shippo-addresses.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-carrier-accounts.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-parcels.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-rates.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-refunds.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-shipments.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-tracking.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-transactions.yaml
-  - type: NaftikoCapability
-    url: capabilities/shippo-webhooks.yaml
-  description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their
-    applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other
-    carriers, label generation, package tracking, returns management, and webhook notifications. Shippo's API drives efficiency
-    at scale from pre-purchase to returns.
+  - url: graphql/shippo-graphql.md
+    type: GraphQL
+  description: Shippo is a multi-carrier shipping API that enables developers to add
+    complete shipping functionality to their applications. The API supports address
+    validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other
+    carriers, label generation, package tracking, returns management, and webhook
+    notifications. Shippo's API drives efficiency at scale from pre-purchase to returns.
 name: Shippo
 tags:
 - Ecommerce
@@ -79,9 +62,11 @@ access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-30'
 position: Consumer
-description: Shippo provides a robust shipping API architecture that helps developers drive efficiency at scale. The Shippo
-  API covers the complete shipping lifecycle from pre-purchase rate shopping across 80+ carriers to label generation, package
-  tracking, and returns management. SDKs are available for Python, JavaScript, PHP, Java, Ruby, and Node.js.
+description: Shippo provides a robust shipping API architecture that helps developers
+  drive efficiency at scale. The Shippo API covers the complete shipping lifecycle
+  from pre-purchase rate shopping across 80+ carriers to label generation, package
+  tracking, and returns management. SDKs are available for Python, JavaScript, PHP,
+  Java, Ruby, and Node.js.
 integrations:
 - name: Shopify
 - name: Square

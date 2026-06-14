@@ -1,0 +1,997 @@
+# Shippo GraphQL Schema (Conceptual)
+#
+# Shippo is REST-only. This SDL is derived from the public REST API specification
+# at https://docs.goshippo.com/spec/shippoapi/public-api.yaml and official docs.
+# Types, fields, and enums map to Shippo REST resources and their documented attributes.
+
+scalar DateTime
+scalar JSON
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum AddressValidationStatus {
+  VALID
+  INVALID
+  INCOMPLETE
+  UNKNOWN
+}
+
+enum ShipmentStatus {
+  QUEUED
+  WAITING
+  SUCCESS
+  ERROR
+}
+
+enum TransactionStatus {
+  QUEUED
+  WAITING
+  SUCCESS
+  ERROR
+  REFUNDED
+  REFUNDPENDING
+  REFUNDREJECTED
+}
+
+enum TrackingStatusCode {
+  UNKNOWN
+  PRE_TRANSIT
+  TRANSIT
+  DELIVERED
+  RETURNED
+  FAILURE
+}
+
+enum ParcelTemplateCode {
+  USPS_SmallFlatRateBox
+  USPS_MediumFlatRateBox1
+  USPS_MediumFlatRateBox2
+  USPS_LargeFlatRateBox
+  FedEx_FedExEnvelope
+  FedEx_FedExPak
+  FedEx_FedExBox
+  UPS_UPSLetter
+  UPS_UPSPak
+  CUSTOM
+}
+
+enum DistanceUnit {
+  cm
+  in
+  ft
+  mm
+  m
+  yd
+}
+
+enum WeightUnit {
+  g
+  oz
+  lb
+  kg
+}
+
+enum LabelFileType {
+  PNG
+  PNG_2_3
+  PDF
+  PDF_2_3
+  ZPLII
+}
+
+enum BatchStatus {
+  VALIDATING
+  VALID
+  INVALID
+  PURCHASING
+  PURCHASED
+}
+
+enum CustomsContentsType {
+  DOCUMENTS
+  GIFT
+  SAMPLE
+  MERCHANDISE
+  HUMANITARIAN_DONATION
+  RETURN_MERCHANDISE
+  OTHER
+}
+
+enum CustomsNonDeliveryOption {
+  ABANDON
+  RETURN
+}
+
+enum RefundStatus {
+  PENDING
+  ERROR
+  SUCCESS
+}
+
+enum ManifestStatus {
+  QUEUED
+  WAITING
+  SUCCESS
+  ERROR
+}
+
+enum PickupStatus {
+  QUEUED
+  WAITING
+  SUCCESS
+  ERROR
+}
+
+enum OrderStatus {
+  UNKNOWN
+  AWAITPAY
+  PAID
+  REFUNDED
+  CANCELLED
+  PARTIALLY_FULFILLED
+  SHIPPED
+}
+
+# ─── Core types ──────────────────────────────────────────────────────────────
+
+type Address {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  isComplete: Boolean!
+  validationResults: AddressValidationResult
+  name: String
+  company: String
+  street1: String!
+  street2: String
+  street3: String
+  city: String!
+  state: String
+  zip: String!
+  country: String!
+  phone: String
+  email: String
+  isResidential: Boolean
+  metadata: String
+  test: Boolean
+}
+
+type AddressValidationResult {
+  isValid: Boolean!
+  messages: [ValidationMessage!]
+}
+
+type ValidationMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type Parcel {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  template: ParcelTemplateCode
+  length: Float
+  width: Float
+  height: Float
+  distanceUnit: DistanceUnit
+  weight: Float!
+  massUnit: WeightUnit!
+  metadata: String
+  test: Boolean
+}
+
+type Rate {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectOwner: String
+  shipment: ID!
+  attributes: [String!]
+  amountLocal: Float
+  currencyLocal: String
+  amount: Float!
+  currency: String!
+  provider: String!
+  providerImage75: String
+  providerImage200: String
+  servicelevel: ServiceLevel!
+  estimatedDays: Int
+  arrivesBy: String
+  durationTerms: String
+  messages: [RateMessage!]
+  carrierAccount: ID
+  zone: String
+  test: Boolean
+}
+
+type ServiceLevel {
+  name: String!
+  token: String!
+  terms: String
+  extendedToken: String
+  parentServicelevel: String
+}
+
+type RateMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type Shipment {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  status: ShipmentStatus!
+  messages: [ShipmentMessage!]
+  addressFrom: Address!
+  addressTo: Address!
+  addressReturn: Address
+  parcels: [Parcel!]!
+  shipmentDate: DateTime
+  carrierAccounts: [ID!]
+  metadata: String
+  extra: ShipmentExtra
+  rates: [Rate!]
+  customsDeclaration: CustomsDeclaration
+  test: Boolean
+}
+
+type ShipmentMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type ShipmentExtra {
+  signatureConfirmation: SignatureConfirmation
+  bypassAddressValidation: Boolean
+  insurance: Insurance
+  carbonNeutral: Boolean
+  dangerousGoods: Boolean
+  reference1: String
+  reference2: String
+  isReturn: Boolean
+  billing: BillingDetail
+  alcohol: AlcoholInfo
+  lasershipAttrs: [String!]
+  lasershipDeclaredValue: String
+  preferredDeliveryTimeframe: String
+  upsAccessPointEmail: String
+  deliveryInstructions: String
+  sdrValue: Float
+  dangerousGoodsCode: String
+  ancillaryEndorsement: String
+  printerType: String
+  returnServiceType: String
+  customerBranch: String
+}
+
+type SignatureConfirmation {
+  type: String
+  amount: Float
+  currency: String
+}
+
+type Insurance {
+  amount: Float!
+  currency: String!
+  content: String
+  provider: String
+}
+
+type BillingDetail {
+  type: String
+  account: String
+  country: String
+  zip: String
+  participationCode: String
+}
+
+type AlcoholInfo {
+  containsAlcohol: Boolean
+  recipientType: String
+}
+
+type Transaction {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  status: TransactionStatus!
+  messages: [TransactionMessage!]
+  rate: Rate!
+  trackingNumber: String
+  trackingStatus: TrackingStatusCode
+  trackingUrlProvider: String
+  eta: DateTime
+  labelUrl: String
+  commercialInvoiceUrl: String
+  metadata: String
+  test: Boolean
+  order: ID
+}
+
+type TransactionMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type Label {
+  objectId: ID!
+  labelUrl: String!
+  labelFileType: LabelFileType!
+  transaction: ID!
+  trackingNumber: String
+  carrier: String
+  servicelevel: String
+  created: DateTime!
+}
+
+type TrackingStatus {
+  carrier: String!
+  trackingNumber: String!
+  addressFrom: TrackingLocation
+  addressTo: TrackingLocation
+  eta: DateTime
+  originalEta: DateTime
+  servicelevel: ServiceLevel
+  metadata: String
+  trackingHistory: [TrackingEvent!]!
+  trackingStatus: TrackingEvent
+  transaction: ID
+}
+
+type TrackingEvent {
+  objectCreated: DateTime
+  objectUpdated: DateTime
+  objectId: ID
+  status: TrackingStatusCode!
+  statusDetails: String
+  statusDate: DateTime
+  substatus: TrackingSubstatus
+  location: TrackingLocation
+}
+
+type TrackingSubstatus {
+  code: String
+  text: String
+  actionRequired: Boolean
+}
+
+type TrackingLocation {
+  city: String
+  state: String
+  zip: String
+  country: String
+}
+
+type Carrier {
+  name: String!
+  token: String!
+  supportedServiceLevels: [ServiceLevel!]
+  supportsTrackingWebhooks: Boolean
+  supportsReturns: Boolean
+  supportsBatchLabels: Boolean
+  supportsManifests: Boolean
+  supportsInsurance: Boolean
+}
+
+type CarrierAccount {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  carrier: String!
+  accountId: String!
+  parameters: JSON
+  test: Boolean!
+  active: Boolean!
+  isShippoAccount: Boolean
+  metadata: String
+  carrierName: String
+  serviceLevels: [CarrierAccountServiceLevel!]
+}
+
+type CarrierAccountServiceLevel {
+  name: String!
+  token: String!
+  active: Boolean!
+}
+
+type Order {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  orderNumber: String
+  orderStatus: OrderStatus!
+  placedAt: DateTime
+  toAddress: Address!
+  fromAddress: Address
+  lineItems: [OrderItem!]!
+  shippingCost: Float
+  shippingCostCurrency: String
+  shippingMethod: String
+  subtotalPrice: Float
+  totalPrice: Float
+  totalTax: Float
+  currency: String
+  weight: Float
+  weightUnit: WeightUnit
+  transactions: [ID!]
+  shopApp: String
+  metadata: String
+  test: Boolean
+}
+
+type OrderItem {
+  objectId: ID!
+  title: String!
+  sku: String
+  quantity: Int!
+  totalPrice: Float
+  currency: String
+  weight: Float
+  weightUnit: WeightUnit
+  manufactureCountry: String
+  maxDeliveryTime: DateTime
+  maxShipTime: DateTime
+  variantTitle: String
+}
+
+type Manifest {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  status: ManifestStatus!
+  documents: [String!]
+  carrier: String!
+  transactions: [ID!]!
+  carrierAccount: ID!
+  shipmentDate: DateTime
+  addressFrom: Address
+  errors: [String!]
+  test: Boolean
+}
+
+type Pickup {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  carrier: String!
+  transactions: [ID!]!
+  location: Location!
+  requestedStartTime: DateTime!
+  requestedEndTime: DateTime!
+  confirmedStartTime: DateTime
+  confirmedEndTime: DateTime
+  cancelByTime: DateTime
+  status: PickupStatus!
+  confirmationCode: String
+  timezone: String
+  messages: [PickupMessage!]
+  metadata: String
+  test: Boolean
+}
+
+type PickupMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type PickupWindow {
+  date: String!
+  startTime: String!
+  endTime: String!
+}
+
+type Location {
+  buildingLocationType: String
+  buildingType: String
+  instructions: String
+  address: Address!
+}
+
+type Refund {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  transaction: ID!
+  status: RefundStatus!
+  test: Boolean
+}
+
+type Batch {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  defaultCarrierAccount: ID!
+  defaultServicelevelToken: String!
+  labelFiletype: LabelFileType
+  metadata: String
+  batchShipments: BatchShipmentPage!
+  status: BatchStatus!
+  objectResults: BatchResults
+}
+
+type BatchResults {
+  creation_failed: [BatchShipment!]
+  creation_succeeded: [BatchShipment!]
+  purchase_failed: [BatchShipment!]
+  purchase_succeeded: [BatchShipment!]
+}
+
+type BatchShipmentPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [BatchShipment!]!
+}
+
+type BatchShipment {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  status: String
+  messages: [BatchShipmentMessage!]
+  transaction: ID
+  shipment: ID
+  carrierAccount: ID
+  servicelevelToken: String
+  metadata: String
+}
+
+type BatchShipmentMessage {
+  source: String
+  code: String
+  type: String
+  text: String
+}
+
+type UserParcel {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  template: String
+  length: Float
+  width: Float
+  height: Float
+  distanceUnit: DistanceUnit
+  weight: Float
+  massUnit: WeightUnit
+  metadata: String
+  test: Boolean
+}
+
+type CustomsItem {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  description: String!
+  quantity: Int!
+  netWeight: Float!
+  massUnit: WeightUnit!
+  valueAmount: Float!
+  valueCurrency: String!
+  originCountry: String!
+  tariffNumber: String
+  eccnEar99: String
+  metadata: String
+  test: Boolean
+}
+
+type CustomsDeclaration {
+  objectId: ID!
+  objectCreated: DateTime!
+  objectUpdated: DateTime!
+  objectOwner: String
+  aesItn: String
+  b13aFilingOption: String
+  certificate: String
+  certify: Boolean!
+  certifySigner: String!
+  commercialInvoice: Boolean
+  contentsExplanation: String
+  contentsType: CustomsContentsType!
+  eel: String
+  exporterReference: String
+  importerReference: String
+  invoice: String
+  license: String
+  metadata: String
+  nonDeliveryOption: CustomsNonDeliveryOption!
+  incoterm: String
+  items: [CustomsItem!]!
+  test: Boolean
+}
+
+type CarrierData {
+  carrier: String!
+  servicelevelToken: String!
+  servicelevelName: String!
+  supportsInsurance: Boolean
+  supportsManifests: Boolean
+  supportsTrackingWebhooks: Boolean
+  estimatedTransitDays: Int
+  attributes: [String!]
+}
+
+# ─── Pagination wrapper ───────────────────────────────────────────────────────
+
+type AddressPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Address!]!
+}
+
+type ParcelPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Parcel!]!
+}
+
+type ShipmentPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Shipment!]!
+}
+
+type TransactionPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Transaction!]!
+}
+
+type CarrierAccountPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [CarrierAccount!]!
+}
+
+type OrderPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Order!]!
+}
+
+type ManifestPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Manifest!]!
+}
+
+type RefundPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Refund!]!
+}
+
+type BatchPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [Batch!]!
+}
+
+type UserParcelPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [UserParcel!]!
+}
+
+type CustomsItemPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [CustomsItem!]!
+}
+
+type CustomsDeclarationPage {
+  count: Int!
+  next: String
+  previous: String
+  results: [CustomsDeclaration!]!
+}
+
+# ─── Input types ─────────────────────────────────────────────────────────────
+
+input AddressInput {
+  name: String
+  company: String
+  street1: String!
+  street2: String
+  street3: String
+  city: String!
+  state: String
+  zip: String!
+  country: String!
+  phone: String
+  email: String
+  isResidential: Boolean
+  metadata: String
+  validate: Boolean
+}
+
+input ParcelInput {
+  template: ParcelTemplateCode
+  length: Float
+  width: Float
+  height: Float
+  distanceUnit: DistanceUnit
+  weight: Float!
+  massUnit: WeightUnit!
+  metadata: String
+}
+
+input ShipmentInput {
+  addressFrom: AddressInput!
+  addressTo: AddressInput!
+  addressReturn: AddressInput
+  parcels: [ParcelInput!]!
+  shipmentDate: DateTime
+  carrierAccounts: [ID!]
+  metadata: String
+  extra: JSON
+  customsDeclaration: ID
+  async: Boolean
+}
+
+input TransactionInput {
+  rate: ID!
+  labelFileType: LabelFileType
+  metadata: String
+  async: Boolean
+}
+
+input CarrierAccountInput {
+  carrier: String!
+  accountId: String!
+  parameters: JSON
+  active: Boolean
+  metadata: String
+}
+
+input OrderInput {
+  orderNumber: String
+  orderStatus: OrderStatus
+  placedAt: DateTime
+  toAddress: AddressInput!
+  fromAddress: AddressInput
+  lineItems: [OrderItemInput!]
+  shippingCost: Float
+  shippingCostCurrency: String
+  shippingMethod: String
+  subtotalPrice: Float
+  totalPrice: Float
+  totalTax: Float
+  currency: String
+  weight: Float
+  weightUnit: WeightUnit
+  shopApp: String
+  metadata: String
+}
+
+input OrderItemInput {
+  title: String!
+  sku: String
+  quantity: Int!
+  totalPrice: Float
+  currency: String
+  weight: Float
+  weightUnit: WeightUnit
+  manufactureCountry: String
+  variantTitle: String
+}
+
+input ManifestInput {
+  carrier: String!
+  shipmentDate: DateTime!
+  transactions: [ID!]!
+  carrierAccount: ID!
+  addressFrom: AddressInput
+}
+
+input PickupInput {
+  carrier: String!
+  transactions: [ID!]!
+  location: LocationInput!
+  requestedStartTime: DateTime!
+  requestedEndTime: DateTime!
+  metadata: String
+}
+
+input LocationInput {
+  buildingLocationType: String
+  buildingType: String
+  instructions: String
+  address: AddressInput!
+}
+
+input CustomsItemInput {
+  description: String!
+  quantity: Int!
+  netWeight: Float!
+  massUnit: WeightUnit!
+  valueAmount: Float!
+  valueCurrency: String!
+  originCountry: String!
+  tariffNumber: String
+  metadata: String
+}
+
+input CustomsDeclarationInput {
+  contentsType: CustomsContentsType!
+  nonDeliveryOption: CustomsNonDeliveryOption!
+  certify: Boolean!
+  certifySigner: String!
+  items: [ID!]!
+  aesItn: String
+  b13aFilingOption: String
+  commercialInvoice: Boolean
+  contentsExplanation: String
+  eel: String
+  exporterReference: String
+  importerReference: String
+  incoterm: String
+  metadata: String
+}
+
+input BatchInput {
+  defaultCarrierAccount: ID!
+  defaultServicelevelToken: String!
+  labelFiletype: LabelFileType
+  metadata: String
+  batchShipments: [BatchShipmentInput!]
+}
+
+input BatchShipmentInput {
+  shipment: ShipmentInput!
+  carrierAccount: ID
+  servicelevelToken: String
+  metadata: String
+}
+
+input UserParcelInput {
+  template: String
+  length: Float
+  width: Float
+  height: Float
+  distanceUnit: DistanceUnit
+  weight: Float
+  massUnit: WeightUnit
+  metadata: String
+}
+
+# ─── Query ───────────────────────────────────────────────────────────────────
+
+type Query {
+  # Addresses
+  address(id: ID!): Address
+  addresses(page: Int, pageSize: Int): AddressPage!
+
+  # Parcels
+  parcel(id: ID!): Parcel
+  parcels(page: Int, pageSize: Int): ParcelPage!
+
+  # Shipments
+  shipment(id: ID!): Shipment
+  shipments(page: Int, pageSize: Int, objectResults: String): ShipmentPage!
+
+  # Rates (retrieved via shipment)
+  rates(shipmentId: ID!): [Rate!]!
+  rate(id: ID!): Rate
+
+  # Transactions
+  transaction(id: ID!): Transaction
+  transactions(page: Int, pageSize: Int, rate: ID): TransactionPage!
+
+  # Tracking
+  track(carrier: String!, trackingNumber: String!): TrackingStatus
+
+  # Carrier accounts
+  carrierAccount(id: ID!): CarrierAccount
+  carrierAccounts(page: Int, pageSize: Int, carrier: String, test: Boolean): CarrierAccountPage!
+
+  # Orders
+  order(id: ID!): Order
+  orders(page: Int, pageSize: Int, shopApp: String, orderStatus: OrderStatus): OrderPage!
+
+  # Manifests
+  manifest(id: ID!): Manifest
+  manifests(page: Int, pageSize: Int): ManifestPage!
+
+  # Refunds
+  refund(id: ID!): Refund
+  refunds(page: Int, pageSize: Int): RefundPage!
+
+  # Batches
+  batch(id: ID!): Batch
+  batches(page: Int, pageSize: Int): BatchPage!
+
+  # User parcels
+  userParcel(id: ID!): UserParcel
+  userParcels(page: Int, pageSize: Int): UserParcelPage!
+
+  # Customs
+  customsItem(id: ID!): CustomsItem
+  customsItems(page: Int, pageSize: Int): CustomsItemPage!
+  customsDeclaration(id: ID!): CustomsDeclaration
+  customsDeclarations(page: Int, pageSize: Int): CustomsDeclarationPage!
+
+  # Carriers (static reference data)
+  carriers: [Carrier!]!
+  carrier(token: String!): Carrier
+}
+
+# ─── Mutation ────────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Addresses
+  createAddress(input: AddressInput!): Address!
+  validateAddress(id: ID!): Address!
+
+  # Parcels
+  createParcel(input: ParcelInput!): Parcel!
+
+  # Shipments
+  createShipment(input: ShipmentInput!): Shipment!
+
+  # Transactions (purchase a label)
+  createTransaction(input: TransactionInput!): Transaction!
+
+  # Carrier accounts
+  createCarrierAccount(input: CarrierAccountInput!): CarrierAccount!
+  updateCarrierAccount(id: ID!, input: CarrierAccountInput!): CarrierAccount!
+
+  # Orders
+  createOrder(input: OrderInput!): Order!
+
+  # Manifests
+  createManifest(input: ManifestInput!): Manifest!
+
+  # Pickups
+  createPickup(input: PickupInput!): Pickup!
+
+  # Refunds
+  createRefund(transactionId: ID!): Refund!
+
+  # Batches
+  createBatch(input: BatchInput!): Batch!
+  addShipmentsToBatch(batchId: ID!, shipments: [BatchShipmentInput!]!): Batch!
+  removeShipmentsFromBatch(batchId: ID!, shipmentIds: [ID!]!): Batch!
+  purchaseBatch(id: ID!): Batch!
+
+  # User parcels
+  createUserParcel(input: UserParcelInput!): UserParcel!
+  updateUserParcel(id: ID!, input: UserParcelInput!): UserParcel!
+  deleteUserParcel(id: ID!): Boolean!
+
+  # Customs
+  createCustomsItem(input: CustomsItemInput!): CustomsItem!
+  createCustomsDeclaration(input: CustomsDeclarationInput!): CustomsDeclaration!
+}
