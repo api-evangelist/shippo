@@ -1,0 +1,671 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all address objects."
+        },
+        {
+          "info": {
+            "name": "Create Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders."
+        },
+        {
+          "info": {
+            "name": "Get Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses/:AddressId",
+            "params": [
+              {
+                "name": "AddressId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the address"
+              }
+            ]
+          },
+          "docs": "Returns an existing address using an object ID."
+        },
+        {
+          "info": {
+            "name": "Validate Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses/:AddressId/validate",
+            "params": [
+              {
+                "name": "AddressId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the address to validate"
+              }
+            ]
+          },
+          "docs": "Validates an existing address and returns validation results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Parcels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/parcels",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of all parcel objects."
+        },
+        {
+          "info": {
+            "name": "Create Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/parcels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new parcel object. Parcel objects are used to define the physical properties of a shipment."
+        },
+        {
+          "info": {
+            "name": "Get Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/parcels/:ParcelId",
+            "params": [
+              {
+                "name": "ParcelId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the parcel"
+              }
+            ]
+          },
+          "docs": "Returns an existing parcel using an object ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_created_gt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date (greater than)"
+              },
+              {
+                "name": "object_created_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date (less than)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all shipment objects."
+        },
+        {
+          "info": {
+            "name": "Create Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new shipment object. Shipments are the basic body of the Shippo API. They include shipment details and rates, and can be used to purchase labels."
+        },
+        {
+          "info": {
+            "name": "Get Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments/:ShipmentId",
+            "params": [
+              {
+                "name": "ShipmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing shipment using an object ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shipment Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments/:ShipmentId/rates",
+            "params": [
+              {
+                "name": "ShipmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "currency_code",
+                "value": "",
+                "type": "query",
+                "description": "Currency code for rate amounts (ISO 4217)"
+              }
+            ]
+          },
+          "docs": "Returns a list of rates for a given shipment."
+        },
+        {
+          "info": {
+            "name": "Get Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/rates/:RateId",
+            "params": [
+              {
+                "name": "RateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing rate using an object ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/transactions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tracking status"
+              },
+              {
+                "name": "object_created_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_created_lt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of all transaction objects (purchased labels)."
+        },
+        {
+          "info": {
+            "name": "Create Transaction (Purchase Label)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a transaction object and purchases the shipping label using a Rate object that was previously retrieved. This is how you buy a shipping label from Shippo."
+        },
+        {
+          "info": {
+            "name": "Get Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/transactions/:TransactionId",
+            "params": [
+              {
+                "name": "TransactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing transaction object using an object ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Tracking Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/tracks/:Carrier/:TrackingNumber",
+            "params": [
+              {
+                "name": "Carrier",
+                "value": "",
+                "type": "path",
+                "description": "Carrier code (e.g. usps, fedex, ups, dhl_express)"
+              },
+              {
+                "name": "TrackingNumber",
+                "value": "",
+                "type": "path",
+                "description": "Tracking number for the shipment"
+              }
+            ]
+          },
+          "docs": "Returns the real-time tracking status for a shipment using the carrier code and tracking number. Returns normalized tracking data across all supported carriers."
+        },
+        {
+          "info": {
+            "name": "Register Tracking Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/tracks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a tracking webhook for a shipment to receive real-time tracking updates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Refunds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/refunds",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of all refund objects."
+        },
+        {
+          "info": {
+            "name": "Create Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/refunds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a refund request for a purchased label."
+        },
+        {
+          "info": {
+            "name": "Get Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/refunds/:RefundId",
+            "params": [
+              {
+                "name": "RefundId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing refund using an object ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Carrier Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Carrier Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/carrier_accounts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "carrier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by carrier name"
+              }
+            ]
+          },
+          "docs": "Returns a list of all carrier account objects."
+        },
+        {
+          "info": {
+            "name": "Create Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/carrier_accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new carrier account object."
+        },
+        {
+          "info": {
+            "name": "Get Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/carrier_accounts/:CarrierAccountId",
+            "params": [
+              {
+                "name": "CarrierAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing carrier account using an object ID."
+        },
+        {
+          "info": {
+            "name": "Update Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goshippo.com/carrier_accounts/:CarrierAccountId",
+            "params": [
+              {
+                "name": "CarrierAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing carrier account object."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/webhooks"
+          },
+          "docs": "Returns a list of all webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook subscription for Shippo events."
+        },
+        {
+          "info": {
+            "name": "Get Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/webhooks/:WebhookId",
+            "params": [
+              {
+                "name": "WebhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing webhook using an object ID."
+        },
+        {
+          "info": {
+            "name": "Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goshippo.com/webhooks/:WebhookId",
+            "params": [
+              {
+                "name": "WebhookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.goshippo.com/webhooks/:WebhookId",
+            "params": [
+              {
+                "name": "WebhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an existing webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
