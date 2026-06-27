@@ -20,17 +20,17 @@ apis:
   - url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
     type: OpenAPI
   - url: https://github.com/goshippo/shippo-python-sdk
-    type: SDK
+    type: SDKs
   - url: https://github.com/goshippo/shippo-javascript-sdk
-    type: SDK
+    type: SDKs
   - url: https://github.com/goshippo/shippo-php-client
-    type: SDK
+    type: SDKs
   - url: https://github.com/goshippo/shippo-java-client
-    type: SDK
+    type: SDKs
   - url: https://github.com/goshippo/shippo-ruby-client
-    type: SDK
+    type: SDKs
   - url: https://github.com/goshippo/shippo-node-client
-    type: SDK
+    type: SDKs
   - url: json-schema/shippo-shipment-schema.json
     type: JSONSchema
   - url: json-schema/shippo-transaction-schema.json
@@ -99,7 +99,7 @@ common:
 - url: https://github.com/goshippo
   type: GitHubOrganization
 - url: https://goshippo.com/products/api
-  type: Developer Portal
+  type: DeveloperPortal
 - url: https://goshippo.com
   type: Website
 - type: Features
@@ -127,6 +127,6 @@ common:
   url: https://goshippo.com/integrations
 - name: Agent Skills
   url: https://github.com/goshippo/shippo-clawhub-skill
-  type: AgentSkill
-- type: LLMsTxt
+  type: AgentSkills
+- type: LlmsText
   url: https://docs.goshippo.com/llms.txt
