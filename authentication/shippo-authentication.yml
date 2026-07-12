@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shippo-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: ShippoToken
+  type: http
+  scheme: bearer
+  description: Shippo API token (prefix with "ShippoToken ")
+  sources:
+  - openapi/shippo-openapi.yml

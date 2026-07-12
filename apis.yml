@@ -84,6 +84,12 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: TrustCenter
+  url: security/shippo-trust-center.yml
+- type: DomainSecurity
+  url: security/shippo-domain-security.yml
+- type: Authentication
+  url: authentication/shippo-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/shippo
 - url: https://docs.goshippo.com/
