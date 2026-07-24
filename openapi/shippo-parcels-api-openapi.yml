@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: Shippo Addresses Parcels API
+  description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
+  version: '2018-02-08'
+  contact:
+    name: Shippo
+    url: https://docs.goshippo.com/
+    email: support@goshippo.com
+  license:
+    name: Shippo API Terms
+    url: https://goshippo.com/terms-of-use/
+  x-date: '2026-05-02'
+servers:
+- url: https://api.goshippo.com
+  description: Shippo API
+security:
+- ShippoToken: []
+tags:
+- name: Parcels
+  description: Define parcel dimensions and weight
+paths:
+  /parcels:
+    get:
+      operationId: listParcels
+      summary: List Parcels
+      description: Returns a list of all parcel objects.
+      tags:
+      - Parcels
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+      - name: results
+        in: query
+        description: Number of results per page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of parcels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParcelPaginatedList'
+    post:
+      operationId: createParcel
+      summary: Create Parcel
+      description: Creates a new parcel object. Parcel objects are used to define the physical properties of a shipment.
+      tags:
+      - Parcels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParcelCreateRequest'
+      responses:
+        '201':
+          description: Parcel created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Parcel'
+  /parcels/{ParcelId}:
+    get:
+      operationId: getParcel
+      summary: Get Parcel
+      description: Returns an existing parcel using an object ID.
+      tags:
+      - Parcels
+      parameters:
+      - name: ParcelId
+        in: path
+        required: true
+        description: Object ID of the parcel
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Parcel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Parcel'
+components:
+  schemas:
+    ParcelCreateRequest:
+      type: object
+      required:
+      - length
+      - width
+      - height
+      - distance_unit
+      - weight
+      - mass_unit
+      properties:
+        length:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        distance_unit:
+          type: string
+          enum:
+          - cm
+          - in
+          - ft
+          - mm
+          - m
+          - yd
+        weight:
+          type: string
+        mass_unit:
+          type: string
+          enum:
+          - g
+          - oz
+          - lb
+          - kg
+        template:
+          type: string
+    Parcel:
+      type: object
+      properties:
+        object_id:
+          type: string
+        length:
+          type: string
+          description: Length of the parcel
+        width:
+          type: string
+          description: Width of the parcel
+        height:
+          type: string
+          description: Height of the parcel
+        distance_unit:
+          type: string
+          enum:
+          - cm
+          - in
+          - ft
+          - mm
+          - m
+          - yd
+        weight:
+          type: string
+          description: Weight of the parcel
+        mass_unit:
+          type: string
+          enum:
+          - g
+          - oz
+          - lb
+          - kg
+        template:
+          type: string
+          description: Predefined parcel template
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    ParcelPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parcel'
+  securitySchemes:
+    ShippoToken:
+      type: http
+      scheme: bearer
+      description: Shippo API token (prefix with "ShippoToken ")

@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Shippo Addresses Rates API
+  description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
+  version: '2018-02-08'
+  contact:
+    name: Shippo
+    url: https://docs.goshippo.com/
+    email: support@goshippo.com
+  license:
+    name: Shippo API Terms
+    url: https://goshippo.com/terms-of-use/
+  x-date: '2026-05-02'
+servers:
+- url: https://api.goshippo.com
+  description: Shippo API
+security:
+- ShippoToken: []
+tags:
+- name: Rates
+  description: Retrieve shipping rates from carriers
+paths:
+  /shipments/{ShipmentId}/rates:
+    get:
+      operationId: getShipmentRates
+      summary: Get Shipment Rates
+      description: Returns a list of rates for a given shipment.
+      tags:
+      - Rates
+      parameters:
+      - name: ShipmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: currency_code
+        in: query
+        description: Currency code for rate amounts (ISO 4217)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of rates for the shipment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatePaginatedList'
+  /rates/{RateId}:
+    get:
+      operationId: getRate
+      summary: Get Rate
+      description: Returns an existing rate using an object ID.
+      tags:
+      - Rates
+      parameters:
+      - name: RateId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Rate object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rate'
+components:
+  schemas:
+    Rate:
+      type: object
+      properties:
+        object_id:
+          type: string
+        object_created:
+          type: string
+          format: date-time
+        amount:
+          type: string
+          description: Total cost of the rate
+        currency:
+          type: string
+          description: Currency of the rate amount
+        amount_local:
+          type: string
+          description: Amount in the local currency
+        currency_local:
+          type: string
+        provider:
+          type: string
+          description: Carrier providing the rate (e.g., USPS, UPS)
+        provider_image_75:
+          type: string
+          description: URL to carrier logo (75px)
+        servicelevel:
+          type: object
+          properties:
+            name:
+              type: string
+            token:
+              type: string
+            terms:
+              type: string
+        days:
+          type: integer
+          description: Estimated transit days
+        arrives_by:
+          type: string
+          description: Estimated delivery time
+        duration_terms:
+          type: string
+          description: Service level terms description
+        trackable:
+          type: boolean
+        attributes:
+          type: array
+          items:
+            type: string
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+  securitySchemes:
+    ShippoToken:
+      type: http
+      scheme: bearer
+      description: Shippo API token (prefix with "ShippoToken ")

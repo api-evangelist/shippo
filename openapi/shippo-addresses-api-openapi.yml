@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Shippo Addresses API
+  description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
+  version: '2018-02-08'
+  contact:
+    name: Shippo
+    url: https://docs.goshippo.com/
+    email: support@goshippo.com
+  license:
+    name: Shippo API Terms
+    url: https://goshippo.com/terms-of-use/
+  x-date: '2026-05-02'
+servers:
+- url: https://api.goshippo.com
+  description: Shippo API
+security:
+- ShippoToken: []
+tags:
+- name: Addresses
+  description: Validate and manage shipping addresses
+paths:
+  /addresses:
+    get:
+      operationId: listAddresses
+      summary: List Addresses
+      description: Returns a list of all address objects.
+      tags:
+      - Addresses
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: results
+        in: query
+        description: Number of results per page (max 100)
+        schema:
+          type: integer
+          default: 5
+      responses:
+        '200':
+          description: A list of addresses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressPaginatedList'
+    post:
+      operationId: createAddress
+      summary: Create Address
+      description: Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders.
+      tags:
+      - Addresses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressCreateRequest'
+      responses:
+        '201':
+          description: Address created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /addresses/{AddressId}:
+    get:
+      operationId: getAddress
+      summary: Get Address
+      description: Returns an existing address using an object ID.
+      tags:
+      - Addresses
+      parameters:
+      - name: AddressId
+        in: path
+        required: true
+        description: Object ID of the address
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Address object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /addresses/{AddressId}/validate:
+    get:
+      operationId: validateAddress
+      summary: Validate Address
+      description: Validates an existing address and returns validation results.
+      tags:
+      - Addresses
+      parameters:
+      - name: AddressId
+        in: path
+        required: true
+        description: Object ID of the address to validate
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Address validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+components:
+  schemas:
+    AddressPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    AddressCreateRequest:
+      type: object
+      required:
+      - name
+      - street1
+      - city
+      - state
+      - zip
+      - country
+      properties:
+        name:
+          type: string
+        company:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        is_residential:
+          type: boolean
+        validate:
+          type: boolean
+          description: Whether to validate the address
+    Address:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the address
+        is_complete:
+          type: boolean
+          description: Whether the address is complete and valid
+        name:
+          type: string
+          description: Full name of the recipient
+        company:
+          type: string
+          description: Company name
+        street1:
+          type: string
+          description: First line of the street address
+        street2:
+          type: string
+          description: Second line of the street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        zip:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: ISO 2-letter country code
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        is_residential:
+          type: boolean
+          description: Whether the address is residential
+        validation_results:
+          type: object
+          description: Address validation results
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+  securitySchemes:
+    ShippoToken:
+      type: http
+      scheme: bearer
+      description: Shippo API token (prefix with "ShippoToken ")

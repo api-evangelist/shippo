@@ -1,0 +1,197 @@
+openapi: 3.1.0
+info:
+  title: Shippo Addresses Transactions API
+  description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
+  version: '2018-02-08'
+  contact:
+    name: Shippo
+    url: https://docs.goshippo.com/
+    email: support@goshippo.com
+  license:
+    name: Shippo API Terms
+    url: https://goshippo.com/terms-of-use/
+  x-date: '2026-05-02'
+servers:
+- url: https://api.goshippo.com
+  description: Shippo API
+security:
+- ShippoToken: []
+tags:
+- name: Transactions
+  description: Purchase shipping labels
+paths:
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List Transactions
+      description: Returns a list of all transaction objects (purchased labels).
+      tags:
+      - Transactions
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: results
+        in: query
+        schema:
+          type: integer
+      - name: tracking_status
+        in: query
+        description: Filter by tracking status
+        schema:
+          type: string
+          enum:
+          - UNKNOWN
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+      - name: object_created_gt
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: object_created_lt
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionPaginatedList'
+    post:
+      operationId: createTransaction
+      summary: Create Transaction (Purchase Label)
+      description: Creates a transaction object and purchases the shipping label using a Rate object that was previously retrieved. This is how you buy a shipping label from Shippo.
+      tags:
+      - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionCreateRequest'
+      responses:
+        '201':
+          description: Transaction created and label purchased
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+  /transactions/{TransactionId}:
+    get:
+      operationId: getTransaction
+      summary: Get Transaction
+      description: Returns an existing transaction object using an object ID.
+      tags:
+      - Transactions
+      parameters:
+      - name: TransactionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        object_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - WAITING
+          - QUEUED
+          - SUCCESS
+          - ERROR
+          - REFUNDED
+          - REFUNDPENDING
+          - REFUNDREJECTED
+        tracking_number:
+          type: string
+          description: Carrier-issued tracking number
+        tracking_url_provider:
+          type: string
+          description: URL to track the shipment on the carrier's website
+        tracking_status:
+          type: string
+          enum:
+          - UNKNOWN
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+        label_url:
+          type: string
+          description: URL to the shipping label PDF or PNG
+        commercial_invoice_url:
+          type: string
+          description: URL to the commercial invoice (for international shipments)
+        rate:
+          type: string
+          description: Rate object ID used for this transaction
+        metadata:
+          type: string
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    TransactionCreateRequest:
+      type: object
+      required:
+      - rate
+      - label_file_type
+      properties:
+        rate:
+          type: string
+          description: Object ID of the rate to purchase
+        label_file_type:
+          type: string
+          enum:
+          - PNG
+          - PNG_2.3x7.5
+          - PDF
+          - PDF_2.3x7.5
+          - PDF_4x6
+          - PDF_4x8
+          - PDF_Letter
+          - ZPLII
+        metadata:
+          type: string
+        async:
+          type: boolean
+    TransactionPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+  securitySchemes:
+    ShippoToken:
+      type: http
+      scheme: bearer
+      description: Shippo API token (prefix with "ShippoToken ")
