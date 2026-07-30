@@ -1,53 +1,339 @@
 aid: shippo
 url: https://raw.githubusercontent.com/api-evangelist/shippo/refs/heads/main/apis.yml
 apis:
-- aid: shippo:shippo-api
-  name: Shippo API
-  tags:
-  - Ecommerce
-  - Labels
-  - Logistics
-  - Shipping
-  - Tracking
+- aid: shippo:shippo-addresses-api
+  name: Shippo Addresses API
+  description: Validate and manage shipping addresses
   humanURL: https://docs.goshippo.com/
+  tags:
+  - Addresses
   properties:
-  - url: https://docs.goshippo.com/
-    type: Documentation
-  - url: openapi/shippo-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/shippo-webhooks-asyncapi.yaml
-    type: AsyncAPI
-  - url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-    type: OpenAPI
-  - url: https://github.com/goshippo/shippo-python-sdk
-    type: SDKs
-  - url: https://github.com/goshippo/shippo-javascript-sdk
-    type: SDKs
-  - url: https://github.com/goshippo/shippo-php-client
-    type: SDKs
-  - url: https://github.com/goshippo/shippo-java-client
-    type: SDKs
-  - url: https://github.com/goshippo/shippo-ruby-client
-    type: SDKs
-  - url: https://github.com/goshippo/shippo-node-client
-    type: SDKs
-  - url: json-schema/shippo-shipment-schema.json
-    type: JSONSchema
-  - url: json-schema/shippo-transaction-schema.json
-    type: JSONSchema
-  - url: json-ld/shippo-context.jsonld
-    type: JSONLD
-  - url: rules/shippo-rules.yml
-    type: SpectralRules
-  - url: vocabulary/shippo-vocabulary.yml
-    type: Vocabulary
-  - url: graphql/shippo-graphql.md
-    type: GraphQL
-  description: Shippo is a multi-carrier shipping API that enables developers to add
-    complete shipping functionality to their applications. The API supports address
-    validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other
-    carriers, label generation, package tracking, returns management, and webhook
-    notifications. Shippo's API drives efficiency at scale from pre-purchase to returns.
+  - type: OpenAPI
+    url: openapi/shippo-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-carrier-accounts-api
+  name: Shippo Carrier Accounts API
+  description: Manage carrier account integrations
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Carrier Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-carrier-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-parcels-api
+  name: Shippo Parcels API
+  description: Define parcel dimensions and weight
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Parcels
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-parcels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-rates-api
+  name: Shippo Rates API
+  description: Retrieve shipping rates from carriers
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-rates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-refunds-api
+  name: Shippo Refunds API
+  description: Request label refunds
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-shipments-api
+  name: Shippo Shipments API
+  description: Create and manage shipments
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-tracking-api
+  name: Shippo Tracking API
+  description: Track shipments across carriers
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-transactions-api
+  name: Shippo Transactions API
+  description: Purchase shipping labels
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
+- aid: shippo:shippo-webhooks-api
+  name: Shippo Webhooks API
+  description: Manage webhook subscriptions
+  humanURL: https://docs.goshippo.com/
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/shippo-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.goshippo.com/
+  - type: AsyncAPI
+    url: asyncapi/shippo-webhooks-asyncapi.yaml
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-python-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-javascript-sdk
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-php-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-java-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-ruby-client
+  - type: SDKs
+    url: https://github.com/goshippo/shippo-node-client
+  - type: JSONSchema
+    url: json-schema/shippo-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/shippo-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/shippo-context.jsonld
+  - type: SpectralRules
+    url: rules/shippo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shippo-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shippo-graphql.md
 name: Shippo
 tags:
 - Ecommerce
@@ -57,7 +343,20 @@ tags:
 - Shipping
 - Tracking
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shippo.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-30'
