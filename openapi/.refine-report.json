@@ -1,0 +1,30 @@
+{
+  "provider": "shippo",
+  "sources": [
+    "shippo-addresses-api-openapi.yml",
+    "shippo-carrier-accounts-api-openapi.yml",
+    "shippo-parcels-api-openapi.yml",
+    "shippo-rates-api-openapi.yml",
+    "shippo-refunds-api-openapi.yml",
+    "shippo-shipments-api-openapi.yml",
+    "shippo-tracking-api-openapi.yml",
+    "shippo-transactions-api-openapi.yml",
+    "shippo-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "shippo-addresses-api-openapi.yml",
+    "shippo-carrier-accounts-api-openapi.yml",
+    "shippo-parcels-api-openapi.yml",
+    "shippo-rates-api-openapi.yml",
+    "shippo-refunds-api-openapi.yml",
+    "shippo-shipments-api-openapi.yml",
+    "shippo-tracking-api-openapi.yml",
+    "shippo-transactions-api-openapi.yml",
+    "shippo-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
