@@ -1,0 +1,461 @@
+{
+  "item": [
+    {
+      "id": "2108f50f-87b6-4c8a-8adf-d4ea4be5f10d",
+      "name": "Carrier Accounts",
+      "description": {
+        "content": "Manage carrier account integrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68ea761b-6643-4a72-ae4b-7b60d96a0939",
+          "name": "List Carrier Accounts",
+          "request": {
+            "name": "List Carrier Accounts",
+            "description": {
+              "content": "Returns a list of all carrier account objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carrier_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "results",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrier",
+                  "value": "<string>",
+                  "description": "Filter by carrier name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84415cb6-ab12-429d-92ce-853c4a5b06a0",
+              "name": "A list of carrier accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "results",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8464,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"object_id\": \"string\",\n      \"carrier\": \"string\",\n      \"account_id\": \"string\",\n      \"active\": true,\n      \"test\": true,\n      \"parameters\": {},\n      \"object_created\": \"2014-08-24T17:25:08.005Z\",\n      \"object_updated\": \"1974-02-21T16:09:40.248Z\"\n    },\n    {\n      \"object_id\": \"string\",\n      \"carrier\": \"string\",\n      \"account_id\": \"string\",\n      \"active\": false,\n      \"test\": true,\n      \"parameters\": {},\n      \"object_created\": \"1953-06-25T18:02:45.378Z\",\n      \"object_updated\": \"1983-09-06T02:35:51.070Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7e3706e-5a27-4dae-a5bd-82f85705a6cd",
+          "name": "Create Carrier Account",
+          "request": {
+            "name": "Create Carrier Account",
+            "description": {
+              "content": "Creates a new carrier account object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carrier_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrier\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77a16b79-37e2-4281-bbfb-e8c9e371f3d9",
+              "name": "Carrier account created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrier\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_id\": \"string\",\n  \"carrier\": \"string\",\n  \"account_id\": \"string\",\n  \"active\": true,\n  \"test\": true,\n  \"parameters\": {},\n  \"object_created\": \"1971-10-08T20:52:00.335Z\",\n  \"object_updated\": \"1957-08-17T03:58:09.266Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf20e0c6-7850-427e-bc69-0bdf6085c0e2",
+          "name": "Get Carrier Account",
+          "request": {
+            "name": "Get Carrier Account",
+            "description": {
+              "content": "Returns an existing carrier account using an object ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carrier_accounts",
+                ":CarrierAccountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CarrierAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78833aac-da69-4c0f-9d6d-0d7dd610d5a0",
+              "name": "Carrier account object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier_accounts",
+                    ":CarrierAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CarrierAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_id\": \"string\",\n  \"carrier\": \"string\",\n  \"account_id\": \"string\",\n  \"active\": true,\n  \"test\": true,\n  \"parameters\": {},\n  \"object_created\": \"1971-10-08T20:52:00.335Z\",\n  \"object_updated\": \"1957-08-17T03:58:09.266Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71aa8c79-f6a1-4d6a-86aa-82f24922c909",
+          "name": "Update Carrier Account",
+          "request": {
+            "name": "Update Carrier Account",
+            "description": {
+              "content": "Updates an existing carrier account object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carrier_accounts",
+                ":CarrierAccountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CarrierAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrier\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b45adc34-8920-48a5-947f-a8b78193aede",
+              "name": "Carrier account updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier_accounts",
+                    ":CarrierAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CarrierAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrier\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object_id\": \"string\",\n  \"carrier\": \"string\",\n  \"account_id\": \"string\",\n  \"active\": true,\n  \"test\": true,\n  \"parameters\": {},\n  \"object_created\": \"1971-10-08T20:52:00.335Z\",\n  \"object_updated\": \"1957-08-17T03:58:09.266Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goshippo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "210e1351-f63d-44f2-990d-86c91352135e",
+    "name": "Shippo Addresses Carrier Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.\n\nContact Support:\n Name: Shippo\n Email: support@goshippo.com",
+      "type": "text/plain"
+    }
+  }
+}

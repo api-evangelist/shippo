@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Shipments API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_created_gt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date (greater than)"
+              },
+              {
+                "name": "object_created_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date (less than)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all shipment objects."
+        },
+        {
+          "info": {
+            "name": "Create Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new shipment object. Shipments are the basic body of the Shippo API. They include shipment details and rates, and can be used to purchase labels."
+        },
+        {
+          "info": {
+            "name": "Get Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments/:ShipmentId",
+            "params": [
+              {
+                "name": "ShipmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing shipment using an object ID."
+        },
+        {
+          "info": {
+            "name": "Get Shipment Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments/:ShipmentId/rates",
+            "params": [
+              {
+                "name": "ShipmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "currency_code",
+                "value": "",
+                "type": "query",
+                "description": "Currency code for rate amounts (ISO 4217)"
+              }
+            ]
+          },
+          "docs": "Returns a list of rates for a given shipment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

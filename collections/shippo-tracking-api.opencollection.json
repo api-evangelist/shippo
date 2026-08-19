@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Tracking API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Tracking Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/tracks/:Carrier/:TrackingNumber",
+            "params": [
+              {
+                "name": "Carrier",
+                "value": "",
+                "type": "path",
+                "description": "Carrier code (e.g. usps, fedex, ups, dhl_express)"
+              },
+              {
+                "name": "TrackingNumber",
+                "value": "",
+                "type": "path",
+                "description": "Tracking number for the shipment"
+              }
+            ]
+          },
+          "docs": "Returns the real-time tracking status for a shipment using the carrier code and tracking number. Returns normalized tracking data across all supported carriers."
+        },
+        {
+          "info": {
+            "name": "Register Tracking Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/tracks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a tracking webhook for a shipment to receive real-time tracking updates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

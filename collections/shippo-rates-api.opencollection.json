@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Rates API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shipment Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/shipments/:ShipmentId/rates",
+            "params": [
+              {
+                "name": "ShipmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "currency_code",
+                "value": "",
+                "type": "query",
+                "description": "Currency code for rate amounts (ISO 4217)"
+              }
+            ]
+          },
+          "docs": "Returns a list of rates for a given shipment."
+        },
+        {
+          "info": {
+            "name": "Get Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/rates/:RateId",
+            "params": [
+              {
+                "name": "RateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing rate using an object ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Transactions API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/transactions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tracking_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tracking status"
+              },
+              {
+                "name": "object_created_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_created_lt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of all transaction objects (purchased labels)."
+        },
+        {
+          "info": {
+            "name": "Create Transaction (Purchase Label)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a transaction object and purchases the shipping label using a Rate object that was previously retrieved. This is how you buy a shipping label from Shippo."
+        },
+        {
+          "info": {
+            "name": "Get Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/transactions/:TransactionId",
+            "params": [
+              {
+                "name": "TransactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing transaction object using an object ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

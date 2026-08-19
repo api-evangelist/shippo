@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Carrier Accounts API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carrier Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Carrier Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/carrier_accounts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "carrier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by carrier name"
+              }
+            ]
+          },
+          "docs": "Returns a list of all carrier account objects."
+        },
+        {
+          "info": {
+            "name": "Create Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/carrier_accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new carrier account object."
+        },
+        {
+          "info": {
+            "name": "Get Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/carrier_accounts/:CarrierAccountId",
+            "params": [
+              {
+                "name": "CarrierAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an existing carrier account using an object ID."
+        },
+        {
+          "info": {
+            "name": "Update Carrier Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.goshippo.com/carrier_accounts/:CarrierAccountId",
+            "params": [
+              {
+                "name": "CarrierAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing carrier account object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,252 @@
+{
+  "item": [
+    {
+      "id": "c0826ffb-f277-4a4a-9f80-2fb33d0f8165",
+      "name": "Tracking",
+      "description": {
+        "content": "Track shipments across carriers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfc68df6-de49-4d0a-9e1d-1810a7ac102b",
+          "name": "Get Tracking Status",
+          "request": {
+            "name": "Get Tracking Status",
+            "description": {
+              "content": "Returns the real-time tracking status for a shipment using the carrier code and tracking number. Returns normalized tracking data across all supported carriers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tracks",
+                ":Carrier",
+                ":TrackingNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Carrier",
+                  "description": "(Required) Carrier code (e.g. usps, fedex, ups, dhl_express)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "TrackingNumber",
+                  "description": "(Required) Tracking number for the shipment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0bd991f-24ee-4350-9aba-a32503c33400",
+              "name": "Tracking status for the shipment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks",
+                    ":Carrier",
+                    ":TrackingNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Carrier",
+                      "description": "(Required) Carrier code (e.g. usps, fedex, ups, dhl_express)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "TrackingNumber",
+                      "description": "(Required) Tracking number for the shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"carrier\": \"string\",\n  \"tracking_number\": \"string\",\n  \"address_from\": {\n    \"object_id\": \"string\",\n    \"is_complete\": false,\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"is_residential\": false,\n    \"validation_results\": {},\n    \"object_created\": \"1952-06-10T18:24:44.368Z\",\n    \"object_updated\": \"1958-04-24T11:40:57.647Z\"\n  },\n  \"address_to\": {\n    \"object_id\": \"string\",\n    \"is_complete\": true,\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"is_residential\": true,\n    \"validation_results\": {},\n    \"object_created\": \"2018-03-26T02:42:46.727Z\",\n    \"object_updated\": \"2024-01-01T05:57:32.655Z\"\n  },\n  \"transaction\": \"string\",\n  \"original_eta\": \"1988-03-06T00:54:37.483Z\",\n  \"eta\": \"1953-07-04T08:00:00.950Z\",\n  \"servicelevel\": {\n    \"token\": \"string\",\n    \"name\": \"string\"\n  },\n  \"tracking_status\": {\n    \"status\": \"UNKNOWN\",\n    \"status_details\": \"string\",\n    \"status_date\": \"2012-12-14T08:10:41.322Z\",\n    \"location\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9654a16-5f2a-4f23-859c-f06f2286c008",
+          "name": "Register Tracking Webhook",
+          "request": {
+            "name": "Register Tracking Webhook",
+            "description": {
+              "content": "Registers a tracking webhook for a shipment to receive real-time tracking updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tracks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrier\": \"<string>\",\n  \"tracking_number\": \"<string>\",\n  \"metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e45d1c6d-b669-4e68-b2eb-c3c88ee234fe",
+              "name": "Tracking webhook registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrier\": \"<string>\",\n  \"tracking_number\": \"<string>\",\n  \"metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"carrier\": \"string\",\n  \"tracking_number\": \"string\",\n  \"address_from\": {\n    \"object_id\": \"string\",\n    \"is_complete\": false,\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"is_residential\": false,\n    \"validation_results\": {},\n    \"object_created\": \"1952-06-10T18:24:44.368Z\",\n    \"object_updated\": \"1958-04-24T11:40:57.647Z\"\n  },\n  \"address_to\": {\n    \"object_id\": \"string\",\n    \"is_complete\": true,\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"email\": \"string\",\n    \"is_residential\": true,\n    \"validation_results\": {},\n    \"object_created\": \"2018-03-26T02:42:46.727Z\",\n    \"object_updated\": \"2024-01-01T05:57:32.655Z\"\n  },\n  \"transaction\": \"string\",\n  \"original_eta\": \"1988-03-06T00:54:37.483Z\",\n  \"eta\": \"1953-07-04T08:00:00.950Z\",\n  \"servicelevel\": {\n    \"token\": \"string\",\n    \"name\": \"string\"\n  },\n  \"tracking_status\": {\n    \"status\": \"UNKNOWN\",\n    \"status_details\": \"string\",\n    \"status_date\": \"2012-12-14T08:10:41.322Z\",\n    \"location\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.goshippo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "190c2004-e544-455e-94e9-84218e229666",
+    "name": "Shippo Addresses Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.\n\nContact Support:\n Name: Shippo\n Email: support@goshippo.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all address objects."
+        },
+        {
+          "info": {
+            "name": "Create Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders."
+        },
+        {
+          "info": {
+            "name": "Get Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses/:AddressId",
+            "params": [
+              {
+                "name": "AddressId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the address"
+              }
+            ]
+          },
+          "docs": "Returns an existing address using an object ID."
+        },
+        {
+          "info": {
+            "name": "Validate Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/addresses/:AddressId/validate",
+            "params": [
+              {
+                "name": "AddressId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the address to validate"
+              }
+            ]
+          },
+          "docs": "Validates an existing address and returns validation results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

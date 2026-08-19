@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shippo Addresses Parcels API",
+    "version": "2018-02-08"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parcels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/parcels",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "results",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of all parcel objects."
+        },
+        {
+          "info": {
+            "name": "Create Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.goshippo.com/parcels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new parcel object. Parcel objects are used to define the physical properties of a shipment."
+        },
+        {
+          "info": {
+            "name": "Get Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.goshippo.com/parcels/:ParcelId",
+            "params": [
+              {
+                "name": "ParcelId",
+                "value": "",
+                "type": "path",
+                "description": "Object ID of the parcel"
+              }
+            ]
+          },
+          "docs": "Returns an existing parcel using an object ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
