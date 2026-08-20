@@ -265,6 +265,8 @@ apis:
   description: Purchase shipping labels
   humanURL: https://docs.goshippo.com/
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -302,6 +304,8 @@ apis:
   description: Manage webhook subscriptions
   humanURL: https://docs.goshippo.com/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -336,6 +340,13 @@ apis:
     url: graphql/shippo-graphql.md
 name: Shippo
 tags:
+- E-Commerce
+- Labels
+- Logistics
+- Returns
+- Shipping
+- Tracking
+tags_raw:
 - Ecommerce
 - Labels
 - Logistics
