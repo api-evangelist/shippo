@@ -1,0 +1,36 @@
+slug: shippo
+provider: Shippo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Tracking
+  spec_file: shippo-tracking-api-openapi.yml
+  capability_id: BC-2510.20
+  capability_id_l1: BC-2510
+  capability_name: Shipment Tracking Management
+  confidence: 0.85
+  evidence: GET /tracks/{Carrier}/{TrackingNumber} "Get Tracking Status", POST /tracks "Register Tracking
+    Webhook"; schema TrackingStatus
+  reason: Resolves package status per carrier and tracking number and pushes status updates to subscribers
+    — shipment tracking across carriers. The webhook registration is delivery plumbing but serves the
+    same tracking capability.
+- tag: Rates
+  spec_file: shippo-rates-api-openapi.yml
+  capability_id: BC-2520
+  capability_id_l1: BC-2520
+  capability_name: Freight Rating & Tariff Management
+  confidence: 0.7
+  evidence: 'GET /shipments/{ShipmentId}/rates "Get Shipment Rates", GET /rates/{RateId} "Get Rate"; vendor:
+    "pre-purchase rate shopping across 80+ carriers"'
+  reason: The operations return priced freight rates per shipment across carriers, which is freight rating/tariff
+    territory. Ambiguity between spot-rate comparison and rating-engine operation keeps this at L1.
