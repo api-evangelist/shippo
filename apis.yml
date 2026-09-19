@@ -80,6 +80,8 @@ apis:
   description: Define parcel dimensions and weight
   humanURL: https://docs.goshippo.com/
   tags:
+  - Parcel
+  tags_raw:
   - Parcels
   properties:
   - type: OpenAPI
