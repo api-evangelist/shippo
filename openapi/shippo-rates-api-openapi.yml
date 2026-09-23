@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shippo Addresses Rates API
+  title: Shippo Rates API
   description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
   version: '2018-02-08'
   contact:
@@ -67,6 +67,15 @@ paths:
                 $ref: '#/components/schemas/Rate'
 components:
   schemas:
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
     Rate:
       type: object
       properties:
@@ -116,15 +125,6 @@ components:
           type: array
           items:
             type: string
-    RatePaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
   securitySchemes:
     ShippoToken:
       type: http

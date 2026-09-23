@@ -1,15 +1,7 @@
 {
   "provider": "shippo",
   "sources": [
-    "shippo-addresses-api-openapi.yml",
-    "shippo-carrier-accounts-api-openapi.yml",
-    "shippo-parcels-api-openapi.yml",
-    "shippo-rates-api-openapi.yml",
-    "shippo-refunds-api-openapi.yml",
-    "shippo-shipments-api-openapi.yml",
-    "shippo-tracking-api-openapi.yml",
-    "shippo-transactions-api-openapi.yml",
-    "shippo-webhooks-api-openapi.yml"
+    "_original/shippo-openapi.yml"
   ],
   "outputs": [
     "shippo-addresses-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shippo-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "shippo-addresses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-carrier-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-parcels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shippo-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

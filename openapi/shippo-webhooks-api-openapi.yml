@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shippo Addresses Webhooks API
+  title: Shippo Webhooks API
   description: Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.
   version: '2018-02-08'
   contact:
@@ -140,18 +140,6 @@ paths:
           description: Webhook deleted
 components:
   schemas:
-    TrackingWebhookRequest:
-      type: object
-      required:
-      - carrier
-      - tracking_number
-      properties:
-        carrier:
-          type: string
-        tracking_number:
-          type: string
-        metadata:
-          type: string
     Address:
       type: object
       properties:
@@ -203,6 +191,18 @@ components:
         object_updated:
           type: string
           format: date-time
+    TrackingWebhookRequest:
+      type: object
+      required:
+      - carrier
+      - tracking_number
+      properties:
+        carrier:
+          type: string
+        tracking_number:
+          type: string
+        metadata:
+          type: string
     WebhookCreateRequest:
       type: object
       required:
@@ -221,32 +221,6 @@ components:
           - track_updated
         active:
           type: boolean
-    Webhook:
-      type: object
-      properties:
-        object_id:
-          type: string
-        url:
-          type: string
-          description: URL that receives webhook events
-        event:
-          type: string
-          enum:
-          - transaction_created
-          - transaction_updated
-          - batch_created
-          - batch_purchased
-          - track_updated
-        active:
-          type: boolean
-        is_test:
-          type: boolean
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
     TrackingStatus:
       type: object
       properties:
@@ -296,6 +270,32 @@ components:
           type: array
           items:
             type: object
+    Webhook:
+      type: object
+      properties:
+        object_id:
+          type: string
+        url:
+          type: string
+          description: URL that receives webhook events
+        event:
+          type: string
+          enum:
+          - transaction_created
+          - transaction_updated
+          - batch_created
+          - batch_purchased
+          - track_updated
+        active:
+          type: boolean
+        is_test:
+          type: boolean
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
   securitySchemes:
     ShippoToken:
       type: http
