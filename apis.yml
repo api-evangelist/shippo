@@ -36,8 +36,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-carrier-accounts-api
   name: Shippo Carrier Accounts API
   description: Manage carrier account integrations
@@ -73,8 +71,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-parcels-api
   name: Shippo Parcels API
   description: Define parcel dimensions and weight
@@ -112,8 +108,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-rates-api
   name: Shippo Rates API
   description: Retrieve shipping rates from carriers
@@ -149,8 +143,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-refunds-api
   name: Shippo Refunds API
   description: Request label refunds
@@ -186,8 +178,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-shipments-api
   name: Shippo Shipments API
   description: Create and manage shipments
@@ -223,8 +213,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-tracking-api
   name: Shippo Tracking API
   description: Track shipments across carriers
@@ -260,8 +248,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-transactions-api
   name: Shippo Transactions API
   description: Purchase shipping labels
@@ -299,8 +285,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 - aid: shippo:shippo-webhooks-api
   name: Shippo Webhooks API
   description: Manage webhook subscriptions
@@ -338,8 +322,6 @@ apis:
     url: rules/shippo-rules.yml
   - type: Vocabulary
     url: vocabulary/shippo-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shippo-graphql.md
 name: Shippo
 tags:
 - E-Commerce
