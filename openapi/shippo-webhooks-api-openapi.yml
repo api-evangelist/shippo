@@ -203,6 +203,32 @@ components:
           type: string
         metadata:
           type: string
+    Webhook:
+      type: object
+      properties:
+        object_id:
+          type: string
+        url:
+          type: string
+          description: URL that receives webhook events
+        event:
+          type: string
+          enum:
+          - transaction_created
+          - transaction_updated
+          - batch_created
+          - batch_purchased
+          - track_updated
+        active:
+          type: boolean
+        is_test:
+          type: boolean
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
     WebhookCreateRequest:
       type: object
       required:
@@ -270,32 +296,6 @@ components:
           type: array
           items:
             type: object
-    Webhook:
-      type: object
-      properties:
-        object_id:
-          type: string
-        url:
-          type: string
-          description: URL that receives webhook events
-        event:
-          type: string
-          enum:
-          - transaction_created
-          - transaction_updated
-          - batch_created
-          - batch_purchased
-          - track_updated
-        active:
-          type: boolean
-        is_test:
-          type: boolean
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
   securitySchemes:
     ShippoToken:
       type: http

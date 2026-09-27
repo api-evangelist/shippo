@@ -106,6 +106,19 @@ paths:
                 $ref: '#/components/schemas/Transaction'
 components:
   schemas:
+    TransactionPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
     TransactionCreateRequest:
       type: object
       required:
@@ -177,19 +190,6 @@ components:
         object_updated:
           type: string
           format: date-time
-    TransactionPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
   securitySchemes:
     ShippoToken:
       type: http

@@ -114,20 +114,19 @@ paths:
                 $ref: '#/components/schemas/CarrierAccount'
 components:
   schemas:
-    CarrierAccountCreateRequest:
+    CarrierAccountPaginatedList:
       type: object
-      required:
-      - carrier
-      - account_id
       properties:
-        carrier:
+        count:
+          type: integer
+        next:
           type: string
-        account_id:
+        previous:
           type: string
-        parameters:
-          type: object
-        active:
-          type: boolean
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierAccount'
     CarrierAccount:
       type: object
       properties:
@@ -154,19 +153,20 @@ components:
         object_updated:
           type: string
           format: date-time
-    CarrierAccountPaginatedList:
+    CarrierAccountCreateRequest:
       type: object
+      required:
+      - carrier
+      - account_id
       properties:
-        count:
-          type: integer
-        next:
+        carrier:
           type: string
-        previous:
+        account_id:
           type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CarrierAccount'
+        parameters:
+          type: object
+        active:
+          type: boolean
   securitySchemes:
     ShippoToken:
       type: http

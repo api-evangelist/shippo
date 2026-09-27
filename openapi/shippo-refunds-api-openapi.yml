@@ -105,6 +105,16 @@ components:
         object_updated:
           type: string
           format: date-time
+    RefundCreateRequest:
+      type: object
+      required:
+      - transaction
+      properties:
+        transaction:
+          type: string
+          description: Transaction object ID to refund
+        async:
+          type: boolean
     RefundPaginatedList:
       type: object
       properties:
@@ -118,16 +128,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Refund'
-    RefundCreateRequest:
-      type: object
-      required:
-      - transaction
-      properties:
-        transaction:
-          type: string
-          description: Transaction object ID to refund
-        async:
-          type: boolean
   securitySchemes:
     ShippoToken:
       type: http

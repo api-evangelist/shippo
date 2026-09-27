@@ -110,19 +110,6 @@ paths:
                 $ref: '#/components/schemas/Address'
 components:
   schemas:
-    AddressPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
     AddressCreateRequest:
       type: object
       required:
@@ -209,6 +196,19 @@ components:
         object_updated:
           type: string
           format: date-time
+    AddressPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
   securitySchemes:
     ShippoToken:
       type: http
