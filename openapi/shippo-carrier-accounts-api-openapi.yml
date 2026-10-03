@@ -114,19 +114,6 @@ paths:
                 $ref: '#/components/schemas/CarrierAccount'
 components:
   schemas:
-    CarrierAccountPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CarrierAccount'
     CarrierAccount:
       type: object
       properties:
@@ -153,6 +140,19 @@ components:
         object_updated:
           type: string
           format: date-time
+    CarrierAccountPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierAccount'
     CarrierAccountCreateRequest:
       type: object
       required:

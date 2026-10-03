@@ -140,57 +140,6 @@ paths:
           description: Webhook deleted
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        object_id:
-          type: string
-          description: Unique identifier for the address
-        is_complete:
-          type: boolean
-          description: Whether the address is complete and valid
-        name:
-          type: string
-          description: Full name of the recipient
-        company:
-          type: string
-          description: Company name
-        street1:
-          type: string
-          description: First line of the street address
-        street2:
-          type: string
-          description: Second line of the street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        zip:
-          type: string
-          description: Postal code
-        country:
-          type: string
-          description: ISO 2-letter country code
-        phone:
-          type: string
-          description: Phone number
-        email:
-          type: string
-          description: Email address
-        is_residential:
-          type: boolean
-          description: Whether the address is residential
-        validation_results:
-          type: object
-          description: Address validation results
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
     TrackingWebhookRequest:
       type: object
       required:
@@ -203,32 +152,6 @@ components:
           type: string
         metadata:
           type: string
-    Webhook:
-      type: object
-      properties:
-        object_id:
-          type: string
-        url:
-          type: string
-          description: URL that receives webhook events
-        event:
-          type: string
-          enum:
-          - transaction_created
-          - transaction_updated
-          - batch_created
-          - batch_purchased
-          - track_updated
-        active:
-          type: boolean
-        is_test:
-          type: boolean
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
     WebhookCreateRequest:
       type: object
       required:
@@ -296,6 +219,83 @@ components:
           type: array
           items:
             type: object
+    Webhook:
+      type: object
+      properties:
+        object_id:
+          type: string
+        url:
+          type: string
+          description: URL that receives webhook events
+        event:
+          type: string
+          enum:
+          - transaction_created
+          - transaction_updated
+          - batch_created
+          - batch_purchased
+          - track_updated
+        active:
+          type: boolean
+        is_test:
+          type: boolean
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    Address:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the address
+        is_complete:
+          type: boolean
+          description: Whether the address is complete and valid
+        name:
+          type: string
+          description: Full name of the recipient
+        company:
+          type: string
+          description: Company name
+        street1:
+          type: string
+          description: First line of the street address
+        street2:
+          type: string
+          description: Second line of the street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        zip:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: ISO 2-letter country code
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        is_residential:
+          type: boolean
+          description: Whether the address is residential
+        validation_results:
+          type: object
+          description: Address validation results
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
   securitySchemes:
     ShippoToken:
       type: http

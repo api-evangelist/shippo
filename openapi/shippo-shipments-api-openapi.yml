@@ -121,57 +121,102 @@ paths:
                 $ref: '#/components/schemas/RatePaginatedList'
 components:
   schemas:
-    Address:
+    Shipment:
       type: object
       properties:
         object_id:
           type: string
-          description: Unique identifier for the address
-        is_complete:
-          type: boolean
-          description: Whether the address is complete and valid
-        name:
+        status:
           type: string
-          description: Full name of the recipient
-        company:
-          type: string
-          description: Company name
-        street1:
-          type: string
-          description: First line of the street address
-        street2:
-          type: string
-          description: Second line of the street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        zip:
-          type: string
-          description: Postal code
-        country:
-          type: string
-          description: ISO 2-letter country code
-        phone:
-          type: string
-          description: Phone number
-        email:
-          type: string
-          description: Email address
-        is_residential:
-          type: boolean
-          description: Whether the address is residential
-        validation_results:
+          enum:
+          - WAITING
+          - QUEUED
+          - SUCCESS
+          - ERROR
+        address_from:
+          $ref: '#/components/schemas/Address'
+        address_to:
+          $ref: '#/components/schemas/Address'
+        address_return:
+          $ref: '#/components/schemas/Address'
+        parcels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parcel'
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+        extra:
           type: object
-          description: Address validation results
+          description: Additional shipment options (insurance, signature, etc.)
+        metadata:
+          type: string
+          description: User-defined metadata
         object_created:
           type: string
           format: date-time
         object_updated:
           type: string
           format: date-time
+    Rate:
+      type: object
+      properties:
+        object_id:
+          type: string
+        object_created:
+          type: string
+          format: date-time
+        amount:
+          type: string
+          description: Total cost of the rate
+        currency:
+          type: string
+          description: Currency of the rate amount
+        amount_local:
+          type: string
+          description: Amount in the local currency
+        currency_local:
+          type: string
+        provider:
+          type: string
+          description: Carrier providing the rate (e.g., USPS, UPS)
+        provider_image_75:
+          type: string
+          description: URL to carrier logo (75px)
+        servicelevel:
+          type: object
+          properties:
+            name:
+              type: string
+            token:
+              type: string
+            terms:
+              type: string
+        days:
+          type: integer
+          description: Estimated transit days
+        arrives_by:
+          type: string
+          description: Estimated delivery time
+        duration_terms:
+          type: string
+          description: Service level terms description
+        trackable:
+          type: boolean
+        attributes:
+          type: array
+          items:
+            type: string
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
     Parcel:
       type: object
       properties:
@@ -214,93 +259,6 @@ components:
         object_updated:
           type: string
           format: date-time
-    ShipmentPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-    Shipment:
-      type: object
-      properties:
-        object_id:
-          type: string
-        status:
-          type: string
-          enum:
-          - WAITING
-          - QUEUED
-          - SUCCESS
-          - ERROR
-        address_from:
-          $ref: '#/components/schemas/Address'
-        address_to:
-          $ref: '#/components/schemas/Address'
-        address_return:
-          $ref: '#/components/schemas/Address'
-        parcels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Parcel'
-        rates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
-        extra:
-          type: object
-          description: Additional shipment options (insurance, signature, etc.)
-        metadata:
-          type: string
-          description: User-defined metadata
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
-    ParcelCreateRequest:
-      type: object
-      required:
-      - length
-      - width
-      - height
-      - distance_unit
-      - weight
-      - mass_unit
-      properties:
-        length:
-          type: string
-        width:
-          type: string
-        height:
-          type: string
-        distance_unit:
-          type: string
-          enum:
-          - cm
-          - in
-          - ft
-          - mm
-          - m
-          - yd
-        weight:
-          type: string
-        mass_unit:
-          type: string
-          enum:
-          - g
-          - oz
-          - lb
-          - kg
-        template:
-          type: string
     AddressCreateRequest:
       type: object
       required:
@@ -368,64 +326,106 @@ components:
         async:
           type: boolean
           description: Whether to create shipment asynchronously
-    RatePaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
-    Rate:
+    Address:
       type: object
       properties:
         object_id:
           type: string
+          description: Unique identifier for the address
+        is_complete:
+          type: boolean
+          description: Whether the address is complete and valid
+        name:
+          type: string
+          description: Full name of the recipient
+        company:
+          type: string
+          description: Company name
+        street1:
+          type: string
+          description: First line of the street address
+        street2:
+          type: string
+          description: Second line of the street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        zip:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: ISO 2-letter country code
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        is_residential:
+          type: boolean
+          description: Whether the address is residential
+        validation_results:
+          type: object
+          description: Address validation results
         object_created:
           type: string
           format: date-time
-        amount:
+        object_updated:
           type: string
-          description: Total cost of the rate
-        currency:
+          format: date-time
+    ParcelCreateRequest:
+      type: object
+      required:
+      - length
+      - width
+      - height
+      - distance_unit
+      - weight
+      - mass_unit
+      properties:
+        length:
           type: string
-          description: Currency of the rate amount
-        amount_local:
+        width:
           type: string
-          description: Amount in the local currency
-        currency_local:
+        height:
           type: string
-        provider:
+        distance_unit:
           type: string
-          description: Carrier providing the rate (e.g., USPS, UPS)
-        provider_image_75:
+          enum:
+          - cm
+          - in
+          - ft
+          - mm
+          - m
+          - yd
+        weight:
           type: string
-          description: URL to carrier logo (75px)
-        servicelevel:
-          type: object
-          properties:
-            name:
-              type: string
-            token:
-              type: string
-            terms:
-              type: string
-        days:
+        mass_unit:
+          type: string
+          enum:
+          - g
+          - oz
+          - lb
+          - kg
+        template:
+          type: string
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        count:
           type: integer
-          description: Estimated transit days
-        arrives_by:
+        next:
           type: string
-          description: Estimated delivery time
-        duration_terms:
+        previous:
           type: string
-          description: Service level terms description
-        trackable:
-          type: boolean
-        attributes:
+        results:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Shipment'
   securitySchemes:
     ShippoToken:
       type: http

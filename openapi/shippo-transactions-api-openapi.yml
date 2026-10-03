@@ -106,43 +106,6 @@ paths:
                 $ref: '#/components/schemas/Transaction'
 components:
   schemas:
-    TransactionPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-    TransactionCreateRequest:
-      type: object
-      required:
-      - rate
-      - label_file_type
-      properties:
-        rate:
-          type: string
-          description: Object ID of the rate to purchase
-        label_file_type:
-          type: string
-          enum:
-          - PNG
-          - PNG_2.3x7.5
-          - PDF
-          - PDF_2.3x7.5
-          - PDF_4x6
-          - PDF_4x8
-          - PDF_Letter
-          - ZPLII
-        metadata:
-          type: string
-        async:
-          type: boolean
     Transaction:
       type: object
       properties:
@@ -190,6 +153,43 @@ components:
         object_updated:
           type: string
           format: date-time
+    TransactionCreateRequest:
+      type: object
+      required:
+      - rate
+      - label_file_type
+      properties:
+        rate:
+          type: string
+          description: Object ID of the rate to purchase
+        label_file_type:
+          type: string
+          enum:
+          - PNG
+          - PNG_2.3x7.5
+          - PDF
+          - PDF_2.3x7.5
+          - PDF_4x6
+          - PDF_4x8
+          - PDF_Letter
+          - ZPLII
+        metadata:
+          type: string
+        async:
+          type: boolean
+    TransactionPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
   securitySchemes:
     ShippoToken:
       type: http
