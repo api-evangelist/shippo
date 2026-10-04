@@ -121,6 +121,90 @@ paths:
                 $ref: '#/components/schemas/RatePaginatedList'
 components:
   schemas:
+    AddressCreateRequest:
+      type: object
+      required:
+      - name
+      - street1
+      - city
+      - state
+      - zip
+      - country
+      properties:
+        name:
+          type: string
+        company:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        is_residential:
+          type: boolean
+        validate:
+          type: boolean
+          description: Whether to validate the address
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+    ParcelCreateRequest:
+      type: object
+      required:
+      - length
+      - width
+      - height
+      - distance_unit
+      - weight
+      - mass_unit
+      properties:
+        length:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        distance_unit:
+          type: string
+          enum:
+          - cm
+          - in
+          - ft
+          - mm
+          - m
+          - yd
+        weight:
+          type: string
+        mass_unit:
+          type: string
+          enum:
+          - g
+          - oz
+          - lb
+          - kg
+        template:
+          type: string
     Shipment:
       type: object
       properties:
@@ -153,6 +237,66 @@ components:
         metadata:
           type: string
           description: User-defined metadata
+        object_created:
+          type: string
+          format: date-time
+        object_updated:
+          type: string
+          format: date-time
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+    Address:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the address
+        is_complete:
+          type: boolean
+          description: Whether the address is complete and valid
+        name:
+          type: string
+          description: Full name of the recipient
+        company:
+          type: string
+          description: Company name
+        street1:
+          type: string
+          description: First line of the street address
+        street2:
+          type: string
+          description: Second line of the street address
+        city:
+          type: string
+          description: City
+        state:
+          type: string
+          description: State or province
+        zip:
+          type: string
+          description: Postal code
+        country:
+          type: string
+          description: ISO 2-letter country code
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          description: Email address
+        is_residential:
+          type: boolean
+          description: Whether the address is residential
+        validation_results:
+          type: object
+          description: Address validation results
         object_created:
           type: string
           format: date-time
@@ -208,15 +352,6 @@ components:
           type: array
           items:
             type: string
-    RatePaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
     Parcel:
       type: object
       properties:
@@ -259,41 +394,6 @@ components:
         object_updated:
           type: string
           format: date-time
-    AddressCreateRequest:
-      type: object
-      required:
-      - name
-      - street1
-      - city
-      - state
-      - zip
-      - country
-      properties:
-        name:
-          type: string
-        company:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        phone:
-          type: string
-        email:
-          type: string
-        is_residential:
-          type: boolean
-        validate:
-          type: boolean
-          description: Whether to validate the address
     ShipmentCreateRequest:
       type: object
       required:
@@ -326,106 +426,6 @@ components:
         async:
           type: boolean
           description: Whether to create shipment asynchronously
-    Address:
-      type: object
-      properties:
-        object_id:
-          type: string
-          description: Unique identifier for the address
-        is_complete:
-          type: boolean
-          description: Whether the address is complete and valid
-        name:
-          type: string
-          description: Full name of the recipient
-        company:
-          type: string
-          description: Company name
-        street1:
-          type: string
-          description: First line of the street address
-        street2:
-          type: string
-          description: Second line of the street address
-        city:
-          type: string
-          description: City
-        state:
-          type: string
-          description: State or province
-        zip:
-          type: string
-          description: Postal code
-        country:
-          type: string
-          description: ISO 2-letter country code
-        phone:
-          type: string
-          description: Phone number
-        email:
-          type: string
-          description: Email address
-        is_residential:
-          type: boolean
-          description: Whether the address is residential
-        validation_results:
-          type: object
-          description: Address validation results
-        object_created:
-          type: string
-          format: date-time
-        object_updated:
-          type: string
-          format: date-time
-    ParcelCreateRequest:
-      type: object
-      required:
-      - length
-      - width
-      - height
-      - distance_unit
-      - weight
-      - mass_unit
-      properties:
-        length:
-          type: string
-        width:
-          type: string
-        height:
-          type: string
-        distance_unit:
-          type: string
-          enum:
-          - cm
-          - in
-          - ft
-          - mm
-          - m
-          - yd
-        weight:
-          type: string
-        mass_unit:
-          type: string
-          enum:
-          - g
-          - oz
-          - lb
-          - kg
-        template:
-          type: string
-    ShipmentPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
   securitySchemes:
     ShippoToken:
       type: http

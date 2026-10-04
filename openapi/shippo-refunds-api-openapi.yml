@@ -84,6 +84,29 @@ paths:
                 $ref: '#/components/schemas/Refund'
 components:
   schemas:
+    RefundPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+    RefundCreateRequest:
+      type: object
+      required:
+      - transaction
+      properties:
+        transaction:
+          type: string
+          description: Transaction object ID to refund
+        async:
+          type: boolean
     Refund:
       type: object
       properties:
@@ -105,29 +128,6 @@ components:
         object_updated:
           type: string
           format: date-time
-    RefundCreateRequest:
-      type: object
-      required:
-      - transaction
-      properties:
-        transaction:
-          type: string
-          description: Transaction object ID to refund
-        async:
-          type: boolean
-    RefundPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
   securitySchemes:
     ShippoToken:
       type: http

@@ -67,15 +67,6 @@ paths:
                 $ref: '#/components/schemas/Rate'
 components:
   schemas:
-    RatePaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
     Rate:
       type: object
       properties:
@@ -125,6 +116,15 @@ components:
           type: array
           items:
             type: string
+    RatePaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
   securitySchemes:
     ShippoToken:
       type: http
