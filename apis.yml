@@ -391,6 +391,12 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Plans
+  url: plans/shippo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/shippo-rate-limits.yml
+- type: FinOps
+  url: finops/shippo-finops.yml
 - type: CapabilityMap
   url: capabilities/shippo-capability-edges.yml
   name: Shippo Business Capability Map
