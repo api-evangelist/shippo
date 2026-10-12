@@ -201,7 +201,6 @@
   arazzo: null
 - slug: shippo-monday-com
   label: monday.com
-  partner: monday-com
   partner_name: monday.com
   category: Project Management
   type: marketplace
@@ -209,7 +208,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/shippo/integrations/monday
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: shippo-wix
   label: Wix
@@ -407,7 +406,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-jitsu
   label: Jitsu
@@ -426,7 +425,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-canada-post
   label: Canada Post
@@ -445,7 +444,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-correiosbr
   label: CorreiosBR
@@ -464,7 +463,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-dhl-benelux
   label: DHL Benelux
@@ -483,7 +482,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-fedex
   label: FedEx
@@ -502,7 +501,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-gls-us
   label: GLS US
@@ -521,7 +520,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-evri-uk
   label: Evri UK
@@ -540,7 +539,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-passport
   label: Passport
@@ -559,7 +558,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-royal-mail
   label: Royal Mail
@@ -578,7 +577,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-ups
   label: UPS
@@ -597,7 +596,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-usps
   label: USPS
@@ -616,7 +615,7 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shippo-veho
   label: Veho
@@ -635,5 +634,5 @@
     detected_by: detect-carrier-edges.py
     detected: '2026-10-12'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
