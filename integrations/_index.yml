@@ -390,3 +390,250 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: shippo-australia-post-also-used-for-startrack
+  label: Australia Post (also used for Startrack)
+  partner: australia-post
+  partner_name: Australia Post (also used for Startrack)
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: australia_post
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-jitsu
+  label: Jitsu
+  partner: axlehire
+  partner_name: Jitsu
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: axlehire
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-canada-post
+  label: Canada Post
+  partner: canada-post
+  partner_name: Canada Post
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: canada_post
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-partner-spec
+  arazzo: null
+- slug: shippo-correiosbr
+  label: CorreiosBR
+  partner: correios
+  partner_name: CorreiosBR
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: correios_br
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-partner-spec
+  arazzo: null
+- slug: shippo-dhl-benelux
+  label: DHL Benelux
+  partner: dhl
+  partner_name: DHL Benelux
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: dhl_benelux
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-fedex
+  label: FedEx
+  partner: fedex
+  partner_name: FedEx
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: fedex
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-gls-us
+  label: GLS US
+  partner: gls-group
+  partner_name: GLS US
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: gls_us
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-evri-uk
+  label: Evri UK
+  partner: evri
+  partner_name: Evri UK
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: hermes_uk
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-partner-spec
+  arazzo: null
+- slug: shippo-passport
+  label: Passport
+  partner: passport
+  partner_name: Passport
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: passport
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-royal-mail
+  label: Royal Mail
+  partner: royal-mail
+  partner_name: Royal Mail
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: royal_mail
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-ups
+  label: UPS
+  partner: ups
+  partner_name: UPS
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: ups
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-usps
+  label: USPS
+  partner: usps
+  partner_name: USPS
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: usps
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null
+- slug: shippo-veho
+  label: Veho
+  partner: veho
+  partner_name: Veho
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: veho
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: pending-generation
+  arazzo: null

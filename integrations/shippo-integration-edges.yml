@@ -372,6 +372,240 @@ edges:
   direction: third-party
   category: Website & App Building
   partner_url: https://help.myclickfunnels.com/hc/en-us/articles/9655675588119-ClickFunnels-FAQs
+- partner_name: Australia Post (also used for Startrack)
+  partner: australia-post
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: australia_post
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Jitsu
+  partner: axlehire
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: axlehire
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Canada Post
+  partner: canada-post
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: canada_post
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: CorreiosBR
+  partner: correios
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: correios_br
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: DHL Benelux
+  partner: dhl
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: dhl_benelux
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: FedEx
+  partner: fedex
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: fedex
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: GLS US
+  partner: gls-group
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: gls_us
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Evri UK
+  partner: evri
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: hermes_uk
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Passport
+  partner: passport
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: passport
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Royal Mail
+  partner: royal-mail
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: royal_mail
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: UPS
+  partner: ups
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: ups
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: USPS
+  partner: usps
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: usps
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Veho
+  partner: veho
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-12'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: veho
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-12'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 templates:
 - title: Create new Shippo orders for each new Jotform submission
   url: https://zapier.com/apps/jotform/integrations/shippo/1221067/create-new-shippo-orders-for-each-new-jotform-submission
