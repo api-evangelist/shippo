@@ -389,6 +389,25 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: shippo-aramex
+  label: Aramex
+  partner: aramex
+  partner_name: Aramex
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: aramex
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: not-a-workflow
+  arazzo: null
 - slug: shippo-australia-post-also-used-for-startrack
   label: Australia Post (also used for Startrack)
   partner: australia-post
@@ -404,7 +423,7 @@
     value: australia_post
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -423,7 +442,7 @@
     value: axlehire
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -442,7 +461,7 @@
     value: canada_post
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -461,7 +480,7 @@
     value: correios_br
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -480,7 +499,26 @@
     value: dhl_benelux
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-dpd-germany
+  label: DPD GERMANY
+  partner: dpd-group
+  partner_name: DPD GERMANY
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: dpd_de
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -499,7 +537,7 @@
     value: fedex
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -518,7 +556,7 @@
     value: gls_us
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -537,7 +575,26 @@
     value: hermes_uk
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-ontrac
+  label: OnTrac
+  partner: ontrac
+  partner_name: OnTrac
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: ontrac
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -556,7 +613,26 @@
     value: passport
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-purolator
+  label: Purolator
+  partner: purolator
+  partner_name: Purolator
+  type: contract
+  channel: provider-built
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  source: edge
+  relationship: carrier-coverage
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: purolator
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -575,7 +651,7 @@
     value: royal_mail
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -594,7 +670,7 @@
     value: ups
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -613,7 +689,7 @@
     value: usps
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
@@ -632,7 +708,7 @@
     value: veho
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null

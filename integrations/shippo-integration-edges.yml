@@ -372,6 +372,24 @@ edges:
   direction: third-party
   category: Website & App Building
   partner_url: https://help.myclickfunnels.com/hc/en-us/articles/9655675588119-ClickFunnels-FAQs
+- partner_name: Aramex
+  partner: aramex
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-13'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: aramex
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Australia Post (also used for Startrack)
   partner: australia-post
   partner_match: alias
@@ -381,14 +399,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: australia_post
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Jitsu
   partner: axlehire
@@ -399,14 +417,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: axlehire
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Canada Post
   partner: canada-post
@@ -417,14 +435,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: canada_post
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: CorreiosBR
   partner: correios
@@ -435,14 +453,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: correios_br
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: DHL Benelux
   partner: dhl
@@ -453,14 +471,32 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: dhl_benelux
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: DPD GERMANY
+  partner: dpd-group
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-13'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: dpd_de
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: FedEx
   partner: fedex
@@ -471,14 +507,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: fedex
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: GLS US
   partner: gls-group
@@ -489,14 +525,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: gls_us
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Evri UK
   partner: evri
@@ -507,14 +543,32 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: hermes_uk
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: OnTrac
+  partner: ontrac
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-13'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: ontrac
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Passport
   partner: passport
@@ -525,14 +579,32 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: passport
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
+    spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Purolator
+  partner: purolator
+  partner_match: alias
+  channel: provider-built
+  direction: provider-built
+  type: contract
+  relationship: carrier-coverage
+  evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+  detected_by: detect-carrier-edges.py
+  first_seen: '2026-10-13'
+  contract_reference:
+    repo: shippo
+    spec_file: public-api.yaml
+    value: purolator
+    property: components.schemas.CarriersEnum
+    detected_by: detect-carrier-edges.py
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Royal Mail
   partner: royal-mail
@@ -543,14 +615,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: royal_mail
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: UPS
   partner: ups
@@ -561,14 +633,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: ups
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: USPS
   partner: usps
@@ -579,14 +651,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: usps
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 - partner_name: Veho
   partner: veho
@@ -597,14 +669,14 @@ edges:
   relationship: carrier-coverage
   evidence: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   detected_by: detect-carrier-edges.py
-  first_seen: '2026-10-12'
+  first_seen: '2026-10-13'
   contract_reference:
     repo: shippo
     spec_file: public-api.yaml
     value: veho
     property: components.schemas.CarriersEnum
     detected_by: detect-carrier-edges.py
-    detected: '2026-10-12'
+    detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
 templates:
 - title: Create new Shippo orders for each new Jotform submission
