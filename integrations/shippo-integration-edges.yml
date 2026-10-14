@@ -8,6 +8,7 @@ checked:
 - https://monid.ai/tools/shippo
 - https://n8n.io/integrations/shippo/
 - https://zapier.com/apps/shippo/integrations
+- square/integrations/square-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -678,6 +679,23 @@ edges:
     detected_by: detect-carrier-edges.py
     detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Square (own)
+  partner: square
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://squareup.com/us/en/app-marketplace/app/Shippo_US
+  mirror_of: square/integrations/square-integration-edges.yml
+  apps:
+  - Shippo
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Most popular apps
 templates:
 - title: Create new Shippo orders for each new Jotform submission
   url: https://zapier.com/apps/jotform/integrations/shippo/1221067/create-new-shippo-orders-for-each-new-jotform-submission

@@ -712,3 +712,16 @@
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
+- slug: shippo-square-own
+  label: Square (own)
+  partner: square
+  partner_name: Square (own)
+  category: Most popular apps
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://squareup.com/us/en/app-marketplace/app/Shippo_US
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
