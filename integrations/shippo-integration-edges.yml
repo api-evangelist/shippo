@@ -8,7 +8,9 @@ checked:
 - https://monid.ai/tools/shippo
 - https://n8n.io/integrations/shippo/
 - https://zapier.com/apps/shippo/integrations
+- shopify/integrations/shopify-integration-edges.yml
 - square/integrations/square-integration-edges.yml
+- woocommerce/integrations/woocommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -679,6 +681,24 @@ edges:
     detected_by: detect-carrier-edges.py
     detected: '2026-10-13'
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/shippo
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Shippo ‑ Simplified Shipping
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
 - partner_name: Square (own)
   partner: square
   partner_match: mirror
@@ -696,6 +716,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Most popular apps
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/shippo/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Shippo
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
 templates:
 - title: Create new Shippo orders for each new Jotform submission
   url: https://zapier.com/apps/jotform/integrations/shippo/1221067/create-new-shippo-orders-for-each-new-jotform-submission

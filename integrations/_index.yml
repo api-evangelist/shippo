@@ -712,6 +712,18 @@
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
+- slug: shippo-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/shippo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: shippo-square-own
   label: Square (own)
   partner: square
@@ -721,6 +733,19 @@
   marketplace: own
   channel: partner-built
   evidence: https://squareup.com/us/en/app-marketplace/app/Shippo_US
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/shippo/
   source: edge
   relationship: platform-app
   status: not-a-workflow
