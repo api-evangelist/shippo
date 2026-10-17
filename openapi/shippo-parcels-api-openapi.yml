@@ -123,6 +123,19 @@ components:
           - kg
         template:
           type: string
+    ParcelPaginatedList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+        previous:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parcel'
     Parcel:
       type: object
       properties:
@@ -165,19 +178,6 @@ components:
         object_updated:
           type: string
           format: date-time
-    ParcelPaginatedList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-        previous:
-          type: string
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Parcel'
   securitySchemes:
     ShippoToken:
       type: http
