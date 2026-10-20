@@ -32,7 +32,7 @@ vendor:
   ruling: 'Kin 2026-09-25: a vendor implementation counts for the provider'
 tool_quality:
   tool_count: 3
-  tokens_total: 1560
+  tokens_total: 1557
   tokens_per_tool_median: 244
   heavy_tools: []
   heavy_tool_count: 0
