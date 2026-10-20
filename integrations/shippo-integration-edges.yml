@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/shippo/integrations
@@ -47,337 +47,98 @@ marketplace_apps:
   - key: SHIPPO_CREATE_BATCH
   - key: SHIPPO_CREATE_CARRIER_ACCOUNT
   - key: SHIPPO_CREATE_CUSTOMS_ITEM
+  - key: SHIPPO_CREATE_LIVE_RATE
+  - key: SHIPPO_CREATE_MANIFEST
+  - key: SHIPPO_CREATE_MERCHANT_ADDRESS
+  - key: SHIPPO_CREATE_MERCHANT_BATCH
+  - key: SHIPPO_CREATE_MERCHANT_CARRIER_ACCOUNT
+  - key: SHIPPO_CREATE_MERCHANT_CUSTOMS_DECLARATION
+  - key: SHIPPO_CREATE_MERCHANT_CUSTOMS_ITEM
+  - key: SHIPPO_CREATE_MERCHANT_ORDER
+  - key: SHIPPO_CREATE_MERCHANT_PARCEL
+  - key: SHIPPO_CREATE_MERCHANT_REFUND
+  - key: SHIPPO_CREATE_MERCHANT_SHIPMENT
+  - key: SHIPPO_CREATE_MERCHANT_TRANSACTION
+  - key: SHIPPO_CREATE_ORDER
+  - key: SHIPPO_CREATE_PARCEL
+  - key: SHIPPO_CREATE_REFUND
+  - key: SHIPPO_CREATE_SERVICE_GROUP
+  - key: SHIPPO_CREATE_SHIPMENT
+  - key: SHIPPO_CREATE_TRACK
+  - key: SHIPPO_CREATE_TRANSACTION
+  - key: SHIPPO_CREATE_USER_PARCEL_TEMPLATE
+  - key: SHIPPO_CREATE_WEBHOOK
+  - key: SHIPPO_DELETE_DEFAULT_PARCEL_TEMPLATE
+  - key: SHIPPO_DELETE_USER_PARCEL_TEMPLATE
+  - key: SHIPPO_DELETE_WEBHOOK
+  - key: SHIPPO_GET_ADDRESS
+  - key: SHIPPO_GET_CARRIER_ACCOUNT
+  - key: SHIPPO_GET_CARRIER_PARCEL_TEMPLATE
+  - key: SHIPPO_GET_CARRIER_REGISTRATION_STATUS
+  - key: SHIPPO_GET_CUSTOMS_DECLARATION
+  - key: SHIPPO_GET_CUSTOMS_ITEM
+  - key: SHIPPO_GET_DEFAULT_PARCEL_TEMPLATE
+  - key: SHIPPO_GET_MERCHANT
+  - key: SHIPPO_GET_MERCHANT_ADDRESS
+  - key: SHIPPO_GET_MERCHANT_BATCH
+  - key: SHIPPO_GET_MERCHANT_CARRIER_ACCOUNT
+  - key: SHIPPO_GET_MERCHANT_CARRIER_REGISTRATION_STATUS
+  - key: SHIPPO_GET_MERCHANT_CUSTOMS_DECLARATION
+  - key: SHIPPO_GET_MERCHANT_CUSTOMS_ITEM
+  - key: SHIPPO_GET_MERCHANT_MANIFEST
+  - key: SHIPPO_GET_MERCHANT_ORDER
+  - key: SHIPPO_GET_MERCHANT_PARCEL
+  - key: SHIPPO_GET_MERCHANT_RATE
+  - key: SHIPPO_GET_MERCHANT_REFUND
+  - key: SHIPPO_GET_MERCHANT_SHIPMENT
+  - key: SHIPPO_GET_MERCHANT_TRACK
+  - key: SHIPPO_GET_MERCHANT_TRANSACTION
+  - key: SHIPPO_GET_ORDER
+  - key: SHIPPO_GET_PARCEL
+  - key: SHIPPO_GET_RATE
+  - key: SHIPPO_GET_REFUND
+  - key: SHIPPO_GET_SHIPMENT
+  - key: SHIPPO_GET_SHIPPO_ACCOUNT
+  - key: SHIPPO_GET_TRACK
+  - key: SHIPPO_GET_TRANSACTION
+  - key: SHIPPO_GET_USER_PARCEL_TEMPLATE
+  - key: SHIPPO_GET_WEBHOOK
+  - key: SHIPPO_LIST_ADDRESSES
+  - key: SHIPPO_LIST_CARRIER_ACCOUNTS
+  - key: SHIPPO_LIST_CARRIER_PARCEL_TEMPLATES
+  - key: SHIPPO_LIST_CUSTOMS_DECLARATIONS
+  - key: SHIPPO_LIST_CUSTOMS_ITEMS
+  - key: SHIPPO_LIST_MANIFESTS
+  - key: SHIPPO_LIST_MERCHANTS
+  - key: SHIPPO_LIST_MERCHANT_ADDRESSES
+  - key: SHIPPO_LIST_MERCHANT_CARRIER_ACCOUNTS
+  - key: SHIPPO_LIST_MERCHANT_CUSTOMS_DECLARATIONS
+  - key: SHIPPO_LIST_MERCHANT_CUSTOMS_ITEMS
+  - key: SHIPPO_LIST_MERCHANT_MANIFESTS
+  - key: SHIPPO_LIST_MERCHANT_PARCELS
+  - key: SHIPPO_LIST_MERCHANT_SHIPMENTS
+  - key: SHIPPO_LIST_MERCHANT_SHIPMENT_RATES_BY_CURRENCY
+  - key: SHIPPO_LIST_MERCHANT_TRANSACTIONS
+  - key: SHIPPO_LIST_ORDERS
+  - key: SHIPPO_LIST_REFUNDS
+  - key: SHIPPO_LIST_SERVICE_GROUPS
+  - key: SHIPPO_LIST_SHIPMENTS
+  - key: SHIPPO_LIST_SHIPMENT_RATES
+  - key: SHIPPO_LIST_SHIPMENT_RATES_BY_CURRENCY
+  - key: SHIPPO_LIST_SHIPPO_ACCOUNTS
+  - key: SHIPPO_LIST_USER_PARCEL_TEMPLATES
+  - key: SHIPPO_PURCHASE_MERCHANT_BATCH
+  - key: SHIPPO_REMOVE_SHIPMENTS_FROM_BATCH
+  - key: SHIPPO_UPDATE_CARRIER_ACCOUNT
+  - key: SHIPPO_UPDATE_DEFAULT_PARCEL_TEMPLATE
+  - key: SHIPPO_UPDATE_MERCHANT
+  - key: SHIPPO_UPDATE_MERCHANT_CARRIER_ACCOUNT
+  - key: SHIPPO_UPDATE_SERVICE_GROUP
+  - key: SHIPPO_UPDATE_USER_PARCEL_TEMPLATE
+  - key: SHIPPO_UPDATE_WEBHOOK
+  - key: SHIPPO_VALIDATE_ADDRESS
+  - key: SHIPPO_VALIDATE_MERCHANT_ADDRESS
 edges:
-- partner_name: Airtable
-  partner: airtable
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/airtable
-  direction: third-party
-  category: Databases
-  partner_url: https://airtable.com/
-- partner_name: Big Cartel
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/bigcartel
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.bigcartel.com/?utm_source=zapier&utm_medium=referral&utm_campaign=integration_partner
-- partner_name: Ecwid by Lightspeed
-  partner: ecwid
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/ecwid
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.ecwid.com/
-- partner_name: Jotform
-  partner: jotform
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/jotform
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://www.jotform.com/
-- partner_name: QuickBooks Online
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/quickbooks
-  direction: third-party
-  category: Accounting
-  partner_url: http://intuit.com/
-- partner_name: HubSpot
-  partner: hubspot
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/hubspot
-  direction: third-party
-  category: Marketing Automation
-  partner_url: http://www.hubspot.com/
-- partner_name: WooCommerce
-  partner: woocommerce
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/woocommerce
-  direction: third-party
-  category: eCommerce
-  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
-- partner_name: Square
-  partner: square
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/square
-  direction: third-party
-  category: eCommerce
-  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
-- partner_name: Shopify
-  partner: shopify
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/shopify
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.shopify.com/
-- partner_name: monday.com
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/monday
-  direction: third-party
-  category: Project Management
-  partner_url: https://monday.com/
-- partner_name: Wix
-  partner: wix
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/wix
-  direction: third-party
-  category: Website Builders
-  partner_url: https://www.wix.com/
-- partner_name: ClickFunnels Classic
-  partner: clickfunnels
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/clickfunnels-classic
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.clickfunnels.com/
-- partner_name: Gmail
-  partner: gmail
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/gmail
-  direction: third-party
-  category: Email
-  partner_url: https://mail.google.com/
-- partner_name: Sharetribe
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/sharetribe
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.sharetribe.com/
-- partner_name: ShipStation
-  partner: shipstation
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/shipstation
-  direction: third-party
-  category: eCommerce
-  partner_url: http://www.shipstation.com/
-- partner_name: Google Forms
-  partner: google-forms
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/google-forms
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://google.com/
-- partner_name: Typeform
-  partner: typeform
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/typeform
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
-- partner_name: Wave
-  partner: wave-financial
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/wave
-  direction: third-party
-  category: Accounting
-  partner_url: https://www.waveapps.com/
-- partner_name: eBay
-  partner: ebay
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/ebay
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.ebay.com/
-- partner_name: Gravity Forms
-  partner: gravity-forms
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/gravity-forms
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
-- partner_name: Trello
-  partner: trello
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/trello
-  direction: third-party
-  category: Project Management
-  partner_url: https://trello.com/
-- partner_name: Mailchimp
-  partner: mailchimp
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/mailchimp
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://mailchimp.com/
-- partner_name: Zoho Inventory
-  partner: zoho-inventory
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/zoho-inventory
-  direction: third-party
-  category: eCommerce
-  partner_url: https://go.zoho.com/ZGz
-- partner_name: Google Sheets
-  partner: google-sheets
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/google-sheets
-  direction: third-party
-  category: Google
-  partner_url: http://sheets.google.com/
-- partner_name: Pipedrive
-  partner: pipedrive
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/pipedrive
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://pipedrive.com/
-- partner_name: Twilio
-  partner: twilio
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/twilio
-  direction: third-party
-  category: Phone & SMS
-  partner_url: https://www.twilio.com/
-- partner_name: SamCart
-  partner: samcart
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/samcart
-  direction: third-party
-  category: eCommerce
-  partner_url: https://samcart.com/
-- partner_name: Acuity Scheduling
-  partner: acuity-scheduling
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/acuity-scheduling
-  direction: third-party
-  category: Scheduling & Booking
-  partner_url: https://acuityscheduling.com/?utm_source=zapier.com&utm_medium=referral&utm_campaign=integration-page
-- partner_name: Webflow
-  partner: webflow
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/webflow
-  direction: third-party
-  category: Website Builders
-  partner_url: https://webflow.com/
-- partner_name: ClickFunnels
-  partner: clickfunnels
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shippo/integrations/clickfunnels
-  direction: third-party
-  category: Website & App Building
-  partner_url: https://help.myclickfunnels.com/hc/en-us/articles/9655675588119-ClickFunnels-FAQs
 - partner_name: Aramex
   partner: aramex
   partner_match: alias
@@ -791,6 +552,366 @@ edges:
     builder: unknown (community connector; contributor not in the record)
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Big Cartel
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/bigcartel
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.bigcartel.com/?utm_source=zapier&utm_medium=referral&utm_campaign=integration_partner
+- partner_name: Ecwid by Lightspeed
+  partner: ecwid
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/ecwid
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ecwid.com/
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: QuickBooks Online
+  partner: quickbooks
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: monday.com
+  partner: monday-com
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Sharetribe
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/sharetribe
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.sharetribe.com/
+- partner_name: ShipStation
+  partner: shipstation
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/shipstation
+  direction: third-party
+  category: eCommerce
+  partner_url: http://www.shipstation.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Wave
+  partner: wave-financial
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/wave
+  direction: third-party
+  category: Accounting
+  partner_url: https://www.waveapps.com/
+- partner_name: eBay
+  partner: ebay
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/ebay
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ebay.com/
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Zoho Inventory
+  partner: zoho-inventory
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/zoho-inventory
+  direction: third-party
+  category: eCommerce
+  partner_url: https://go.zoho.com/ZGz
+- partner_name: Twilio
+  partner: twilio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/twilio
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.twilio.com/
+- partner_name: SamCart
+  partner: samcart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/samcart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://samcart.com/
+- partner_name: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/acuity-scheduling
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://acuityscheduling.com/?utm_source=zapier.com&utm_medium=referral&utm_campaign=integration-page
+- partner_name: Webflow
+  partner: webflow
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/webflow
+  direction: third-party
+  category: Website Builders
+  partner_url: https://webflow.com/
+- partner_name: ClickFunnels
+  partner: clickfunnels
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/clickfunnels
+  direction: third-party
+  category: Website & App Building
+  partner_url: https://help.myclickfunnels.com/hc/en-us/articles/9655675588119-ClickFunnels-FAQs
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/shippo/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
 templates:
 - title: Create new Shippo orders for each new Jotform submission
   url: https://zapier.com/apps/jotform/integrations/shippo/1221067/create-new-shippo-orders-for-each-new-jotform-submission
