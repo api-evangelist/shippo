@@ -19,6 +19,9 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -945,6 +948,21 @@ edges:
     year: '2014'
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.2d2fa84b-16c2-42a6-a4f5-7441eaeee45c
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Shippo
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates:
 - title: Create new Shippo orders for each new Jotform submission
   url: https://zapier.com/apps/jotform/integrations/shippo/1221067/create-new-shippo-orders-for-each-new-jotform-submission
