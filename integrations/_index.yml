@@ -460,44 +460,6 @@
     spec_url: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
   status: not-a-workflow
   arazzo: null
-- slug: shippo-shopify-own
-  label: Shopify (own)
-  partner: shopify
-  partner_name: Shopify (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.shopify.com/shippo
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: shippo-square-own
-  label: Square (own)
-  partner: square
-  partner_name: Square (own)
-  category: Most popular apps
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://squareup.com/us/en/app-marketplace/app/Shippo_US
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: shippo-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/shippo/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: shippo-zapier
   label: Zapier
   partner: zapier
@@ -875,6 +837,57 @@
   marketplace: own
   channel: partner-built
   evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.2d2fa84b-16c2-42a6-a4f5-7441eaeee45c
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/shippo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-square-own
+  label: Square (own)
+  partner: square
+  partner_name: Square (own)
+  category: Most popular apps
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://squareup.com/us/en/app-marketplace/app/Shippo_US
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/shippo/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: shippo-wix-own
+  label: Wix (own)
+  partner: wix
+  partner_name: Wix (own)
+  category: Shipping & Delivery
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.wix.com/app-market/developer/shippo
   source: edge
   relationship: platform-app
   status: not-a-workflow
