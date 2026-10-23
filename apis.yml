@@ -391,6 +391,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/shippo/overview
 - type: Plans
   url: plans/shippo-plans-pricing.yml
 - type: RateLimits
