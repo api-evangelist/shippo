@@ -1,132 +1,319 @@
 {
+  "info": {
+    "_postman_id": "6f6dd9d6-33c1-4f18-87ab-671486acf135",
+    "name": "Shippo Addresses API",
+    "description": "Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.\n\nContact Support:\n Name: Shippo\n Email: support@goshippo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:47:12.000Z",
+    "updatedAt": "2026-10-21T19:47:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6f6dd9d6-33c1-4f18-87ab-671486acf135"
+  },
   "item": [
     {
-      "id": "ef3fb019-2459-4e5b-afbc-fc52a590738f",
-      "name": "Addresses",
-      "description": {
-        "content": "Validate and manage shipping addresses",
-        "type": "text/plain"
-      },
+      "name": "addresses",
       "item": [
         {
-          "id": "48e90643-f877-4031-aef7-0d0587ca41bb",
-          "name": "List Addresses",
-          "request": {
-            "name": "List Addresses",
-            "description": {
-              "content": "Returns a list of all address objects.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "addresses"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{AddressId}",
+          "item": [
+            {
+              "name": "validate",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "Page number for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "results",
-                  "value": "5",
-                  "description": "Number of results per page (max 100)"
+                  "name": "Validate Address",
+                  "id": "0ac628b5-801e-4cfe-827f-8f0a7eeb7adc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/addresses/:AddressId/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "addresses",
+                        ":AddressId",
+                        "validate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8d72e3ba-4b11-40e9-907b-7251805371f8",
+                          "key": "AddressId",
+                          "value": "<string>",
+                          "description": "(Required) Object ID of the address to validate"
+                        }
+                      ]
+                    },
+                    "description": "Validates an existing address and returns validation results."
+                  },
+                  "response": [
+                    {
+                      "id": "ee29a45e-efc6-491f-982e-4c8e915b2454",
+                      "name": "Address validation result",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/addresses/:AddressId/validate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "addresses",
+                            ":AddressId",
+                            "validate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "AddressId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object_id\": \"<string>\",\n  \"is_complete\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"country\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"is_residential\": \"<boolean>\",\n  \"validation_results\": {},\n  \"object_created\": \"<dateTime>\",\n  \"object_updated\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T19:47:12.000Z",
+                      "updatedAt": "2026-10-21T19:47:12.000Z",
+                      "uid": "35240-ee29a45e-efc6-491f-982e-4c8e915b2454"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T19:47:12.000Z",
+                  "updatedAt": "2026-10-21T19:47:12.000Z",
+                  "uid": "35240-0ac628b5-801e-4cfe-827f-8f0a7eeb7adc"
                 }
               ],
-              "variable": []
+              "id": "25ac364c-f233-479b-a575-e48ba77f1b7a",
+              "createdAt": "2026-10-21T19:47:12.000Z",
+              "updatedAt": "2026-10-21T19:47:12.000Z",
+              "uid": "35240-25ac364c-f233-479b-a575-e48ba77f1b7a"
             },
+            {
+              "name": "Get Address",
+              "id": "7b3f4e1a-3d0d-4984-8d46-7088c1fe88c6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/addresses/:AddressId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses",
+                    ":AddressId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5e8f5e17-01fa-4fd2-b9f1-732c4a6f596b",
+                      "key": "AddressId",
+                      "value": "<string>",
+                      "description": "(Required) Object ID of the address"
+                    }
+                  ]
+                },
+                "description": "Returns an existing address using an object ID."
+              },
+              "response": [
+                {
+                  "id": "600b0706-2813-49c9-afaf-cfa64e1be224",
+                  "name": "Address object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/addresses/:AddressId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "addresses",
+                        ":AddressId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "AddressId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object_id\": \"<string>\",\n  \"is_complete\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"country\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"is_residential\": \"<boolean>\",\n  \"validation_results\": {},\n  \"object_created\": \"<dateTime>\",\n  \"object_updated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-21T19:47:12.000Z",
+                  "updatedAt": "2026-10-21T19:47:12.000Z",
+                  "uid": "35240-600b0706-2813-49c9-afaf-cfa64e1be224"
+                }
+              ],
+              "createdAt": "2026-10-21T19:47:12.000Z",
+              "updatedAt": "2026-10-21T19:47:12.000Z",
+              "uid": "35240-7b3f4e1a-3d0d-4984-8d46-7088c1fe88c6"
+            }
+          ],
+          "id": "a1719a1e-47b1-49ed-977b-88afce6e2886",
+          "createdAt": "2026-10-21T19:47:12.000Z",
+          "updatedAt": "2026-10-21T19:47:12.000Z",
+          "uid": "35240-a1719a1e-47b1-49ed-977b-88afce6e2886"
+        },
+        {
+          "name": "List Addresses",
+          "id": "b5a63d68-e56a-4b28-b55c-0fde011e4c4e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/addresses?page=1&results=5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of results per page (max 100)",
+                  "key": "results",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Returns a list of all address objects."
           },
           "response": [
             {
-              "id": "5672702b-b625-4854-899c-36f1aa57aaa6",
+              "id": "c593edab-79cd-40b0-8fa3-25649a2ddce9",
               "name": "A list of addresses",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "addresses"
-                  ],
+                  "raw": "{{baseUrl}}/addresses?page=1&results=5",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "addresses"
+                  ],
                   "query": [
                     {
+                      "description": "Page number for pagination",
                       "key": "page",
                       "value": "1"
                     },
                     {
+                      "description": "Number of results per page (max 100)",
                       "key": "results",
                       "value": "5"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"count\": 4043,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"object_id\": \"string\",\n      \"is_complete\": false,\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"is_residential\": true,\n      \"validation_results\": {},\n      \"object_created\": \"1973-08-16T09:37:03.628Z\",\n      \"object_updated\": \"1965-12-18T02:45:00.029Z\"\n    },\n    {\n      \"object_id\": \"string\",\n      \"is_complete\": true,\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"is_residential\": false,\n      \"validation_results\": {},\n      \"object_created\": \"1986-03-30T02:38:53.593Z\",\n      \"object_updated\": \"1959-10-07T23:07:46.743Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<string>\",\n  \"previous\": \"<string>\",\n  \"results\": [\n    {\n      \"object_id\": \"<string>\",\n      \"is_complete\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"is_residential\": \"<boolean>\",\n      \"validation_results\": {},\n      \"object_created\": \"<dateTime>\",\n      \"object_updated\": \"<dateTime>\"\n    },\n    {\n      \"object_id\": \"<string>\",\n      \"is_complete\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"is_residential\": \"<boolean>\",\n      \"validation_results\": {},\n      \"object_created\": \"<dateTime>\",\n      \"object_updated\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T19:47:12.000Z",
+              "updatedAt": "2026-10-21T19:47:12.000Z",
+              "uid": "35240-c593edab-79cd-40b0-8fa3-25649a2ddce9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:47:12.000Z",
+          "updatedAt": "2026-10-21T19:47:12.000Z",
+          "uid": "35240-b5a63d68-e56a-4b28-b55c-0fde011e4c4e"
         },
         {
-          "id": "9da720e1-9d1f-4799-b70f-aa089904f737",
           "name": "Create Address",
+          "id": "447e6587-c035-4a16-8e24-1d2f2d8fd643",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create Address",
-            "description": {
-              "content": "Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "addresses"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -137,280 +324,94 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"country\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"is_residential\": \"<boolean>\",\n  \"validate\": \"<boolean>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ]
+            },
+            "description": "Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders."
           },
           "response": [
             {
-              "id": "73f29ad6-03a5-480f-aa2d-e41f04050c8a",
+              "id": "c0c0d7ee-fe66-4e41-b046-9bc8845b3924",
               "name": "Address created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "addresses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"country\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"is_residential\": \"<boolean>\",\n  \"validate\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/addresses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"object_id\": \"string\",\n  \"is_complete\": true,\n  \"name\": \"string\",\n  \"company\": \"string\",\n  \"street1\": \"string\",\n  \"street2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"country\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"is_residential\": false,\n  \"validation_results\": {},\n  \"object_created\": \"1988-07-10T17:28:19.583Z\",\n  \"object_updated\": \"1962-08-07T20:21:33.679Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"object_id\": \"<string>\",\n  \"is_complete\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"country\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"is_residential\": \"<boolean>\",\n  \"validation_results\": {},\n  \"object_created\": \"<dateTime>\",\n  \"object_updated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-21T19:47:12.000Z",
+              "updatedAt": "2026-10-21T19:47:12.000Z",
+              "uid": "35240-c0c0d7ee-fe66-4e41-b046-9bc8845b3924"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "622fcc55-44b1-46cc-a64f-aba26d39aa31",
-          "name": "Get Address",
-          "request": {
-            "name": "Get Address",
-            "description": {
-              "content": "Returns an existing address using an object ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "addresses",
-                ":AddressId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "AddressId",
-                  "description": "(Required) Object ID of the address"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "17f59881-fa09-469e-9503-e0116b0123b5",
-              "name": "Address object",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "addresses",
-                    ":AddressId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "AddressId",
-                      "description": "(Required) Object ID of the address"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"object_id\": \"string\",\n  \"is_complete\": true,\n  \"name\": \"string\",\n  \"company\": \"string\",\n  \"street1\": \"string\",\n  \"street2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"country\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"is_residential\": false,\n  \"validation_results\": {},\n  \"object_created\": \"1988-07-10T17:28:19.583Z\",\n  \"object_updated\": \"1962-08-07T20:21:33.679Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f6a70e58-0a2c-4566-b6e2-3b255bf88aa5",
-          "name": "Validate Address",
-          "request": {
-            "name": "Validate Address",
-            "description": {
-              "content": "Validates an existing address and returns validation results.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "addresses",
-                ":AddressId",
-                "validate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "AddressId",
-                  "description": "(Required) Object ID of the address to validate"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7be34eaf-87ef-451e-aee0-eb467a62626d",
-              "name": "Address validation result",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "addresses",
-                    ":AddressId",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "AddressId",
-                      "description": "(Required) Object ID of the address to validate"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"object_id\": \"string\",\n  \"is_complete\": true,\n  \"name\": \"string\",\n  \"company\": \"string\",\n  \"street1\": \"string\",\n  \"street2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zip\": \"string\",\n  \"country\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"is_residential\": false,\n  \"validation_results\": {},\n  \"object_created\": \"1988-07-10T17:28:19.583Z\",\n  \"object_updated\": \"1962-08-07T20:21:33.679Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:47:12.000Z",
+          "updatedAt": "2026-10-21T19:47:12.000Z",
+          "uid": "35240-447e6587-c035-4a16-8e24-1d2f2d8fd643"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.goshippo.com",
-      "key": "baseUrl"
+      "id": "96fc9e41-b599-4e6a-a72f-b25e679003d0",
+      "createdAt": "2026-10-21T19:47:12.000Z",
+      "updatedAt": "2026-10-21T19:47:12.000Z",
+      "uid": "35240-96fc9e41-b599-4e6a-a72f-b25e679003d0"
     }
   ],
   "auth": {
@@ -418,17 +419,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "83bf69e7-d4e6-484c-9561-5b8f5ff25ddf",
-    "name": "Shippo Addresses API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Shippo is a multi-carrier shipping API that enables developers to add complete shipping functionality to their applications. The API supports address validation, carrier rate comparison across USPS, UPS, FedEx, DHL, and 80+ other carriers, label generation, package tracking, returns management, and webhook notifications.\n\nContact Support:\n Name: Shippo\n Email: support@goshippo.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.goshippo.com"
     }
-  }
+  ]
 }
